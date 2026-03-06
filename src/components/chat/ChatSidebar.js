@@ -28,18 +28,14 @@ export default function ChatSidebar() {
       unread: unread[u._id] || 0,
     }));
 
-    // Filter
     if (search) {
       arr = arr.filter((u) =>
         u.name?.toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    // Sort: unread first → recent first
     arr.sort((a, b) => {
-      if (b.unread !== a.unread) {
-        return b.unread - a.unread;
-      }
+      if (b.unread !== a.unread) return b.unread - a.unread;
       return b.time - a.time;
     });
 
@@ -48,15 +44,45 @@ export default function ChatSidebar() {
   }, [users, lastMessages, unread, search]);
 
   return (
-    <div className="w-full md:w-72 h-full flex flex-col border-r dark:border-gray-700 bg-white dark:bg-gray-900">
+   <div
+className="
+w-full
+sm:w-full
+md:w-64
+lg:w-72
+xl:w-80
+h-full
+flex
+flex-col
+border-r
+border-gray-200
+dark:border-gray-700
+bg-white
+dark:bg-[#1e293b]
+"
+>
 
       {/* SEARCH */}
-      <div className="p-3 border-b dark:border-gray-700">
+      <div className="p-3 border-b border-gray-200 dark:border-gray-700">
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search user..."
-          className="w-full px-3 py-2 rounded border dark:bg-gray-800 dark:text-white text-sm"
+          className="
+          w-full 
+          px-3 
+          py-2 
+          rounded 
+          border 
+          border-gray-300 
+          dark:border-gray-600
+          text-sm 
+          text-gray-900 
+          dark:text-white
+          placeholder-gray-400
+          bg-white 
+          dark:bg-[#0f172a]
+          "
         />
       </div>
 
@@ -68,19 +94,26 @@ export default function ChatSidebar() {
             key={u._id}
             onClick={() => setActiveUser?.(u)}
             className={`
-              p-3 cursor-pointer border-b
+              p-3 
+              cursor-pointer 
+              border-b 
+              border-gray-200 
               dark:border-gray-700
-              flex justify-between items-center
-              hover:bg-gray-100 dark:hover:bg-gray-800
+              flex 
+              justify-between 
+              items-center 
               transition
-              ${activeUser?._id === u._id ? "bg-blue-100 dark:bg-gray-700" : ""}
+              hover:bg-gray-100 
+              dark:hover:bg-[#334155]
               ${u.unread ? "font-semibold" : ""}
+              ${activeUser?._id === u._id ? "bg-blue-100 dark:bg-blue-900" : ""}
             `}
           >
             <div className="min-w-0">
 
               {/* NAME + ONLINE */}
-              <div className="flex items-center gap-2 truncate">
+              <div className="flex items-center gap-2 truncate text-gray-900 dark:text-white">
+
                 <span
                   className={`w-2 h-2 rounded-full ${
                     onlineUsers?.[u._id]
@@ -88,11 +121,13 @@ export default function ChatSidebar() {
                       : "bg-gray-400"
                   }`}
                 />
+
                 <span className="truncate">{u.name}</span>
+
               </div>
 
               {/* PREVIEW */}
-              <div className="text-xs text-gray-500 truncate">
+              <div className="text-xs text-gray-500 dark:text-gray-400 truncate">
                 {typingUsers?.[u._id] ? "Typing..." : u.last}
               </div>
 
@@ -100,11 +135,7 @@ export default function ChatSidebar() {
 
             {/* UNREAD BADGE */}
             {u.unread > 0 && (
-              <span className="
-                bg-red-500 text-white text-xs font-bold
-                w-6 h-6 flex items-center justify-center
-                rounded-full
-              ">
+              <span className="bg-red-500 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
                 {u.unread > 9 ? "9+" : u.unread}
               </span>
             )}
