@@ -1,25 +1,31 @@
-"use client";
+import { seoData } from "@/seo/seoData";
+import ContactClient from "./ContactClient";
 
-import ProgressBar from "@/components/contact/ProgressBar";
-import ContactHero from "@/components/contact/ContactHero";
-import ContactSection from "@/components/contact/ContactSection";
-import MapSection from "@/components/contact/MapSection";
+const { contact } = seoData;
+
+// ✅ SEO Metadata
+export const metadata = {
+  title: contact.title,
+  description: contact.description,
+  keywords: contact.keywords,
+  openGraph: contact.openGraph,
+  alternates: {
+    canonical: contact.canonical
+  }
+};
 
 export default function ContactPage() {
   return (
     <>
-      {/* Progress bar that shows scroll position */}
-      <ProgressBar />
+      {/* ✅ SCHEMA */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(contact.schema),
+        }}
+      />
 
-      {/* Hero Section with animated background */}
-      <ContactHero />
-
-      {/* Contact Information & Form */}
-      <ContactSection />
-
-      {/* Map Section */}
-      <MapSection />
-
-         </>
+      <ContactClient />
+    </>
   );
 }

@@ -1,53 +1,31 @@
-"use client";
+import { seoData } from "@/seo/seoData";
+import ServicesClient from "./ServicesClient";
 
-import { motion, useScroll, useSpring } from "framer-motion";
-import servicesData from "@/data/services.json";
+const { services } = seoData;
 
-// Import modular components
-import HeroSection from "@/components/services/HeroSection";
-import CategoriesOverview from "@/components/services/CategoriesOverview";
-import ServiceCategorySection from "@/components/services/ServiceCategorySection";
-import ServiceCtaSection from "@/components/services/ServiceCtaSection";
-import DataScienceShowcase from "@/components/services/DataScienceShowcase";
+// ✅ SEO Metadata
+export const metadata = {
+  title: services.title,
+  description: services.description,
+  keywords: services.keywords,
+  openGraph: services.openGraph,
+  alternates: {
+    canonical: services.canonical
+  }
+};
 
 export default function ServicesPage() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary z-50 origin-left"
-        style={{ scaleX }}
+      {/* ✅ ADD SCHEMA FROM seoData.js */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(services.schema),
+        }}
       />
 
-      {/* Hero Section */}
-      <HeroSection />
-
-      {/* Categories Overview */}
-      <CategoriesOverview />
-
-      {/* Data Science Showcase */}
-      <DataScienceShowcase />
-
-      {/* Detailed Category Sections */}
-      <div className="bg-muted/20">
-        {servicesData.categories.map((category, index) => (
-          <ServiceCategorySection
-            key={category.id}
-            category={category}
-            index={index}
-          />
-        ))}
-      </div>
-
-      {/* CTA Section */}
-      <ServiceCtaSection />
+      <ServicesClient />
     </>
   );
 }
