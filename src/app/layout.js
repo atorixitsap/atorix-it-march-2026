@@ -115,10 +115,13 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+        >
           <AuthProvider>
             <ChatProvider>
-
               {/* ✅ Navbar Hidden On Admin Routes */}
               {!isAdminRoute && <Navbar />}
 
@@ -128,7 +131,6 @@ export default function RootLayout({ children }) {
               {!isAdminRoute && <Footer />}
               {!isAdminRoute && <FloatingContactButtons />}
               {!isAdminRoute && <PopupContactForm />}
-
             </ChatProvider>
           </AuthProvider>
         </ThemeProvider>

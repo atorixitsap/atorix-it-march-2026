@@ -14,8 +14,8 @@ export const metadata = {
   keywords: seoData.home.keywords,
   openGraph: seoData.home.openGraph,
   alternates: {
-    canonical: seoData.home.canonical
-  }
+    canonical: seoData.home.canonical,
+  },
 };
 
 export default function HomePage() {
