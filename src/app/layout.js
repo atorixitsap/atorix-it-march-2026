@@ -1,12 +1,6 @@
 /**
  * layout.jsx — Root Layout
  * Atorix IT | Next.js App Router
- *
- * Responsibilities:
- *  - Wraps every page with shared providers (Theme, Auth, Chat)
- *  - Conditionally renders Navbar, Footer, floating UI on public routes
- *  - Loads Tawk.to live-chat scripts only on public (non-admin) routes
- *  - Pings the backend once on mount to wake up the server
  */
 
 "use client";
@@ -33,10 +27,9 @@ import PopupContactForm from "@/components/common/PopupContactForm";
 
 // ─── Utilities / API ─────────────────────────────────────────
 import { pingBackend } from "@/lib/api";
-import "@/utils/api/apiInterceptor"; // Axios interceptor — runs once on import
+import "@/utils/api/apiInterceptor";
 
 // ─── Font Setup ──────────────────────────────────────────────
-// Inter is loaded via next/font for automatic font optimization
 const inter = Inter({ subsets: ["latin"] });
 
 // ─────────────────────────────────────────────────────────────
@@ -44,32 +37,32 @@ const inter = Inter({ subsets: ["latin"] });
 // ─────────────────────────────────────────────────────────────
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-
-  // Any route starting with /admin hides public UI (Navbar, Footer, chat, etc.)
   const isAdminRoute = pathname.startsWith("/admin");
 
-  // Wake-up ping — keeps the backend warm (e.g., free-tier hosting)
   useEffect(() => {
     pingBackend();
-  }, []); // Runs only once on initial mount
+  }, []);
 
   return (
     <html lang="en">
       <head>
-        {/*
-         * ── Tawk.to Live Chat (Public Pages Only) ──────────────
-         *
-         * Two separate scripts are needed:
-         *   1. tawk-main    → loads the Tawk.to widget (lazyOnload)
-         *   2. tawk-control → configures widget size, position, and
-         *                     business-hours visibility (afterInteractive)
-         *
-         * Both are skipped entirely on /admin routes to keep the
-         * admin panel clean and avoid unnecessary third-party JS.
-         */}
+        {/* ✅ Ahrefs Verification Meta */}
+        <meta
+          name="ahrefs-site-verification"
+          content="794fa130a0f6bb8fcbc1d5b8b7b0bd70375b849283f7ac435dc4ee3f9450b1aa"
+        />
+
+        {/* ✅ Public Scripts Only */}
         {!isAdminRoute && (
           <>
-            {/* Script 1: Load the Tawk.to widget bundle */}
+            {/* ✅ Ahrefs Analytics */}
+            <Script
+              src="https://analytics.ahrefs.com/analytics.js"
+              data-key="Je7LdX6DWIh1uupYQu89Kg"
+              strategy="afterInteractive"
+            />
+
+            {/* ✅ Tawk Script 1 */}
             <Script
               id="tawk-main"
               strategy="lazyOnload"
@@ -91,7 +84,7 @@ export default function RootLayout({ children }) {
               }}
             />
 
-            {/* Script 2: Configure widget after Tawk has fully loaded */}
+            {/* ✅ Tawk Script 2 */}
             <Script
               id="tawk-control"
               strategy="afterInteractive"
@@ -99,45 +92,32 @@ export default function RootLayout({ children }) {
                 __html: `
                   window.Tawk_API = window.Tawk_API || {};
 
-                  /**
-                   * Returns true if the current IST time falls within
-                   * business hours: Monday–Friday, 10:00 AM – 7:00 PM.
-                   */
                   function isBusinessHours() {
-                    const now     = new Date();
+                    const now = new Date();
                     const istTime = new Date(
                       now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
                     );
-                    const day  = istTime.getDay();   // 0 = Sun, 6 = Sat
-                    const hour = istTime.getHours(); // 0–23
+                    const day = istTime.getDay();
+                    const hour = istTime.getHours();
                     return day >= 1 && day <= 5 && hour >= 10 && hour < 19;
                   }
 
-                  /**
-                   * Tawk_API.onLoaded fires once the widget is fully
-                   * initialised and the API methods are available.
-                   */
                   window.Tawk_API.onLoaded = function () {
 
-                    /**
-                     * Applies responsive sizing to the chat window.
-                     * Clamps width to 360 px and height to 520 px, but
-                     * respects smaller screens with 24/140 px safety margins.
-                     */
                     function setWidgetStyle() {
                       if (!window.Tawk_API.customStyle) return;
 
-                      const widgetWidth  = Math.min(360, window.innerWidth  - 24);
+                      const widgetWidth = Math.min(360, window.innerWidth - 24);
                       const widgetHeight = Math.min(520, window.innerHeight - 140);
 
                       window.Tawk_API.customStyle({
                         widget: {
-                          width:  widgetWidth,
+                          width: widgetWidth,
                           height: widgetHeight,
                         },
                         visibility: {
                           desktop: {
-                            position: "br", // bottom-right
+                            position: "br",
                             xOffset: 12,
                             yOffset: 18,
                           },
@@ -150,10 +130,8 @@ export default function RootLayout({ children }) {
                       });
                     }
 
-                    // Apply sizing
                     setWidgetStyle();
 
-                    // Show widget only during business hours; hide otherwise
                     if (isBusinessHours()) {
                       window.Tawk_API.showWidget();
                     } else {
@@ -167,41 +145,27 @@ export default function RootLayout({ children }) {
         )}
       </head>
 
-      {/*
-       * inter.className applies the CSS class generated by next/font,
-       * which sets font-family + optimises loading automatically.
-       */}
-      <body className={inter.className}>
-        {/*
-         * ThemeProvider — wraps everything so any component can read
-         * / toggle the active theme.
-         *
-         *   attribute="class"   → adds class="dark" / class="light" to <html>
-         *   defaultTheme="dark" → start in dark mode
-         *   enableSystem=false  → ignore OS-level prefers-color-scheme
-         */}
+      <body className={`${inter.className} bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
         >
-          {/* AuthProvider — exposes user auth state & helpers app-wide */}
           <AuthProvider>
-            {/* ChatProvider — exposes live-chat state & helpers app-wide */}
             <ChatProvider>
-              {/* ── Public-only: top navigation bar ─────────────── */}
+              {/* Navbar */}
               {!isAdminRoute && <Navbar />}
 
-              {/* ── Page content injected here by Next.js ────────── */}
+              {/* Page Content */}
               <main>{children}</main>
 
-              {/* ── Public-only: footer ──────────────────────────── */}
+              {/* Footer */}
               {!isAdminRoute && <Footer />}
 
-              {/* ── Public-only: floating WhatsApp / phone buttons ── */}
+              {/* Floating Buttons */}
               {!isAdminRoute && <FloatingContactButtons />}
 
-              {/* ── Public-only: popup contact/inquiry form ─────── */}
+              {/* Popup Form */}
               {!isAdminRoute && <PopupContactForm />}
             </ChatProvider>
           </AuthProvider>

@@ -10,7 +10,6 @@ import GlobalPresenceSection from "@/components/about/GlobalPresenceSection";
 import CtaSection from "@/components/about/CtaSection";
 
 export default function AboutClient() {
-
   const { scrollYProgress } = useScroll();
 
   const scaleX = useSpring(scrollYProgress, {
