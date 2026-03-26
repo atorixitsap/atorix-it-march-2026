@@ -82,9 +82,7 @@ export default function LogoSphere() {
 
     // Load Atorix logo texture
     const textureLoader = new THREE.TextureLoader();
-    const logoTexture = textureLoader.load(
-      "https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png",
-    );
+    const logoTexture = textureLoader.load("/Webp/atorix-logo.webp");
     logoTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
     // Create a canvas to modify the texture

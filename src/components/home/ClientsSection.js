@@ -8,7 +8,7 @@ const clientLogos = [
   { name: "Brihati", logo: "/images/clients/Webp/Brihati.webp" },
   { name: "EPN", logo: "/images/clients/Webp/EPN.webp" },
   { name: "Form6", logo: "/images/clients/Webp/Form6.webp" },
-  { name: "NXI", logo: "/images/clients/Webp/NXI.webp" },
+  { name: "NXI", logo: "/images/clients/Webp/NXI011.webp" },
   { name: "SFMS", logo: "/images/clients/Webp/SFMS.webp" },
   { name: "VPTechnoLabs", logo: "/images/clients/Webp/VPTechnoLabsFinal.webp" },
   { name: "WebSeede", logo: "/images/clients/Webp/WebSeede.webp" },
@@ -21,7 +21,7 @@ const marqueeLogos = [...clientLogos, ...clientLogos];
 
 export default function ClientsSection() {
   return (
-    <section className="relative py-16 overflow-hidden">
+    <section className="relative py-16 overflow-hidden dark:bg-gray-900">
       {/* 🔥 DOT + STAR BACKGROUND */}
       <div className="absolute inset-0 -z-10">
         {/* Dots */}
@@ -65,8 +65,10 @@ export default function ClientsSection() {
                   src={client.logo}
                   alt={client.name}
                   width={110}
-                  height={23}
-                  className="object-contain"
+                  height={40}
+                  sizes="(max-width: 768px) 80px, 110px"
+                  className="object-contain w-auto h-full"
+                  loading="lazy"
                 />
               </div>
             ))}

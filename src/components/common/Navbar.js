@@ -64,7 +64,7 @@ export function NeonLogoBorder({
                 src={
                   isLightMode
                     ? "/atorix-logo-old.png"
-                    : "https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png"
+                    : "/Webp/atorix-logo.webp"
                 }
                 alt="Atorix Logo"
                 fill

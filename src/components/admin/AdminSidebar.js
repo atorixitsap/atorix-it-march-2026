@@ -165,7 +165,7 @@ bg-white/80 dark:bg-[#1e293b] border border-gray-200 dark:border-gray-700 rounde
             <div className="p-6 flex flex-col h-full">
               <div className="flex justify-between items-center mb-8">
                 <Image
-                  src="https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png"
+                  src="/Webp/atorix-logo.webp"
                   alt="Logo"
                   width={100}
                   height={40}
@@ -216,7 +216,7 @@ bg-white/80 dark:bg-[#1e293b] border border-gray-200 dark:border-gray-700 rounde
         <div className="p-6 flex flex-col w-full">
           <div className="mb-10">
             <Image
-              src="https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png"
+              src="/Webp/atorix-logo.webp"
               alt="Logo"
               width={130}
               height={45}

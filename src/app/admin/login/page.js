@@ -99,7 +99,7 @@ export default function LoginPage() {
 
           <div className="flex flex-col items-center mb-7">
             <Image
-              src="https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png"
+              src="/Webp/atorix-logo.webp"
               alt="Atorix IT Logo"
               width={100}
               height={40}

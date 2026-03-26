@@ -27,7 +27,7 @@ const testimonials = [
     name: "Robert Chen",
     position: "Operations Manager",
     company: "Pacific Manufacturing",
-    image: "/images/clients/Webp/NXI.webp",
+    image: "/images/clients/Webp/NXI011.webp",
     text: "We needed an SAP partner who understood the nuances of manufacturing processes. Atorix IT not only delivered a tailored implementation but also provided valuable insights that improved our workflows. Their team feels like an extension of our business.",
     rating: 4,
   },
