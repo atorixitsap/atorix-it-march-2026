@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 // Industry Grid Item Component for compact grid view

@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 // Animated blob background

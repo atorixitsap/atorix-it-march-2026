@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 // Animated background for CTA section
@@ -25,7 +27,7 @@ export default function AnimatedCTABackground() {
           "bg-purple-500/20",
           "bg-indigo-500/20",
           "bg-cyan-500/20",
-          "bg-pink-500/20"
+          "bg-pink-500/20",
         ];
         const colorClass = colors[i % colors.length];
 
@@ -63,7 +65,12 @@ export default function AnimatedCTABackground() {
           const delay = Math.random() * 5;
 
           // Different colors for the lines
-          const colors = ["bg-white", "bg-blue-200", "bg-indigo-200", "bg-purple-200"];
+          const colors = [
+            "bg-white",
+            "bg-blue-200",
+            "bg-indigo-200",
+            "bg-purple-200",
+          ];
           const colorClass = colors[i % colors.length];
 
           return (

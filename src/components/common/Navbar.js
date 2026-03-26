@@ -14,6 +14,8 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { useTheme } from "@/components/ui/theme-provider";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 import servicesData from "@/data/services.json";
@@ -27,29 +29,43 @@ const navLinks = [
   { name: "Careers", path: "/career" },
 ];
 
-export function NeonLogoBorder({ width = 110, height = 30, className = "", isMobile = false }) {
+export function NeonLogoBorder({
+  width = 110,
+  height = 30,
+  className = "",
+  isMobile = false,
+}) {
   const { theme } = useTheme();
   const containerSize = isMobile ? "p-0.5" : "p-0.5";
   const innerPadding = "pl-2 pr-0 py-1";
   const logoContainerClass = `relative ${containerSize} ${className} flex items-center justify-center`;
-  
-  const isLightMode = theme === 'light';
-  const logoBackgroundColor = isLightMode ? 'bg-white' : 'bg-black';
-  
+
+  const isLightMode = theme === "light";
+  const logoBackgroundColor = isLightMode ? "bg-white" : "bg-black";
+
   return (
     <div className={logoContainerClass}>
-      <div className="absolute inset-0 rounded-full overflow-hidden" style={{ zIndex: 0 }}>
+      <div
+        className="absolute inset-0 rounded-full overflow-hidden"
+        style={{ zIndex: 0 }}
+      >
         <div className="absolute inset-0 rounded-full animated-border-layer" />
       </div>
-      
-      <div className={`relative rounded-full ${logoBackgroundColor} ${innerPadding} flex items-center justify-end z-10 overflow-hidden`}>
-       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 z-20 animate-shine" />
-        
+
+      <div
+        className={`relative rounded-full ${logoBackgroundColor} ${innerPadding} flex items-center justify-end z-10 overflow-hidden`}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 z-20 animate-shine" />
+
         <div className="flex items-center z-30">
           <div className="flex items-center z-30">
             <div className="relative w-10 h-10">
               <Image
-                src={isLightMode ? "/atorix-logo-old.png" : "/atorix-logo.png"}
+                src={
+                  isLightMode
+                    ? "/atorix-logo-old.png"
+                    : "https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png"
+                }
                 alt="Atorix Logo"
                 fill
                 className="relative z-30 object-contain"
@@ -57,20 +73,24 @@ export function NeonLogoBorder({ width = 110, height = 30, className = "", isMob
               />
             </div>
             <Image
-              src={isLightMode ? "/crop_logo.webp.webp" : "/atorix text logo@3x.webp"}
+              src={
+                isLightMode
+                  ? "/crop_logo.webp.webp"
+                  : "/atorix text logo@3x.webp"
+              }
               alt="Atorix"
-              width={width - 25}
-              height={height}
+              width={65}
+              height={25}
               className="object-contain relative z-30"
               priority
             />
           </div>
         </div>
       </div>
-      
+
       <style jsx global>{`
         @property --gradient-angle {
-          syntax: '<angle>';
+          syntax: "<angle>";
           initial-value: 0deg;
           inherits: false;
         }
@@ -89,16 +109,24 @@ export function NeonLogoBorder({ width = 110, height = 30, className = "", isMob
           animation: rotate-gradient 6s linear infinite;
         }
 
-        @keyframes rotate-gradient {
-          0% { --gradient-angle: 0deg; }
-          100% { --gradient-angle: 360deg; }
+        @keyframes rotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
-        
+
         @keyframes shine {
-          0% { transform: translateX(-150%) skewX(-12deg); }
-          100% { transform: translateX(150%) skewX(-12deg); }
+          0% {
+            transform: translateX(-150%) skewX(-12deg);
+          }
+          100% {
+            transform: translateX(150%) skewX(-12deg);
+          }
         }
-        
+
         .animate-shine {
           animation: shine 3s ease-in-out infinite;
         }
@@ -107,7 +135,7 @@ export function NeonLogoBorder({ width = 110, height = 30, className = "", isMob
           overflow: visible !important;
           z-index: 9999 !important;
         }
-        
+
         .sticky-navbar .dropdown-menu {
           position: absolute !important;
           z-index: 10000 !important;
@@ -124,7 +152,7 @@ export default function Navbar() {
   const { theme } = useTheme();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const sheetCloseRef = useRef(null);
-  
+
   const [openCategory, setOpenCategory] = useState(null);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const servicesRef = useRef(null);
@@ -217,12 +245,17 @@ export default function Navbar() {
   return (
     <>
       {/* FIRST NAVBAR */}
-      <header className={`fixed top-0 z-50 w-full transition-all duration-100 ease-in-out bg-white dark:bg-black ${
-        isScrolled || isSheetOpen ? 'opacity-0 pointer-events-none transform -translate-y-full' : 'opacity-100 pointer-events-auto transform translate-y-0'
-      }`}>
+      <header
+        className={`fixed top-0 z-50 w-full transition-all duration-100 ease-in-out bg-white dark:bg-black ${
+          isScrolled || isSheetOpen
+            ? "opacity-0 pointer-events-none transform -translate-y-full"
+            : "opacity-100 pointer-events-auto transform translate-y-0"
+        }`}
+      >
         <div className="transition-all duration-100 ease-in-out overflow-visible">
           <div className="w-full">
-           <div className="
+            <div
+              className="
  h-16
 flex items-center justify-center lg:justify-between lg:justify-between
 w-full
@@ -231,7 +264,8 @@ rounded-full
 lg:max-w-7xl lg:mx-auto
 gap-2 sm:gap-8 lg:gap-8
 transition-all duration-100 ease-in-out
-relative backdrop-blur-md shadow-sm">
+relative backdrop-blur-md shadow-sm"
+            >
               {/* Logo */}
               <Link href="/" className="flex items-center flex-shrink-0">
                 <NeonLogoBorder width={90} height={25} />
@@ -244,9 +278,11 @@ relative backdrop-blur-md shadow-sm">
                     key={link.path}
                     href={link.path}
                     className={`text-sm font-medium transition-colors hover:text-[#DF7D13] ${
-                      pathname === link.path ? "font-semibold" : "text-foreground/80"
+                      pathname === link.path
+                        ? "font-semibold"
+                        : "text-foreground/80"
                     }`}
-                    style={pathname === link.path ? {color: '#DF7D13'} : {}}
+                    style={pathname === link.path ? { color: "#DF7D13" } : {}}
                   >
                     {link.name}
                   </Link>
@@ -263,7 +299,7 @@ relative backdrop-blur-md shadow-sm">
                     className={`flex items-center text-sm font-medium transition-colors hover:text-[#DF7D13] ${
                       isServicePath ? "font-semibold" : "text-foreground/80"
                     }`}
-                    style={isServicePath ? {color: '#DF7D13'} : {}}
+                    style={isServicePath ? { color: "#DF7D13" } : {}}
                   >
                     <Link href="/services">Services</Link>
                     <ChevronDown className="ml-1 h-4 w-4" />
@@ -277,7 +313,9 @@ relative backdrop-blur-md shadow-sm">
                             <div
                               key={category.id}
                               className="relative"
-                              onMouseEnter={() => handleCategoryMouseEnter(category.id)}
+                              onMouseEnter={() =>
+                                handleCategoryMouseEnter(category.id)
+                              }
                               onMouseLeave={handleCategoryMouseLeave}
                             >
                               <div className="flex items-center justify-center lg:justify-between rounded-sm px-2 py-1.5 text-sm hover:bg-accent cursor-pointer">
@@ -315,10 +353,17 @@ relative backdrop-blur-md shadow-sm">
                     key={link.path}
                     href={link.path}
                     className={`text-sm font-medium transition-colors hover:text-[#DF7D13] ${
-                      pathname === link.path || (link.path === "/blog" && isBlogPath)
-                        ? "font-semibold" : "text-foreground/80"
+                      pathname === link.path ||
+                      (link.path === "/blog" && isBlogPath)
+                        ? "font-semibold"
+                        : "text-foreground/80"
                     }`}
-                    style={(pathname === link.path || (link.path === "/blog" && isBlogPath)) ? {color: '#DF7D13'} : {}}
+                    style={
+                      pathname === link.path ||
+                      (link.path === "/blog" && isBlogPath)
+                        ? { color: "#DF7D13" }
+                        : {}
+                    }
                   >
                     {link.name}
                   </Link>
@@ -328,7 +373,10 @@ relative backdrop-blur-md shadow-sm">
               {/* Right Side Actions */}
               <div className="flex items-center space-x-2 sm:space-x-4">
                 {/* Get Demo Button - Visible on all screen sizes */}
-                <motion.div variants={itemVariants} className="flex items-center">
+                <motion.div
+                  variants={itemVariants}
+                  className="flex items-center"
+                >
                   <Button
                     asChild
                     className="gap-2 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium bg-gradient-hero shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 relative overflow-hidden group btn-3d whitespace-nowrap"
@@ -389,9 +437,9 @@ relative backdrop-blur-md shadow-sm">
                             {servicesData.categories.map((category) => (
                               <div key={category.id} className="space-y-3">
                                 <div
-  className="flex items-center justify-between w-full cursor-pointer"
-  onClick={() => toggleCategory(category.id)}
->
+                                  className="flex items-center justify-between w-full cursor-pointer"
+                                  onClick={() => toggleCategory(category.id)}
+                                >
                                   <div className="text-sm font-medium text-foreground/80 hover:text-primary">
                                     {category.name}
                                   </div>
@@ -457,12 +505,19 @@ relative backdrop-blur-md shadow-sm">
       </header>
 
       {/* SECOND NAVBAR - Sticky */}
-      <header className={`sticky top-0 w-full transition-all duration-100 ease-in-out sticky-navbar ${
-        (isScrolled && !isSheetOpen) ? 'opacity-100 pointer-events-auto transform translate-y-0 z-[9999]' : 'opacity-0 pointer-events-none transform -translate-y-full z-[9999]'
-      }`}>
-        <div className="transition-all duration-100 ease-in-out px-0 md:px-4 py-1" style={{overflow: 'visible'}}>
+      <header
+        className={`sticky top-0 w-full transition-all duration-100 ease-in-out sticky-navbar ${
+          isScrolled && !isSheetOpen
+            ? "opacity-100 pointer-events-auto transform translate-y-0 z-[9999]"
+            : "opacity-0 pointer-events-none transform -translate-y-full z-[9999]"
+        }`}
+      >
+        <div
+          className="transition-all duration-100 ease-in-out px-0 md:px-4 py-1"
+          style={{ overflow: "visible" }}
+        >
           <div
-  className={`
+            className={`
     h-14
     flex items-center justify-between
 
@@ -485,31 +540,35 @@ relative backdrop-blur-md shadow-sm">
     lg:pr-8
     lg:gap-10
 
-    ${
-      isIndustriesPage
-        ? "bg-black/80  dark:bg-black/90"
-        : "bg-background/95"
-    }
+    ${isIndustriesPage ? "bg-black/80  dark:bg-black/90" : "bg-background/95"}
   `}
-  style={{
-    borderColor: "#DF7D13",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.1)"
-  }}
-> 
-
+            style={{
+              borderColor: "#DF7D13",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+            }}
+          >
             {/* Logo - LEFT SIDE */}
-            <Link href="/" className="shrink-0">              <NeonLogoBorder width={85} height={25} />
+            <Link href="/" className="shrink-0">
+              {" "}
+              <NeonLogoBorder width={85} height={25} />
             </Link>
 
-            <nav className="hidden lg:flex items-center justify-center space-x-6 lg:space-x-10 flex-1" style={{overflow: 'visible', position: 'relative'}}>
+            <nav
+              className="hidden lg:flex items-center justify-center space-x-6 lg:space-x-10 flex-1"
+              style={{ overflow: "visible", position: "relative" }}
+            >
               {navLinks.slice(0, 2).map((link) => (
                 <Link
                   key={link.path}
                   href={link.path}
                   className={`text-xs md:text-sm font-medium transition-colors hover:text-[#DF7D13] ${
-                    pathname === link.path ? "font-semibold" : isIndustriesPage ? "text-white/90" : "text-foreground/80"
+                    pathname === link.path
+                      ? "font-semibold"
+                      : isIndustriesPage
+                        ? "text-white/90"
+                        : "text-foreground/80"
                   }`}
-                  style={pathname === link.path ? {color: '#DF7D13'} : {}}
+                  style={pathname === link.path ? { color: "#DF7D13" } : {}}
                 >
                   {link.name}
                 </Link>
@@ -517,18 +576,22 @@ relative backdrop-blur-md shadow-sm">
 
               <div
                 className="relative"
-                style={{overflow: 'visible', position: 'relative'}}
+                style={{ overflow: "visible", position: "relative" }}
                 onMouseEnter={handleServicesMouseEnter}
                 onMouseLeave={handleServicesMouseLeave}
                 onClick={handleDropdownClick}
               >
                 <div className="inline-flex items-center">
-                  <Link 
-                    href="/services" 
+                  <Link
+                    href="/services"
                     className={`inline-flex items-center text-xs md:text-sm font-medium transition-colors hover:text-[#DF7D13] ${
-                      isServicePath ? "font-semibold" : isIndustriesPage ? "text-white/90" : "text-foreground/80"
+                      isServicePath
+                        ? "font-semibold"
+                        : isIndustriesPage
+                          ? "text-white/90"
+                          : "text-foreground/80"
                     }`}
-                    style={isServicePath ? {color: '#DF7D13'} : {}}
+                    style={isServicePath ? { color: "#DF7D13" } : {}}
                   >
                     Services
                     <ChevronDown className="ml-1 h-4 w-4" />
@@ -536,14 +599,31 @@ relative backdrop-blur-md shadow-sm">
                 </div>
 
                 {isServicesOpen && (
-                  <div className="absolute left-0 top-full pt-2 dropdown-menu" style={{ position: 'absolute', zIndex: 10000, left: 0, top: '100%', paddingTop: '8px' }}>
-                    <div className="w-64 bg-popover rounded-xl border shadow-lg p-2" style={{backgroundColor: 'hsl(var(--popover))', border: '1px solid hsl(var(--border))'}}>
+                  <div
+                    className="absolute left-0 top-full pt-2 dropdown-menu"
+                    style={{
+                      position: "absolute",
+                      zIndex: 10000,
+                      left: 0,
+                      top: "100%",
+                      paddingTop: "8px",
+                    }}
+                  >
+                    <div
+                      className="w-64 bg-popover rounded-xl border shadow-lg p-2"
+                      style={{
+                        backgroundColor: "hsl(var(--popover))",
+                        border: "1px solid hsl(var(--border))",
+                      }}
+                    >
                       <div className="space-y-1 py-1">
                         {servicesData.categories.map((category) => (
                           <div
                             key={category.id}
                             className="relative"
-                            onMouseEnter={() => handleCategoryMouseEnter(category.id)}
+                            onMouseEnter={() =>
+                              handleCategoryMouseEnter(category.id)
+                            }
                             onMouseLeave={handleCategoryMouseLeave}
                           >
                             <div className="flex items-center justify-center lg:justify-between rounded-lg px-2 py-2 text-sm hover:bg-accent cursor-pointer">
@@ -552,8 +632,23 @@ relative backdrop-blur-md shadow-sm">
                             </div>
 
                             {openCategory === category.id && (
-                              <div className="absolute top-0 left-full pl-2" style={{ position: 'absolute', zIndex: 10001, top: 0, left: '100%', paddingLeft: '8px' }}>
-                                <div className="w-64 bg-popover rounded-xl border shadow-lg p-2" style={{backgroundColor: 'hsl(var(--popover))', border: '1px solid hsl(var(--border))'}}>
+                              <div
+                                className="absolute top-0 left-full pl-2"
+                                style={{
+                                  position: "absolute",
+                                  zIndex: 10001,
+                                  top: 0,
+                                  left: "100%",
+                                  paddingLeft: "8px",
+                                }}
+                              >
+                                <div
+                                  className="w-64 bg-popover rounded-xl border shadow-lg p-2"
+                                  style={{
+                                    backgroundColor: "hsl(var(--popover))",
+                                    border: "1px solid hsl(var(--border))",
+                                  }}
+                                >
                                   <div className="space-y-1 py-1">
                                     {category.services.map((service) => (
                                       <Link
@@ -575,22 +670,33 @@ relative backdrop-blur-md shadow-sm">
                   </div>
                 )}
               </div>
-              
+
               {navLinks.slice(2).map((link) => (
                 <Link
                   key={link.path}
                   href={link.path}
                   className={`text-xs md:text-sm font-medium transition-colors hover:text-[#DF7D13] ${
-                    pathname === link.path || (link.path === "/blog" && isBlogPath) || (link.path === "/industries" && isIndustriesPage)
-                      ? "font-semibold" : isIndustriesPage ? "text-white/90" : "text-foreground/80"
+                    pathname === link.path ||
+                    (link.path === "/blog" && isBlogPath) ||
+                    (link.path === "/industries" && isIndustriesPage)
+                      ? "font-semibold"
+                      : isIndustriesPage
+                        ? "text-white/90"
+                        : "text-foreground/80"
                   }`}
-                  style={(pathname === link.path || (link.path === "/blog" && isBlogPath) || (link.path === "/industries" && isIndustriesPage)) ? {color: '#DF7D13'} : {}}
+                  style={
+                    pathname === link.path ||
+                    (link.path === "/blog" && isBlogPath) ||
+                    (link.path === "/industries" && isIndustriesPage)
+                      ? { color: "#DF7D13" }
+                      : {}
+                  }
                 >
                   {link.name}
                 </Link>
               ))}
             </nav>
-              
+
             {/* Right side actions */}
             <div className="flex items-center gap-2 shrink-0">
               <motion.div variants={itemVariants} className="flex items-center">
@@ -608,9 +714,9 @@ relative backdrop-blur-md shadow-sm">
                 </Button>
               </motion.div>
               <ThemeToggle />
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 className="lg:hidden"
                 onClick={() => setIsSheetOpen(true)}
               >
@@ -621,6 +727,5 @@ relative backdrop-blur-md shadow-sm">
         </div>
       </header>
     </>
-
   );
 }

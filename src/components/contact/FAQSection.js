@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import EnhancedFAQCard from "./EnhancedFAQCard";
 
@@ -18,8 +20,8 @@ export default function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-muted-foreground">
-            Here are some common questions about our services. If you don't
-            find what you're looking for, feel free to contact us.
+            Here are some common questions about our services. If you don't find
+            what you're looking for, feel free to contact us.
           </p>
         </motion.div>
 

@@ -3,12 +3,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ui/theme-provider";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
-export default function ServiceCard({ icon, title, description, delay = 0, href = "/services", className = "" }) {
+export default function ServiceCard({
+  icon,
+  title,
+  description,
+  delay = 0,
+  href = "/services",
+  className = "",
+}) {
   const { resolvedTheme } = useTheme();
 
   return (
@@ -26,11 +41,15 @@ export default function ServiceCard({ icon, title, description, delay = 0, href 
           <motion.div
             initial={{ scale: 0.9, opacity: 0.8 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: delay * 0.0015, duration: 0.5, type: "spring" }}
+            transition={{
+              delay: delay * 0.0015,
+              duration: 0.5,
+              type: "spring",
+            }}
             whileHover={{
               scale: 1.1,
               rotate: [0, 5, 0, -5, 0],
-              transition: { duration: 0.5 }
+              transition: { duration: 0.5 },
             }}
             className="mb-4 rounded-lg bg-primary/10 p-3 w-fit transition-colors duration-300 group-hover:bg-primary/20 relative"
           >
@@ -44,12 +63,15 @@ export default function ServiceCard({ icon, title, description, delay = 0, href 
                 width={60}
                 height={60}
                 className={`h-10 w-10 md:h-14 md:w-14 object-contain service-icon ${
-                  resolvedTheme === 'dark'
-                    ? 'brightness-125 contrast-110 filter-invert-25'
-                    : 'bg-white rounded-sm'
+                  resolvedTheme === "dark"
+                    ? "brightness-125 contrast-110 filter-invert-25"
+                    : "bg-white rounded-sm"
                 } transition-all duration-300 group-hover:filter-none`}
                 style={{
-                  filter: resolvedTheme === 'dark' ? 'invert(0.1) brightness(1.2)' : 'none'
+                  filter:
+                    resolvedTheme === "dark"
+                      ? "invert(0.1) brightness(1.2)"
+                      : "none",
                 }}
                 unoptimized
               />
@@ -57,34 +79,33 @@ export default function ServiceCard({ icon, title, description, delay = 0, href 
           </motion.div>
         )}
         <CardTitle className="text-lg md:text-xl leading-tight tracking-tight group-hover:text-primary transition-colors duration-300">
-  {title}
-</CardTitle>
-</CardHeader>
+          {title}
+        </CardTitle>
+      </CardHeader>
 
-<CardContent className="px-5 py-0 text-muted-foreground text-justify">
-  <p className="leading-relaxed text-sm md:text-[15px] group-hover:text-foreground transition-colors duration-300">
-    {description}
-  </p>
-</CardContent>
+      <CardContent className="px-5 py-0 text-muted-foreground text-justify">
+        <p className="leading-relaxed text-sm md:text-[15px] group-hover:text-foreground transition-colors duration-300">
+          {description}
+        </p>
+      </CardContent>
 
-<CardFooter className="px-5 pt-1 pb-4">
-  <Button
-    variant="link"
-    asChild
-    className="p-0 h-auto text-primary font-medium hover:gap-2 transition-all duration-300"
-  >
-    <Link href={href} className="flex items-center gap-1">
-      Learn more
-      <motion.span
-        whileHover={{ x: 4 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-      >
-        <ArrowRight className="h-4 w-4 transition-transform duration-300" />
-      </motion.span>
-    </Link>
-  </Button>
-</CardFooter>
-
+      <CardFooter className="px-5 pt-1 pb-4">
+        <Button
+          variant="link"
+          asChild
+          className="p-0 h-auto text-primary font-medium hover:gap-2 transition-all duration-300"
+        >
+          <Link href={href} className="flex items-center gap-1">
+            Learn more
+            <motion.span
+              whileHover={{ x: 4 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <ArrowRight className="h-4 w-4 transition-transform duration-300" />
+            </motion.span>
+          </Link>
+        </Button>
+      </CardFooter>
 
       {/* Inner shadow */}
       <div className="absolute inset-0 rounded-lg shadow-inner pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>

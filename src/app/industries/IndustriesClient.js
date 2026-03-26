@@ -111,15 +111,13 @@ export default function IndustriesPage() {
       industriesWithIcons.filter(
         (industry) =>
           filterMap[activeFilter] &&
-          filterMap[activeFilter].includes(industry.id)
-      )
+          filterMap[activeFilter].includes(industry.id),
+      ),
     );
   }, [activeFilter, industriesWithIcons]);
 
   const loadMoreIndustries = () => {
-    setVisibleDetailCount((prev) =>
-      Math.min(prev + 3, industriesData.length)
-    );
+    setVisibleDetailCount((prev) => Math.min(prev + 3, industriesData.length));
   };
 
   const handleExploreClick = () => {
@@ -139,7 +137,7 @@ export default function IndustriesPage() {
     setPendingScrollId(id);
 
     setVisibleDetailCount((prev) =>
-      prev < requiredCount ? requiredCount : prev
+      prev < requiredCount ? requiredCount : prev,
     );
   }, []);
 
@@ -176,7 +174,7 @@ export default function IndustriesPage() {
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
         resetFilters={() => setActiveFilter("all")}
-        onIndustryClick={scrollToIndustry}   // 👈 ADD THIS
+        onIndustryClick={scrollToIndustry} // 👈 ADD THIS
       />
 
       <div className="bg-muted/10">
@@ -213,7 +211,7 @@ export default function IndustriesPage() {
 
       <AllIndustriesGrid
         industries={industriesWithIcons}
-        onIndustryClick={scrollToIndustry}   // 👈 ADD THIS
+        onIndustryClick={scrollToIndustry} // 👈 ADD THIS
       />
 
       <IndustryCtaSection />

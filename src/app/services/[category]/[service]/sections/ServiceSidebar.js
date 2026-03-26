@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,9 +24,7 @@ export default function ServiceSidebar({
           className="bg-muted/20 rounded-xl border border-border p-6"
         >
           <h3 className="text-xl font-bold mb-4">Service Category</h3>
-          <p className="text-muted-foreground mb-4">
-            {categoryData?.name}
-          </p>
+          <p className="text-muted-foreground mb-4">{categoryData?.name}</p>
 
           <Button asChild variant="outline" className="w-full">
             <Link href={`/services#${categoryData?.id}-details`}>

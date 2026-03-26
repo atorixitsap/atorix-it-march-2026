@@ -182,7 +182,9 @@ export default function DetailedIndustrySection({ industry, index }) {
               {industry.description}
             </p>
 
-            <h3 className="text-xl font-semibold mb-4 text-justify">Key Challenges</h3>
+            <h3 className="text-xl font-semibold mb-4 text-justify">
+              Key Challenges
+            </h3>
             <div className="space-y-2 mb-8">
               {industry.challenges.map((challenge, i) => (
                 <div key={i} className="flex items-start">
@@ -206,7 +208,11 @@ export default function DetailedIndustrySection({ industry, index }) {
               ))}
             </div>
 
-            <Button asChild size="lg" className="gap-2 mt-4 shadow-lg hover:shadow-xl">
+            <Button
+              asChild
+              size="lg"
+              className="gap-2 mt-4 shadow-lg hover:shadow-xl"
+            >
               <Link href="/contact">
                 Discuss Your Requirements
                 <ArrowRight className="h-4 w-4" />
@@ -217,7 +223,6 @@ export default function DetailedIndustrySection({ industry, index }) {
           {/* MEDIA CARD */}
           <div className="relative w-full md:w-1/2 flex justify-center">
             <div className="relative w-[95%] md:w-[88%] lg:w-[82%] aspect-square rounded-xl border border-border/40 shadow-xl overflow-hidden">
-
               {/* FLUID COUNTER */}
               <motion.div
                 initial={{ height: "0%" }}
@@ -257,7 +262,6 @@ export default function DetailedIndustrySection({ industry, index }) {
                   </h3>
                 </motion.div>
               </div>
-
             </div>
           </div>
         </motion.div>

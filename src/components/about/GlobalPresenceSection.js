@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { MapPin, Globe, Users, Building2 } from "lucide-react";
 
@@ -9,11 +11,9 @@ export default function GlobalPresenceSection() {
 
   return (
     <section className="relative py-10 md:py-12 bg-muted/10 overflow-hidden">
-      
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.025]" />
 
       <div className="container-custom relative z-10 max-w-6xl mx-auto">
-
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -34,13 +34,13 @@ export default function GlobalPresenceSection() {
 
           <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
             Our international presence enables localized engagement while
-            delivering the reliability, scale, and expertise of a global organization.
+            delivering the reliability, scale, and expertise of a global
+            organization.
           </p>
         </motion.div>
 
         {/* DASHBOARD GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6 md:gap-10">
-
           {/* LEFT — LOCATION BUTTONS */}
           <div
             className="
@@ -124,9 +124,7 @@ export default function GlobalPresenceSection() {
 function Metric({ icon, label, value }) {
   return (
     <div className="rounded-xl border border-border/50 p-4 md:p-5 text-center">
-      <div className="mx-auto mb-2 h-8 w-8 text-primary">
-        {icon}
-      </div>
+      <div className="mx-auto mb-2 h-8 w-8 text-primary">{icon}</div>
       <div className="text-lg font-semibold">{value}</div>
       <div className="text-sm text-muted-foreground">{label}</div>
     </div>
@@ -138,8 +136,7 @@ function Metric({ icon, label, value }) {
 const locations = [
   {
     country: "Pune, India",
-    address:
-      "Office #101, First Floor, Sai Square IT Park, Pune – 411057",
+    address: "Office #101, First Floor, Sai Square IT Park, Pune – 411057",
     phone: "+91 88055 63870",
     clients: "50+",
     officeType: "Delivery Center",
@@ -147,8 +144,7 @@ const locations = [
   },
   {
     country: "Mumbai, India",
-    address:
-      "4th Floor, Ram Niwas, B-405, Mumbai – 400001",
+    address: "4th Floor, Ram Niwas, B-405, Mumbai – 400001",
     phone: "+91 9004005382",
     clients: "50+",
     officeType: "Regional HQ",

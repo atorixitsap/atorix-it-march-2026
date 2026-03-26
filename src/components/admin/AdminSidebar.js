@@ -32,7 +32,11 @@ const NAVIGATION_ITEMS = {
   super_admin: [
     { name: "Dashboard", href: "/admin/dashboard", icon: BarChart3 },
     { name: "HR Dashboard", href: "/admin/hr-dashboard", icon: UserCheck },
-    { name: "Business Dashboard", href: "/admin/business-dashboard", icon: DollarSign },
+    {
+      name: "Business Dashboard",
+      href: "/admin/business-dashboard",
+      icon: DollarSign,
+    },
     { name: "User Management", href: "/admin/user-management", icon: Users },
     { name: "Lead Management", href: "/admin/lead-management", icon: FileText },
     { name: "Customers", href: "/admin/customers/", icon: Users },
@@ -52,7 +56,11 @@ const NAVIGATION_ITEMS = {
   ],
 
   business_mode: [
-    { name: "Business Dashboard", href: "/admin/business-dashboard", icon: DollarSign },
+    {
+      name: "Business Dashboard",
+      href: "/admin/business-dashboard",
+      icon: DollarSign,
+    },
     { name: "Leads", href: "/admin/leads", icon: FileText },
     { name: "Customers", href: "/admin/customers", icon: Users },
     { name: "Analytics", href: "/admin/analytics", icon: TrendingUp },
@@ -119,11 +127,13 @@ export default function AdminSidebar() {
         window.location.href = "/admin/login";
       }
     },
-    [isLoggingOut]
+    [isLoggingOut],
   );
 
   if (loading) {
-    return <div className="h-full bg-white w-64 flex-shrink-0 bg-transparent" />;
+    return (
+      <div className="h-full bg-white w-64 flex-shrink-0 bg-transparent" />
+    );
   }
 
   const navigationItems = NAVIGATION_ITEMS[userRole] || [];
@@ -153,10 +163,9 @@ bg-white/80 dark:bg-[#1e293b] border border-gray-200 dark:border-gray-700 rounde
 
           <div className="fixed top-0 left-0 w-[280px] h-full bg-white dark:bg-[#1e293b] z-50 shadow-xl">
             <div className="p-6 flex flex-col h-full">
-
               <div className="flex justify-between items-center mb-8">
                 <Image
-                  src="/atorix-logo.png"
+                  src="https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png"
                   alt="Logo"
                   width={100}
                   height={40}
@@ -205,10 +214,9 @@ bg-white/80 dark:bg-[#1e293b] border border-gray-200 dark:border-gray-700 rounde
 
       <div className="hidden lg:flex w-64 min-h-full bg-white/80 dark:bg-[#1e293b] border-r border-gray-200 dark:border-gray-700 backdrop-blur">
         <div className="p-6 flex flex-col w-full">
-
           <div className="mb-10">
             <Image
-              src="/atorix-logo.png"
+              src="https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png"
               alt="Logo"
               width={130}
               height={45}

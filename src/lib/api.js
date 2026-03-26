@@ -321,7 +321,7 @@ export const submitDemoRequest = async (formData) => {
       console.error("⚠️ ERROR IS NULL OR UNDEFINED");
     } else {
       console.error("Error message:", error.message || "(no message)");
-      console.error("Error status:", error.status || "(no status)");
+      console.error("Error  status:", error.status || "(no status)");
       console.error("Error response:", error.response || "(no response)");
       console.error("User message:", error.userMessage || "(no user message)");
       console.error("Full error:", error);

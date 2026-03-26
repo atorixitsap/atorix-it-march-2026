@@ -1,14 +1,11 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import EnhancedServiceSectionPattern from "./EnhancedServiceSectionPattern";
 
@@ -55,7 +52,6 @@ export default function ServiceCategorySection({ category, index }) {
             >
               {/* ✅ FLEX COLUMN CARD */}
               <Card className="border-border/50 hover:border-primary/30 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                
                 <CardHeader className="p-6">
                   <CardTitle className="text-xl tracking-tight">
                     {service.name}
@@ -106,7 +102,6 @@ export default function ServiceCategorySection({ category, index }) {
                     </Button>
                   </motion.div>
                 </div>
-
               </Card>
             </motion.div>
           ))}

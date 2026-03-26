@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 export default function BlogPostCard({ post, index }) {
@@ -18,7 +20,9 @@ export default function BlogPostCard({ post, index }) {
             alt={post.title}
             fill
             className="object-cover hover:scale-105 transition-transform duration-500"
-            unoptimized={post.image?.startsWith('http') || post.image?.startsWith('data:')}
+            unoptimized={
+              post.image?.startsWith("http") || post.image?.startsWith("data:")
+            }
             onError={(e) => {
               e.target.src = "/images/web-dev.svg";
             }}
@@ -30,10 +34,15 @@ export default function BlogPostCard({ post, index }) {
           <div className="inline-flex items-center rounded-full bg-blue-100 dark:bg-blue-900/30 px-3 py-1 text-xs font-medium text-blue-800 dark:text-blue-300 transition-colors duration-200">
             {post.category}
           </div>
-          <span className="text-xs text-muted-foreground dark:text-gray-400">{post.readTime}</span>
+          <span className="text-xs text-muted-foreground dark:text-gray-400">
+            {post.readTime}
+          </span>
         </div>
         <h3 className="text-xl font-bold mb-3 text-foreground dark:text-white">
-          <Link href={`/blog/${post.id}`} className="hover:text-primary transition-colors dark:hover:text-blue-400">
+          <Link
+            href={`/blog/${post.id}`}
+            className="hover:text-primary transition-colors dark:hover:text-blue-400"
+          >
             {post.title}
           </Link>
         </h3>
@@ -47,7 +56,9 @@ export default function BlogPostCard({ post, index }) {
             </div>
             <span className="text-sm dark:text-gray-300">{post.author}</span>
           </div>
-          <span className="text-xs text-muted-foreground dark:text-gray-400">{post.date}</span>
+          <span className="text-xs text-muted-foreground dark:text-gray-400">
+            {post.date}
+          </span>
         </div>
       </div>
     </motion.div>

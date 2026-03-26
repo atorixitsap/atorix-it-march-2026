@@ -1,43 +1,46 @@
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import AnimatedBlobBackground from "./AnimatedBlobBackground";
 import { Search } from "lucide-react";
 
-export default function BlogHero({ onSearch, initialSearch = '' }) {
+export default function BlogHero({ onSearch, initialSearch = "" }) {
   const searchInputRef = useRef(null);
   const title = "Our Blog";
-  const description = "Stay updated with the latest insights, news, and updates from our team.";
-  
+  const description =
+    "Stay updated with the latest insights, news, and updates from our team.";
+
   const searchTerms = [
     "SAP S/4 HANA",
     "ECC 6.0",
     "Implementation and Rollout",
     "Advanced Data Analytics",
     "Microsoft Dynamics 365",
-    "Cyber Security Services"
+    "Cyber Security Services",
   ];
-  
+
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const [displayText, setDisplayText] = useState(searchTerms[0]);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  
+
   // Update search query when initialSearch changes
   useEffect(() => {
     setSearchQuery(initialSearch);
   }, [initialSearch]);
-  
+
   useEffect(() => {
     const currentTerm = searchTerms[currentPlaceholder];
-    
+
     const typeEffect = () => {
       if (isDeleting) {
         // Deleting characters
-        setDisplayText(prev => prev.slice(0, -1));
-        
-        if (displayText === '') {
+        setDisplayText((prev) => prev.slice(0, -1));
+
+        if (displayText === "") {
           setIsDeleting(false);
           setCurrentPlaceholder((prev) => (prev + 1) % searchTerms.length);
         }
@@ -53,34 +56,34 @@ export default function BlogHero({ onSearch, initialSearch = '' }) {
         }
       }
     };
-    
+
     const timeout = setTimeout(typeEffect, isDeleting ? 50 : 100);
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentPlaceholder, searchTerms]);
-  
+
   // Cursor blinking effect - only when search is not focused
   useEffect(() => {
     if (isSearchFocused) {
       setShowCursor(false);
       return;
     }
-    
+
     const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
+      setShowCursor((prev) => !prev);
     }, 500);
-    
+
     return () => clearInterval(cursorInterval);
   }, [isSearchFocused]);
-  
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (onSearch) {
       onSearch(searchQuery.trim());
     }
   };
-  
+
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSearch(e);
     }
   };
@@ -108,13 +111,13 @@ export default function BlogHero({ onSearch, initialSearch = '' }) {
           {/* Left half - moved further left */}
           <div className="pointer-events-none absolute top-[55%] left-5 w-[40%] h-1 bg-gradient-to-r from-transparent via-blue-500/45 to-transparent blur-[2px] transform -translate-y-1/2 z-0"></div>
           <div className="pointer-events-none absolute top-[55%] left-5 w-[40%] h-0.5 bg-gradient-to-r from-transparent via-blue-300 to-transparent transform -translate-y-1/2 z-0"></div>
-          
+
           {/* Right half - moved further right */}
           <div className="pointer-events-none absolute top-[55%] right-5 w-[40%] h-1 bg-gradient-to-l from-transparent via-blue-500/45 to-transparent blur-[2px] transform -translate-y-1/2 z-0"></div>
           <div className="pointer-events-none absolute top-[55%] right-5 w-[40%] h-0.5 bg-gradient-to-l from-transparent via-blue-300 to-transparent transform -translate-y-1/2 z-0"></div>
-          
+
           {/* Search Bar */}
-          <motion.div 
+          <motion.div
             className="max-w-md mx-auto mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,10 +132,15 @@ export default function BlogHero({ onSearch, initialSearch = '' }) {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
                 onKeyDown={handleKeyDown}
-                placeholder={isSearchFocused || searchQuery ? "Search blog posts..." : `Search for ${displayText}${showCursor ? '|' : ''}...`}
+                placeholder={
+                  isSearchFocused || searchQuery
+                    ? "Search blog posts..."
+                    : `Search for ${displayText}${showCursor ? "|" : ""}...`
+                }
                 className={`w-full max-w-2xl px-6 py-4 pl-12 pr-16 rounded-full border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                isSearchFocused ? 'shadow-lg' : 'shadow-md hover:shadow-lg'
-              }`}/>
+                  isSearchFocused ? "shadow-lg" : "shadow-md hover:shadow-lg"
+                }`}
+              />
               <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground">
                 <Search className="w-4 h-4" />
               </div>

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -129,7 +131,9 @@ export default function DataScienceHero() {
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-xl">
-              Unlock the full potential of your organization's data with our comprehensive suite of Data Science services, from advanced analytics to machine learning solutions.
+              Unlock the full potential of your organization's data with our
+              comprehensive suite of Data Science services, from advanced
+              analytics to machine learning solutions.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -140,7 +144,12 @@ export default function DataScienceHero() {
                 </Link>
               </Button>
 
-              <Button asChild variant="outline" size="lg" className="rounded-full">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="rounded-full"
+              >
                 <Link href="#data-science-services">
                   Explore Services
                   <ChevronRight className="ml-2 h-4 w-4" />

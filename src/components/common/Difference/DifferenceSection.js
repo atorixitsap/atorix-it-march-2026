@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import differenceData from "@/data/difference.json";
@@ -19,10 +21,10 @@ export default function DifferenceSection({ category, service }) {
 
         // Detect split comparison pattern
         const bulletBlock = blocks.find(
-          (b) => b.type === "list" && b.style === "bullet"
+          (b) => b.type === "list" && b.style === "bullet",
         );
         const tickBlock = blocks.find(
-          (b) => b.type === "list" && b.style === "tick"
+          (b) => b.type === "list" && b.style === "tick",
         );
 
         const isSplitLayout = bulletBlock && tickBlock;
@@ -40,19 +42,15 @@ export default function DifferenceSection({ category, service }) {
                 {heading}
               </h2> */}
 
-                {/* <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
+              {/* <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
                   {heading}
                 <span className="block mx-auto mt-2 h-[4px] w-1/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
               </h2> */}
 
               <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
                 {heading}
-                <span className="block mt-2 h-[4px] w-1/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent">
-                </span>
+                <span className="block mt-2 h-[4px] w-1/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent"></span>
               </h2>
-
-
-
 
               {/* SPLIT COMPARISON LAYOUT */}
               {isSplitLayout ? (

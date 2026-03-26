@@ -5,16 +5,18 @@ import ServiceCard from "./ServiceCard";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import servicesData from "@/data/services.json";
 
 // Map of service IDs to images for detail pages
 const serviceImages = {
-  "implementation-rollout": "/images/services/sap-implementation.jpg",
-  "sap-ecc-s4-hana-support": "/images/services/sap-support.jpg",
-  "sap-integration": "/images/services/sap-integration.png",
-  "upgrade-services": "/images/services/sap-erp.jpg",
-  "sap-s4-hana-migration": "/images/services/sap-cloud.png",
+  "implementation-rollout": "/images/services/Wepb/sap-implementation.webp",
+  "sap-ecc-s4-hana-support": "/images/services/Wepb/sap-support.webp",
+  "sap-integration": "/images/services/Wepb/sap-integration.webp",
+  "upgrade-services": "/images/services/Wepb/sap-erp.webp",
+  "sap-s4-hana-migration": "/images/services/Wepb/sap-cloud.webp",
   "business-consulting": "/images/about/pt1.webp",
   "process-consulting": "/images/about/pt2.webp",
   "technology-consulting": "/images/about/pt3.webp",
@@ -23,7 +25,7 @@ const serviceImages = {
   "cyber-security": "/images/about/pt4.webp",
   "dynamics-365": "/images/about/pt5.webp",
   // Default fallback image for other services
-  "default": "/images/web-dev.svg"
+  default: "/images/web-dev.svg",
 };
 
 // SVG icons for services cards
@@ -61,12 +63,12 @@ const serviceIcons = {
   "sap-s4-hana-cloud": "/images/hosting.svg",
   "sap-business-one-hana": "/images/web.svg",
   "sap-business-one-addon": "/images/web-dev.svg",
-  "dynamics-365": "/images/web-dev.svg"
+  "dynamics-365": "/images/web-dev.svg",
 };
 
 // Extract services from the services.json file and format them for display
-const formattedServices = servicesData.categories.flatMap(category =>
-  category.services.map(service => ({
+const formattedServices = servicesData.categories.flatMap((category) =>
+  category.services.map((service) => ({
     id: service.id,
     categoryId: category.id,
     title: service.name,
@@ -74,8 +76,8 @@ const formattedServices = servicesData.categories.flatMap(category =>
     icon: serviceIcons[service.id] || "/images/web.svg", // Default icon if not found
     // The image is stored for detail pages but not passed to ServiceCard
     detailImage: serviceImages[service.id] || serviceImages["default"],
-    path: `/services/${category.id}/${service.id}`
-  }))
+    path: `/services/${category.id}/${service.id}`,
+  })),
 );
 
 export default function ServicesSection() {
@@ -130,7 +132,10 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-8 md:py-8 bg-muted relative overflow-hidden bg-grid-pattern">
+    <section
+      id="services"
+      className="py-8 md:py-8 bg-muted relative overflow-hidden bg-grid-pattern"
+    >
       {/* Decorative background elements */}
       <motion.div
         className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"
@@ -196,8 +201,7 @@ export default function ServicesSection() {
         viewport={{ once: true, amount: 0.1 }}
         variants={containerVariants}
       >
-
-       {/* Section header */}
+        {/* Section header */}
         <motion.div
           className="text-center max-w-2xl mx-auto mb-16"
           variants={headerVariants}
@@ -223,11 +227,15 @@ export default function ServicesSection() {
               variants={itemVariants}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
               className="h-full"
-              initial={index >= 6 && !expandedGrid ? { opacity: 0, y: 20 } : false}
-              animate={index >= 6 && expandedGrid ? { opacity: 1, y: 0 } : false}
+              initial={
+                index >= 6 && !expandedGrid ? { opacity: 0, y: 20 } : false
+              }
+              animate={
+                index >= 6 && expandedGrid ? { opacity: 1, y: 0 } : false
+              }
               transition={{
                 delay: index >= 6 ? (index - 6) * 0.1 : 0,
-                duration: 0.5
+                duration: 0.5,
               }}
             >
               <ServiceCard
@@ -242,42 +250,36 @@ export default function ServicesSection() {
           ))}
         </div>
 
-       {/* Buttons Wrapper */}
-<motion.div
-  className="mt-12 flex flex-col items-center gap-4"
-  variants={itemVariants}
->
+        {/* Buttons Wrapper */}
+        <motion.div
+          className="mt-12 flex flex-col items-center gap-4"
+          variants={itemVariants}
+        >
+          {/* Show More Button */}
+          {visibleServices < formattedServices.length && (
+            <Button
+              onClick={showMore}
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-[260px] gap-2 btn-3d"
+            >
+              Show More Services
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          )}
 
-  {/* Show More Button */}
-  {visibleServices < formattedServices.length && (
-    <Button
-      onClick={showMore}
-      variant="outline"
-      size="lg"
-      className="w-full sm:w-[260px] gap-2 btn-3d"
-    >
-      Show More Services
-      <ArrowRight className="h-4 w-4" />
-    </Button>
-  )}
-
-  {/* View All Button */}
-  <Button
-    asChild
-    size="lg"
-    className="w-full sm:w-[260px] gap-2 bg-gradient-hero text-white shadow-lg hover:shadow-xl transition-shadow btn-3d"
-  >
-    <Link href="/services">
-      View All Services
-      <ArrowRight className="h-4 w-4" />
-    </Link>
-  </Button>
-
-</motion.div>
-
-
-
-
+          {/* View All Button */}
+          <Button
+            asChild
+            size="lg"
+            className="w-full sm:w-[260px] gap-2 bg-gradient-hero text-white shadow-lg hover:shadow-xl transition-shadow btn-3d"
+          >
+            <Link href="/services">
+              View All Services
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </motion.div>
       </motion.div>
     </section>
   );

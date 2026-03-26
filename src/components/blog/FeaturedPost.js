@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -19,20 +21,23 @@ export default function FeaturedPost({ post }) {
               {post.category}
             </div>
             <h2 className="text-3xl font-bold mb-4">
-              <Link href={`/blog/${post.id}`} className="hover:text-primary transition-colors">
+              <Link
+                href={`/blog/${post.id}`}
+                className="hover:text-primary transition-colors"
+              >
                 {post.title}
               </Link>
             </h2>
-            <p className="text-muted-foreground mb-6">
-              {post.description}
-            </p>
+            <p className="text-muted-foreground mb-6">{post.description}</p>
             <div className="flex items-center gap-4 mb-6">
               <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
                 {post.author.charAt(0)}
               </div>
               <div>
                 <p className="font-medium">{post.author}</p>
-                <p className="text-sm text-muted-foreground">{post.date} · {post.readTime}</p>
+                <p className="text-sm text-muted-foreground">
+                  {post.date} · {post.readTime}
+                </p>
               </div>
             </div>
             <Button asChild className="gap-2">
@@ -53,7 +58,10 @@ export default function FeaturedPost({ post }) {
                 alt={post.title}
                 fill
                 className="object-cover transition-transform duration-500"
-                unoptimized={post.image?.startsWith('http') || post.image?.startsWith('data:')}
+                unoptimized={
+                  post.image?.startsWith("http") ||
+                  post.image?.startsWith("data:")
+                }
                 onError={(e) => {
                   e.target.src = "/images/bg/services-bg.webp";
                 }}

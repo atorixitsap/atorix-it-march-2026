@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
@@ -17,7 +19,7 @@ import {
   SearchIcon,
   CloudIcon,
   GlobeIcon,
-  PuzzleIcon
+  PuzzleIcon,
 } from "lucide-react";
 
 // Map of feature keywords to icons
@@ -35,7 +37,7 @@ const iconMap = {
   data: DatabaseIcon,
   award: AwardIcon,
   global: GlobeIcon,
-  server: ServerIcon
+  server: ServerIcon,
 };
 
 // Find the most appropriate icon based on feature text
@@ -43,8 +45,8 @@ const findIconForFeature = (featureText) => {
   const lowercaseText = featureText.toLowerCase();
 
   // Find the keyword that appears in the feature text
-  const matchedKeyword = Object.keys(iconMap).find(keyword =>
-    lowercaseText.includes(keyword)
+  const matchedKeyword = Object.keys(iconMap).find((keyword) =>
+    lowercaseText.includes(keyword),
   );
 
   // Return the matched icon or a default icon
@@ -72,7 +74,8 @@ export default function FeatureShowcase({ features, className = "" }) {
             <div>
               <h3 className="font-medium text-lg mb-1">{feature}</h3>
               <p className="text-muted-foreground text-sm">
-                Our experts ensure this feature is implemented with industry best practices to maximize your business value.
+                Our experts ensure this feature is implemented with industry
+                best practices to maximize your business value.
               </p>
             </div>
           </motion.div>

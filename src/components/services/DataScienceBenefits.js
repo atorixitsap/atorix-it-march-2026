@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import {
   TrendingUp,
@@ -10,7 +12,7 @@ import {
   Target,
   Shield,
   Users,
-  Search
+  Search,
 } from "lucide-react";
 
 export default function DataScienceBenefits() {
@@ -20,7 +22,8 @@ export default function DataScienceBenefits() {
     {
       id: 1,
       title: "Data-Driven Decisions",
-      description: "Transform gut feelings into strategic insights backed by empirical evidence.",
+      description:
+        "Transform gut feelings into strategic insights backed by empirical evidence.",
       icon: TrendingUp,
       color: "bg-blue-500/10",
       textColor: "text-blue-500",
@@ -29,7 +32,8 @@ export default function DataScienceBenefits() {
     {
       id: 2,
       title: "Operational Efficiency",
-      description: "Identify bottlenecks and optimize processes through advanced analytics.",
+      description:
+        "Identify bottlenecks and optimize processes through advanced analytics.",
       icon: Zap,
       color: "bg-green-500/10",
       textColor: "text-green-500",
@@ -38,7 +42,8 @@ export default function DataScienceBenefits() {
     {
       id: 3,
       title: "Predictive Capabilities",
-      description: "Anticipate market trends and customer needs before they emerge.",
+      description:
+        "Anticipate market trends and customer needs before they emerge.",
       icon: Cpu,
       color: "bg-violet-500/10",
       textColor: "text-violet-500",
@@ -47,7 +52,8 @@ export default function DataScienceBenefits() {
     {
       id: 4,
       title: "Performance Tracking",
-      description: "Monitor KPIs in real-time with intuitive dashboards and metrics.",
+      description:
+        "Monitor KPIs in real-time with intuitive dashboards and metrics.",
       icon: BarChart2,
       color: "bg-amber-500/10",
       textColor: "text-amber-500",
@@ -56,7 +62,8 @@ export default function DataScienceBenefits() {
     {
       id: 5,
       title: "Strategic Advantage",
-      description: "Gain competitive edge through data-driven innovation and foresight.",
+      description:
+        "Gain competitive edge through data-driven innovation and foresight.",
       icon: Target,
       color: "bg-red-500/10",
       textColor: "text-red-500",
@@ -65,7 +72,8 @@ export default function DataScienceBenefits() {
     {
       id: 6,
       title: "Risk Mitigation",
-      description: "Identify and address potential issues before they impact your business.",
+      description:
+        "Identify and address potential issues before they impact your business.",
       icon: Shield,
       color: "bg-cyan-500/10",
       textColor: "text-cyan-500",
@@ -74,7 +82,8 @@ export default function DataScienceBenefits() {
     {
       id: 7,
       title: "Customer Insights",
-      description: "Understand behavior patterns to enhance customer experience and loyalty.",
+      description:
+        "Understand behavior patterns to enhance customer experience and loyalty.",
       icon: Users,
       color: "bg-purple-500/10",
       textColor: "text-purple-500",
@@ -83,7 +92,8 @@ export default function DataScienceBenefits() {
     {
       id: 8,
       title: "Hidden Opportunities",
-      description: "Discover untapped market potential and revenue streams in your data.",
+      description:
+        "Discover untapped market potential and revenue streams in your data.",
       icon: Search,
       color: "bg-indigo-500/10",
       textColor: "text-indigo-500",
@@ -108,7 +118,8 @@ export default function DataScienceBenefits() {
         >
           <h2 className="text-3xl font-bold mb-4">Benefits of Data Science</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Leverage the power of data to transform your organization, drive innovation, and create sustainable competitive advantages.
+            Leverage the power of data to transform your organization, drive
+            innovation, and create sustainable competitive advantages.
           </p>
         </motion.div>
 
@@ -134,8 +145,8 @@ export default function DataScienceBenefits() {
                   animate={{ opacity: 0.2 }}
                   exit={{ opacity: 0 }}
                   style={{
-                    background: `radial-gradient(circle at center, ${benefit.textColor.replace('text-', 'var(--')}) 0%, transparent 70%)`,
-                    zIndex: -1
+                    background: `radial-gradient(circle at center, ${benefit.textColor.replace("text-", "var(--")}) 0%, transparent 70%)`,
+                    zIndex: -1,
                   }}
                 />
               )}
@@ -146,7 +157,7 @@ export default function DataScienceBenefits() {
                 </div>
 
                 <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-             
+
                 <p className="text-muted-foreground text-sm grow">
                   {benefit.description}
                 </p>
@@ -156,7 +167,9 @@ export default function DataScienceBenefits() {
               </div>
 
               {/* Decorative corner accent */}
-              <div className={`absolute top-0 right-0 w-16 h-16 ${benefit.color} opacity-30 rounded-bl-full`} />
+              <div
+                className={`absolute top-0 right-0 w-16 h-16 ${benefit.color} opacity-30 rounded-bl-full`}
+              />
             </motion.div>
           ))}
         </div>

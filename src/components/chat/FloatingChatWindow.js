@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Minus, X, Maximize2 } from "lucide-react";
 import ChatWindow from "./ChatWindow";
@@ -12,7 +14,6 @@ export default function FloatingChatWindow({
   onExpand,
   onClose,
 }) {
-
   const { onlineUsers, typingUsers } = useChat();
 
   const isOnline = onlineUsers?.[user._id];
@@ -61,7 +62,6 @@ h-[60vh] sm:h-[450px]
         overflow-hidden
       "
     >
-
       {/* HEADER (STICKY) */}
       <div
         className="
@@ -73,46 +73,30 @@ h-[60vh] sm:h-[450px]
           border-b border-gray-700
         "
       >
-
         {/* USER INFO */}
         <div className="flex flex-col">
-
-          <span className="font-semibold text-sm">
-            {user.name}
-          </span>
+          <span className="font-semibold text-sm">{user.name}</span>
 
           <span className="text-xs text-gray-400">
-
-            {isTyping
-              ? "Typing..."
-              : isOnline
-              ? "Online"
-              : "Offline"}
-
+            {isTyping ? "Typing..." : isOnline ? "Online" : "Offline"}
           </span>
-
         </div>
 
         {/* ACTIONS */}
         <div className="flex items-center gap-2">
-
           <Minus
             size={16}
             className="cursor-pointer hover:text-blue-400"
             onClick={onMinimize}
           />
 
-          <Maximize2
-            size={16}
-            className="cursor-pointer hover:text-blue-400"
-          />
+          <Maximize2 size={16} className="cursor-pointer hover:text-blue-400" />
 
           <X
             size={16}
             className="cursor-pointer hover:text-red-400"
             onClick={onClose}
           />
-
         </div>
       </div>
 
@@ -120,7 +104,6 @@ h-[60vh] sm:h-[450px]
       <div className="flex-1 overflow-hidden">
         <ChatWindow activeUser={user} hideHeader />
       </div>
-
     </motion.div>
   );
 }

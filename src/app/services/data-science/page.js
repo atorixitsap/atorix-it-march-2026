@@ -11,15 +11,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // Import data
 import servicesData from "@/data/services.json";
 
-
-
 // Import custom components
 import DataScienceHero from "@/components/services/DataScienceHero";
 import DataScienceBenefits from "@/components/services/DataScienceBenefits";
 import DataWorkflowVisualization from "@/components/services/DataWorkflowVisualization";
-
-
-
 
 export default function DataSciencePage() {
   const { scrollYProgress } = useScroll();
@@ -31,7 +26,7 @@ export default function DataSciencePage() {
 
   // Get data science category and services
   const dataScienceCategory = servicesData.categories.find(
-    (category) => category.id === "data-science"
+    (category) => category.id === "data-science",
   );
 
   return (
@@ -45,11 +40,11 @@ export default function DataSciencePage() {
       {/* Hero Section */}
       <DataScienceHero />
 
-
-
-
       {/* Services Section */}
-      <section id="data-science-services" className="py-10 relative overflow-hidden">
+      <section
+        id="data-science-services"
+        className="py-10 relative overflow-hidden"
+      >
         {/* Background Elements */}
         <div className="absolute inset-0 bg-muted/10" />
         <div className="absolute inset-0 bg-[url('/grid.png')] opacity-[0.03]" />
@@ -62,9 +57,13 @@ export default function DataSciencePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4">Our Data Science Services</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              Our Data Science Services
+            </h2>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Comprehensive solutions for every step of your data journey, from collection and processing to visualization and actionable insights.
+              Comprehensive solutions for every step of your data journey, from
+              collection and processing to visualization and actionable
+              insights.
             </p>
           </motion.div>
 
@@ -119,9 +118,7 @@ export default function DataSciencePage() {
                       transition={{ type: "spring", stiffness: 400 }}
                     >
                       <Button asChild className="w-full">
-                        <Link
-                          href={`/services/data-science/${service.id}`}
-                        >
+                        <Link href={`/services/data-science/${service.id}`}>
                           Learn More
                           <ArrowRight className="h-4 w-4 ml-1" />
                         </Link>
@@ -155,7 +152,9 @@ export default function DataSciencePage() {
           >
             <h2 className="text-3xl font-bold mb-4">Industries We Serve</h2>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Our data science solutions drive transformation across diverse sectors, tailored to each industry's unique challenges and opportunities.
+              Our data science solutions drive transformation across diverse
+              sectors, tailored to each industry's unique challenges and
+              opportunities.
             </p>
           </motion.div>
 
@@ -164,10 +163,16 @@ export default function DataSciencePage() {
               { name: "Healthcare", icon: "/images/industries/healthcare.png" },
               { name: "Finance", icon: "/images/industries/finance.png" },
               { name: "Retail", icon: "/images/industries/retail.png" },
-              { name: "Manufacturing", icon: "/images/industries/manufacture.png" },
+              {
+                name: "Manufacturing",
+                icon: "/images/industries/manufacture.png",
+              },
               { name: "Logistics", icon: "/images/industries/logistics.png" },
               { name: "Energy", icon: "/images/industries/Energy.png" },
-              { name: "Telecommunications", icon: "/images/industries/communication.png" },
+              {
+                name: "Telecommunications",
+                icon: "/images/industries/communication.png",
+              },
               { name: "Education", icon: "/images/industries/education.png" },
             ].map((industry, index) => (
               <motion.div
@@ -194,10 +199,6 @@ export default function DataSciencePage() {
         </div>
       </section>
 
-
-
-      
-
       {/* CTA Section */}
       <section className="py-10 relative overflow-hidden bg-muted/20">
         <div className="container-custom relative z-10">
@@ -213,7 +214,9 @@ export default function DataSciencePage() {
               </h2>
 
               <p className="text-xl text-muted-foreground mb-8">
-                Partner with us to transform your raw data into strategic business advantages. Our expert team will guide you through every step of the journey.
+                Partner with us to transform your raw data into strategic
+                business advantages. Our expert team will guide you through
+                every step of the journey.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4">

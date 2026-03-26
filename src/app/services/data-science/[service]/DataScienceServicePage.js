@@ -1,11 +1,11 @@
-
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -16,7 +16,7 @@ import {
   Cpu,
   LineChart,
   PieChart,
-  Zap
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -32,21 +32,17 @@ import IndustrySection from "@/components/services/categoryService/IndustrySecti
 import FaqSection from "@/components/services/categoryService/FaqSection";
 import faqData from "@/data/faq";
 
-
 //Veds section
 import ProcessSectionInjector from "@/components/common/ProcessSection/ProcessSectionInjector";
 import CaseStudySection from "@/components/common/CaseStudy/CaseStudySection";
 import MethodologySection from "@/components/common/Methodology/MethodologySection";
 
-//Yash's Section 
+//Yash's Section
 import WhySapServices from "../../sap/WhySapServices";
 
 // Industries We Serve (DATA + COMPONENT)
 import industriesData from "@/components/industries-we-serve/industriesData";
 import IndustriesSection from "@/components/industries-we-serve/IndustriesSection";
-
-
-
 
 // Custom Background component for Data Science services
 function DataScienceBackground() {
@@ -111,7 +107,7 @@ export default function DataScienceServicePage() {
   const [notFound, setNotFound] = useState(false);
   const [serviceDetails, setServiceDetails] = useState(null);
 
-   // ✅ CONNECT INDUSTRIES DATA USING serviceId
+  // ✅ CONNECT INDUSTRIES DATA USING serviceId
   const industriesSectionData = industriesData?.[serviceId];
 
   // Get service icon based on service ID
@@ -122,7 +118,6 @@ export default function DataScienceServicePage() {
       "data-engineering": Database,
       "data-visualization": PieChart,
       "real-time-analytics": LineChart,
-      
     };
 
     return icons[id] || Zap;
@@ -133,7 +128,7 @@ export default function DataScienceServicePage() {
   useEffect(() => {
     // Find data science category and service
     const category = servicesData.categories.find(
-      (cat) => cat.id === "data-science"
+      (cat) => cat.id === "data-science",
     );
 
     if (!category) {
@@ -222,18 +217,17 @@ export default function DataScienceServicePage() {
   }
 
   const {
-  testimonials = [],
-  processSteps = [],
-  relevantIndustries = [],
-  benefits = [],
-  additionalContent = {},
-} = serviceDetails || {};
+    testimonials = [],
+    processSteps = [],
+    relevantIndustries = [],
+    benefits = [],
+    additionalContent = {},
+  } = serviceDetails || {};
 
-const faqs =
-  serviceDetails?.faqs?.length > 0
-    ? serviceDetails.faqs
-    : faqData?.["data-science"]?.[serviceId] || [];
-
+  const faqs =
+    serviceDetails?.faqs?.length > 0
+      ? serviceDetails.faqs
+      : faqData?.["data-science"]?.[serviceId] || [];
 
   return (
     <>
@@ -281,10 +275,10 @@ const faqs =
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
               >
-
                 {serviceData.name}
-                <span className="block mt-2 h-[4px] w-1/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent"> </span>
-
+                <span className="block mt-2 h-[4px] w-1/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent">
+                  {" "}
+                </span>
               </motion.h1>
             </div>
 
@@ -349,11 +343,10 @@ const faqs =
                   <span className="absolute -bottom-1 left-0 w-1/3 h-1 bg-gradient-to-r from-primary to-primary/0"></span>
                 </h2> */}
 
-                  <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
-                           Overview
+                <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
+                  Overview
                   <span className="block mx-auto mt-2 h-[4px] w-3/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
                 </h2>
-
 
                 <div className="prose prose-lg dark:prose-invert max-w-none mb-4 text-justify">
                   {additionalContent && additionalContent.overview ? (
@@ -363,64 +356,64 @@ const faqs =
                   )}
                 </div>
 
-  {/* WHY CHOOSE / VALUE SECTION */}
-      <WhySapServices
-        category="data-science"
-        service={serviceId}
-      />
-                 {/* Dynamic Sections */}
-       
+                {/* WHY CHOOSE / VALUE SECTION */}
+                <WhySapServices category="data-science" service={serviceId} />
+                {/* Dynamic Sections */}
 
                 {/* Additional Content - Analytics Types for data-analytics */}
-                {serviceId === "data-analytics" && additionalContent && additionalContent.analyticsTypes && (
-                  <>
-                    {/* <h2 className="text-3xl font-bold mb-6 relative inline-block">
+                {serviceId === "data-analytics" &&
+                  additionalContent &&
+                  additionalContent.analyticsTypes && (
+                    <>
+                      {/* <h2 className="text-3xl font-bold mb-6 relative inline-block">
                       Analytics Capabilities
                       <span className="absolute -bottom-1 left-0 w-1/3 h-1 bg-gradient-to-r from-primary to-primary/0"></span>
                     </h2> */}
 
-                    <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
+                      <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
                         Analytics Capabilities
-                  <span className="block mx-auto mt-2 h-[4px] w-2/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
-                </h2>
-                    <div className="prose prose-lg dark:prose-invert max-w-none mb-12 text-justify">
-                      <p>{additionalContent.analyticsTypes}</p>
-                    </div>
-                  </>
-                )}
+                        <span className="block mx-auto mt-2 h-[4px] w-2/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
+                      </h2>
+                      <div className="prose prose-lg dark:prose-invert max-w-none mb-12 text-justify">
+                        <p>{additionalContent.analyticsTypes}</p>
+                      </div>
+                    </>
+                  )}
 
                 {/* Additional Content - Machine Learning for machine-learning */}
-                {serviceId === "machine-learning" && additionalContent && additionalContent.mlTypes && (
-                  <>
-                    <h2 className="text-3xl font-bold mb-6 relative inline-block">
-                      Machine Learning Expertise
-                      <span className="absolute -bottom-1 left-0 w-1/3 h-1 bg-gradient-to-r from-primary to-primary/0"></span>
-                    </h2>
-                    <div className="prose prose-lg dark:prose-invert max-w-none mb-12">
-                      <p>{additionalContent.mlTypes}</p>
-                    </div>
-                  </>
-                )}
+                {serviceId === "machine-learning" &&
+                  additionalContent &&
+                  additionalContent.mlTypes && (
+                    <>
+                      <h2 className="text-3xl font-bold mb-6 relative inline-block">
+                        Machine Learning Expertise
+                        <span className="absolute -bottom-1 left-0 w-1/3 h-1 bg-gradient-to-r from-primary to-primary/0"></span>
+                      </h2>
+                      <div className="prose prose-lg dark:prose-invert max-w-none mb-12">
+                        <p>{additionalContent.mlTypes}</p>
+                      </div>
+                    </>
+                  )}
 
                 {/* Key Features */}
                 {/* <h2 className="text-3xl font-bold mb-6">Key Features</h2> */}
                 <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
-                          Key Features
+                  Key Features
                   <span className="block mx-auto mt-2 h-[4px] w-3/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
                 </h2>
                 <FeatureShowcase
                   features={serviceData.features}
                   className="mb-10"
                 />
-                
+
                 {/* Key Benefits Section */}
                 {benefits && benefits.length > 0 && (
                   <div className="mb-10">
                     {/* <h2 className="text-3xl font-bold mb-6">Key Benefits</h2> */}
-                  <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
-                          Key Benefits
-                  <span className="block mx-auto mt-2 h-[4px] w-3/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
-                </h2>
+                    <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
+                      Key Benefits
+                      <span className="block mx-auto mt-2 h-[4px] w-3/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
+                    </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {benefits.map((benefit, index) => (
                         <motion.div
@@ -440,11 +433,9 @@ const faqs =
                   </div>
                 )}
 
-
-
                 {/* VEDs Component  */}
                 <ProcessSectionInjector />
-                
+
                 {/* Process Steps */}
                 {/* {processSteps && processSteps.length > 0 && (
                   <div className="mb-16">
@@ -456,21 +447,18 @@ const faqs =
                 )} */}
 
                 <MethodologySection
-                          category="data-science"
-                          service={serviceId}
-                        />
-
-                {/* ✅ INDUSTRIES WE SERVE (CONNECTED PROPERLY) */}
-        {industriesSectionData && (
-          <div className="mt-20">
-            <IndustriesSection data={industriesSectionData} />
-          </div>
-        )}
-                
-                <CaseStudySection
                   category="data-science"
                   service={serviceId}
                 />
+
+                {/* ✅ INDUSTRIES WE SERVE (CONNECTED PROPERLY) */}
+                {industriesSectionData && (
+                  <div className="mt-20">
+                    <IndustriesSection data={industriesSectionData} />
+                  </div>
+                )}
+
+                <CaseStudySection category="data-science" service={serviceId} />
 
                 {/* FAQ Section */}
                 {faqs && faqs.length > 0 && (
@@ -485,8 +473,9 @@ const faqs =
                     Ready to get started?
                   </h3>
                   <p className="text-muted-foreground mb-6">
-                    Contact our data science team to learn more about our {serviceData.name}{" "}
-                    and how we can help your business leverage data for better outcomes.
+                    Contact our data science team to learn more about our{" "}
+                    {serviceData.name} and how we can help your business
+                    leverage data for better outcomes.
                   </p>
                   <Button asChild size="lg">
                     <Link href="/contact">Contact Us</Link>
@@ -505,7 +494,9 @@ const faqs =
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="bg-muted/20 rounded-xl border border-border p-6"
                 >
-                  <h3 className="text-xl font-bold mb-4">Data Science Services</h3>
+                  <h3 className="text-xl font-bold mb-4">
+                    Data Science Services
+                  </h3>
                   <p className="text-muted-foreground mb-4">
                     Explore our full range of data science services
                   </p>
@@ -525,7 +516,9 @@ const faqs =
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="space-y-4"
                   >
-                    <h3 className="text-xl font-bold text-muted-foreground font-times">Client Testimonials</h3>
+                    <h3 className="text-xl font-bold text-muted-foreground font-times">
+                      Client Testimonials
+                    </h3>
                     {testimonials.map((testimonial, index) => (
                       <Testimonial key={index} testimonial={testimonial} />
                     ))}
@@ -611,7 +604,9 @@ const faqs =
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Let our team of experienced data scientists help you unlock the full potential of your data for better decision-making and business growth.
+              Let our team of experienced data scientists help you unlock the
+              full potential of your data for better decision-making and
+              business growth.
             </motion.p>
 
             <motion.div

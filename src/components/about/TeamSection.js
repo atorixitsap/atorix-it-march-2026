@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import AnimatedBlobBackground from "./AnimatedBlobBackground";
@@ -37,8 +39,7 @@ export default function TeamSection() {
       position: "Director",
       image:
         "https://res.cloudinary.com/dfmiavhld/image/upload/v1769583350/nitedra-singh_cu2tgl.webp",
-      bio:
-        "Leading our organization with strategic vision and deep expertise in SAP consulting, implementation, and enterprise transformation.",
+      bio: "Leading our organization with strategic vision and deep expertise in SAP consulting, implementation, and enterprise transformation.",
     },
   ];
 
@@ -70,20 +71,19 @@ export default function TeamSection() {
             <span className="block mx-auto mt-2 h-[4px] w-1/5 bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
           </h2>
 
-
           {/* Description */}
           <p className="mt-8 text-justify md:text-lg text-muted-foreground leading-relaxed">
-           Our leadership combines deep industry knowledge with hands-on experience, guiding organizations through 
-           complex SAP journeys with clarity, confidence, and measurable impact. Supported by strategic insight and a 
-           results-driven approach, we partner with organizations to modernize their SAP environments, improve operational efficiency, and unlock measurable business value.
+            Our leadership combines deep industry knowledge with hands-on
+            experience, guiding organizations through complex SAP journeys with
+            clarity, confidence, and measurable impact. Supported by strategic
+            insight and a results-driven approach, we partner with organizations
+            to modernize their SAP environments, improve operational efficiency,
+            and unlock measurable business value.
           </p>
         </motion.div>
 
         {/* ================= LEADER CARD ================= */}
-        <motion.div
-          className="flex justify-center"
-          variants={container}
-        >
+        <motion.div className="flex justify-center" variants={container}>
           {teamMembers.map((member) => (
             <motion.div
               key={member.name}
@@ -109,9 +109,7 @@ export default function TeamSection() {
 
               {/* Content */}
               <div className="text-center">
-                <h3 className="text-2xl font-semibold mb-1">
-                  {member.name}
-                </h3>
+                <h3 className="text-2xl font-semibold mb-1">{member.name}</h3>
 
                 <p className="text-primary font-medium text-lg mb-4">
                   {member.position}

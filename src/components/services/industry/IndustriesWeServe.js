@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import industriesWeServe from "@/data/industriesWeServe.json";
@@ -28,11 +30,7 @@ export default function IndustriesWeServe({ serviceKey }) {
       </motion.h2>
 
       {/* Intro */}
-      {intro && (
-        <p className="text-muted-foreground mb-6 max-w-3xl">
-          {intro}
-        </p>
-      )}
+      {intro && <p className="text-muted-foreground mb-6 max-w-3xl">{intro}</p>}
 
       {/* Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -47,7 +45,7 @@ export default function IndustriesWeServe({ serviceKey }) {
               "relative p-4 border rounded-xl cursor-pointer transition-all",
               hoveredIndustry === industry.id
                 ? "border-primary/40 bg-primary/5 shadow-md"
-                : "border-border/50 hover:border-primary/30 hover:bg-muted/30"
+                : "border-border/50 hover:border-primary/30 hover:bg-muted/30",
             )}
             onMouseEnter={() => setHoveredIndustry(industry.id)}
             onMouseLeave={() => setHoveredIndustry(null)}
@@ -69,7 +67,7 @@ export default function IndustriesWeServe({ serviceKey }) {
               initial={{ opacity: 0, height: 0 }}
               animate={{
                 opacity: hoveredIndustry === industry.id ? 1 : 0,
-                height: hoveredIndustry === industry.id ? "auto" : 0
+                height: hoveredIndustry === industry.id ? "auto" : 0,
               }}
               transition={{ duration: 0.2 }}
             >

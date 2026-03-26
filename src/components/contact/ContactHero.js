@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import FloatingShapes from "./FloatingShapes";
@@ -7,7 +9,8 @@ import FloatingShapes from "./FloatingShapes";
 export default function ContactHero() {
   const tagline = "Get in Touch";
   const title = "Let's Talk About Your Project";
-  const description = "We're here to help and answer any questions you might have. We look forward to hearing from you.";
+  const description =
+    "We're here to help and answer any questions you might have. We look forward to hearing from you.";
   return (
     <section className="py-10 md:py-10 bg-primary/5 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>

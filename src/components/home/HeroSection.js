@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import LogoSphere from "@/components/ui/LogoSphere";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
@@ -476,9 +478,6 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-
-      
-
       </div>
     </section>
   );

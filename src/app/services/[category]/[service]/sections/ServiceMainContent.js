@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import Link from "next/link";
@@ -47,12 +49,12 @@ export default function ServiceMainContent({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.1 }}
       >
-       <div className="text-justify">
-        {/* Overview */}
-        <ServiceSectionRenderer
-          title="Overview"
-          content={additionalContent?.overview || serviceData?.details}
-        />
+        <div className="text-justify">
+          {/* Overview */}
+          <ServiceSectionRenderer
+            title="Overview"
+            content={additionalContent?.overview || serviceData?.details}
+          />
         </div>
 
         {/* What is ML & Deep Learning */}
@@ -80,18 +82,18 @@ export default function ServiceMainContent({
               content={additionalContent[key]}
               plain={plain}
             />
-          ) : null
+          ) : null,
         )}
 
         {/* Features */}
         {serviceData?.features?.length > 0 && (
           <>
             {/* <h2 className="text-3xl font-bold mb-6">Key Features</h2> */}
-      
-    <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
+
+            <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
               Key Features
-      <span className="block mx-auto mt-2 h-[4px] w-3/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
-    </h2>
+              <span className="block mx-auto mt-2 h-[4px] w-3/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
+            </h2>
 
             <FeatureShowcase
               features={serviceData.features}
@@ -104,16 +106,17 @@ export default function ServiceMainContent({
         {benefits?.length > 0 && (
           <div className="mb-10 text-justify">
             {/* <h2 className="text-3xl font-bold mb-6">Key Benefits</h2> */}
-   <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
+            <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
               Key Benefits
-      <span className="block mx-auto mt-2 h-[4px] w-3/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
-    </h2>
-
-
+              <span className="block mx-auto mt-2 h-[4px] w-3/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-justify">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start space-x-3 text-justify">
+                <div
+                  key={index}
+                  className="flex items-start space-x-3 text-justify"
+                >
                   <div className="rounded-full w-7 h-7 bg-primary/10 flex items-center text-justify">
                     <CheckCircle2 className="h-4 w-4 text-primary text-justify" />
                   </div>
@@ -141,24 +144,21 @@ export default function ServiceMainContent({
         )}
 
         {/* FAQs */}
-      {faqs.length > 0 && (
+        {faqs.length > 0 && (
           <div className="mt-10 ">
-            <FaqSection
-              faqs={faqs}
-              title="Frequently Asked Questions"
-            />
+            <FaqSection faqs={faqs} title="Frequently Asked Questions" />
           </div>
-        )} 
-      
+        )}
+
         {/* CTA */}
         <div className="bg-muted/10 p-8 rounded-xl border border-border mt-10">
           {/* <h3 className="text-2xl font-bold mb-4">
             Ready to get started?
           </h3> */}
- <h3 className="inline-block text-4xl font-bold text-black dark:text-white relative">
-             Ready to get started?
-      <span className="block mx-auto mt-2 h-[4px] w-2/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
-    </h3>
+          <h3 className="inline-block text-4xl font-bold text-black dark:text-white relative">
+            Ready to get started?
+            <span className="block mx-auto mt-2 h-[4px] w-2/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
+          </h3>
 
           <p className="text-muted-foreground mb-6">
             Contact our team to learn more about our {serviceData?.name}.

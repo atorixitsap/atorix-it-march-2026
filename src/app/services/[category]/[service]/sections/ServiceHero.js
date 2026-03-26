@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -54,13 +56,15 @@ export default function ServiceHero({
             {serviceName}
           </motion.h1> */}
 
-            <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80"
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}>
-                  {serviceName}
-           <span className="block mt-2 h-[4px] w-1/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent"></span>
-        </motion.h1>
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
+            {serviceName}
+            <span className="block mt-2 h-[4px] w-1/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent"></span>
+          </motion.h1>
 
           <motion.p
             className="text-xl text-muted-foreground mb-10 text-justify"
@@ -77,7 +81,11 @@ export default function ServiceHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
           >
-            <Button asChild size="lg" className="relative overflow-hidden group">
+            <Button
+              asChild
+              size="lg"
+              className="relative overflow-hidden group"
+            >
               <Link href="/contact">
                 <span className="relative z-10">Get Started</span>
                 <span className="absolute inset-0 bg-gradient-to-r from-primary-foreground/0 via-primary-foreground/10 to-primary-foreground/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>

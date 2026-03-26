@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
@@ -40,7 +42,9 @@ export default function Testimonial({ testimonial }) {
               <Star
                 key={i}
                 className={`h-4 w-4 ${
-                  i < rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+                  i < rating
+                    ? "fill-yellow-400 text-yellow-400"
+                    : "text-gray-300"
                 }`}
               />
             ))}

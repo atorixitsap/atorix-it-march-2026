@@ -1,4 +1,6 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import AnimatedBlobBackground from "./AnimatedBlobBackground";
@@ -15,9 +17,12 @@ export default function Newsletter() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <h2 className="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+          <h2 className="text-3xl font-bold mb-4">
+            Subscribe to Our Newsletter
+          </h2>
           <p className="text-muted-foreground mb-8 text-justify">
-            Stay updated with the latest SAP insights, trends, and best practices delivered straight to your inbox.
+            Stay updated with the latest SAP insights, trends, and best
+            practices delivered straight to your inbox.
           </p>
           <form className="max-w-md mx-auto">
             <div className="flex flex-col sm:flex-row gap-4">
@@ -32,7 +37,11 @@ export default function Newsletter() {
               </Button>
             </div>
             <p className="text-xs text-muted-foreground mt-4">
-              By subscribing, you agree to our <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link>. You can unsubscribe at any time.
+              By subscribing, you agree to our{" "}
+              <Link href="/privacy" className="text-primary hover:underline">
+                Privacy Policy
+              </Link>
+              . You can unsubscribe at any time.
             </p>
           </form>
         </motion.div>

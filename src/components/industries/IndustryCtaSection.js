@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -35,17 +37,21 @@ export default function IndustryCtaSection() {
   return (
     <section className="py-8 md:py-14 text-white relative overflow-hidden">
       {/* Theme-based Animated Background with SVG Waves */}
-      <div className={`absolute inset-0 overflow-hidden ${
-        isDark 
-          ? 'bg-gradient-to-br from-black via-slate-950 to-black' 
-          : 'bg-white'
-      }`}>
-        <div className={`absolute inset-0 ${
-          isDark 
-            ? 'bg-transparent' 
-            : 'bg-gradient-to-br from-slate-50 to-blue-50'
-        }`}></div>
-        
+      <div
+        className={`absolute inset-0 overflow-hidden ${
+          isDark
+            ? "bg-gradient-to-br from-black via-slate-950 to-black"
+            : "bg-white"
+        }`}
+      >
+        <div
+          className={`absolute inset-0 ${
+            isDark
+              ? "bg-transparent"
+              : "bg-gradient-to-br from-slate-50 to-blue-50"
+          }`}
+        ></div>
+
         <svg
           className="absolute inset-0 w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -54,48 +60,89 @@ export default function IndustryCtaSection() {
         >
           <defs>
             <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor={isDark ? "rgba(6, 182, 212, 0)" : "rgba(59, 130, 246, 0)"} />
-              <stop offset="30%" stopColor={isDark ? "rgba(6, 182, 212, 0.8)" : "rgba(59, 130, 246, 0.7)"} />
-              <stop offset="70%" stopColor={isDark ? "rgba(6, 182, 212, 0.8)" : "rgba(59, 130, 246, 0.7)"} />
-              <stop offset="100%" stopColor={isDark ? "rgba(6, 182, 212, 0)" : "rgba(59, 130, 246, 0)"} />
+              <stop
+                offset="0%"
+                stopColor={
+                  isDark ? "rgba(6, 182, 212, 0)" : "rgba(59, 130, 246, 0)"
+                }
+              />
+              <stop
+                offset="30%"
+                stopColor={
+                  isDark ? "rgba(6, 182, 212, 0.8)" : "rgba(59, 130, 246, 0.7)"
+                }
+              />
+              <stop
+                offset="70%"
+                stopColor={
+                  isDark ? "rgba(6, 182, 212, 0.8)" : "rgba(59, 130, 246, 0.7)"
+                }
+              />
+              <stop
+                offset="100%"
+                stopColor={
+                  isDark ? "rgba(6, 182, 212, 0)" : "rgba(59, 130, 246, 0)"
+                }
+              />
             </linearGradient>
             <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor={isDark ? "rgba(14, 165, 233, 0)" : "rgba(14, 165, 233, 0)"} />
-              <stop offset="30%" stopColor={isDark ? "rgba(14, 165, 233, 0.6)" : "rgba(14, 165, 233, 0.6)"} />
-              <stop offset="70%" stopColor={isDark ? "rgba(14, 165, 233, 0.6)" : "rgba(14, 165, 233, 0.6)"} />
-              <stop offset="100%" stopColor={isDark ? "rgba(14, 165, 233, 0)" : "rgba(14, 165, 233, 0)"} />
+              <stop
+                offset="0%"
+                stopColor={
+                  isDark ? "rgba(14, 165, 233, 0)" : "rgba(14, 165, 233, 0)"
+                }
+              />
+              <stop
+                offset="30%"
+                stopColor={
+                  isDark ? "rgba(14, 165, 233, 0.6)" : "rgba(14, 165, 233, 0.6)"
+                }
+              />
+              <stop
+                offset="70%"
+                stopColor={
+                  isDark ? "rgba(14, 165, 233, 0.6)" : "rgba(14, 165, 233, 0.6)"
+                }
+              />
+              <stop
+                offset="100%"
+                stopColor={
+                  isDark ? "rgba(14, 165, 233, 0)" : "rgba(14, 165, 233, 0)"
+                }
+              />
             </linearGradient>
             <filter id="glow">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
               <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
           </defs>
-         
+
           {/* Multiple horizontal flowing wave ribbons */}
           {Array.from({ length: 15 }).map((_, i) => {
-            const baseY = 150 + (i * 10);
+            const baseY = 150 + i * 10;
             const amplitude = 30 + Math.sin(i * 0.5) * 20;
             const frequency = 0.005 + (i % 3) * 0.001;
             const phase = (i * 0.5) % (Math.PI * 2);
-           
+
             // Create wave pattern - extended to ensure seamless loop
             let path = `M -200 ${baseY}`;
             for (let x = -200; x <= 1200; x += 3) {
-              const y = baseY +
+              const y =
+                baseY +
                 Math.sin(x * frequency + phase) * amplitude * 0.8 +
                 Math.sin(x * 0.0015 + phase * 2) * 15;
               path += ` L ${x} ${y}`;
             }
-           
+
             const speed = 20 + (i % 5) * 5;
             const delay = -i * 0.3;
-            const opacity = isDark 
+            const opacity = isDark
               ? 0.25 + (i % 4) * 0.05
               : 0.45 + (i % 4) * 0.08;
-           
+
             return (
               <g key={i}>
                 <path
@@ -114,24 +161,32 @@ export default function IndustryCtaSection() {
             );
           })}
         </svg>
-       
+
         {/* Additional glow effects */}
-        <div className={`absolute inset-0 ${
-          isDark 
-            ? 'bg-gradient-to-r from-cyan-500/5 via-transparent to-cyan-500/5' 
-            : 'bg-gradient-to-r from-blue-200/10 via-transparent to-blue-200/10'
-        }`}></div>
-        <div className={`absolute inset-0 ${
-          isDark 
-            ? 'bg-gradient-to-b from-transparent via-blue-500/5 to-transparent' 
-            : 'bg-gradient-to-b from-transparent via-blue-200/10 to-transparent'
-        }`}></div>
+        <div
+          className={`absolute inset-0 ${
+            isDark
+              ? "bg-gradient-to-r from-cyan-500/5 via-transparent to-cyan-500/5"
+              : "bg-gradient-to-r from-blue-200/10 via-transparent to-blue-200/10"
+          }`}
+        ></div>
+        <div
+          className={`absolute inset-0 ${
+            isDark
+              ? "bg-gradient-to-b from-transparent via-blue-500/5 to-transparent"
+              : "bg-gradient-to-b from-transparent via-blue-200/10 to-transparent"
+          }`}
+        ></div>
 
         {/* Floating particles */}
         {Array.from({ length: 12 }).map((_, i) => (
           <div
             key={`particle-${i}`}
-            className={isDark ? 'absolute rounded-full bg-blue-400/20' : 'absolute rounded-full bg-blue-100/20'}
+            className={
+              isDark
+                ? "absolute rounded-full bg-blue-400/20"
+                : "absolute rounded-full bg-blue-100/20"
+            }
             style={{
               width: `${Math.random() * 8 + 4}px`,
               height: `${Math.random() * 8 + 4}px`,
@@ -148,15 +203,16 @@ export default function IndustryCtaSection() {
       {/* CSS Animations */}
       <style jsx>{`
         @keyframes flowWave {
-          0% { 
+          0% {
             transform: translateX(0);
           }
-          100% { 
+          100% {
             transform: translateX(-628.3px);
           }
         }
         @keyframes floatParticle {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0) translateX(0);
           }
           25% {
@@ -182,7 +238,7 @@ export default function IndustryCtaSection() {
           <div className="md:col-span-8">
             <motion.h2
               className={`text-3xl md:text-4xl font-bold mb-4 ${
-                isDark ? 'text-white' : 'text-gray-900'
+                isDark ? "text-white" : "text-gray-900"
               }`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -193,7 +249,7 @@ export default function IndustryCtaSection() {
             </motion.h2>
             <motion.p
               className={`text-lg mb-0 ${
-                isDark ? 'text-white/90' : 'text-gray-700'
+                isDark ? "text-white/90" : "text-gray-700"
               }`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

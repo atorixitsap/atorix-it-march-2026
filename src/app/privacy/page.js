@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ArrowLeft, Shield } from "lucide-react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -96,13 +98,23 @@ export default function PrivacyPolicy() {
             >
               <div className="mb-10">
                 <p className="text-lg leading-relaxed">
-                  At Atorix IT Solutions, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
+                  At Atorix IT Solutions, we take your privacy seriously. This
+                  Privacy Policy explains how we collect, use, disclose, and
+                  safeguard your information when you visit our website or use
+                  our services. Please read this privacy policy carefully. If
+                  you do not agree with the terms of this privacy policy, please
+                  do not access the site.
                 </p>
               </div>
 
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Information We Collect</h2>
-                <p className="mb-4">We may collect personal information that you voluntarily provide to us when you:</p>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Information We Collect
+                </h2>
+                <p className="mb-4">
+                  We may collect personal information that you voluntarily
+                  provide to us when you:
+                </p>
                 <ul className="list-disc pl-6 space-y-2 mb-4">
                   <li>Register on our website</li>
                   <li>Request a demo or consultation</li>
@@ -120,8 +132,13 @@ export default function PrivacyPolicy() {
               </div>
 
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Automatically Collected Information</h2>
-                <p className="mb-4">When you visit our website, we may automatically collect certain information about your device, including:</p>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Automatically Collected Information
+                </h2>
+                <p className="mb-4">
+                  When you visit our website, we may automatically collect
+                  certain information about your device, including:
+                </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>IP address</li>
                   <li>Browser type and version</li>
@@ -134,85 +151,148 @@ export default function PrivacyPolicy() {
               </div>
 
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Use of Your Information</h2>
-                <p className="mb-4">We may use the information we collect for various purposes, including:</p>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Use of Your Information
+                </h2>
+                <p className="mb-4">
+                  We may use the information we collect for various purposes,
+                  including:
+                </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Providing, maintaining, and improving our services</li>
-                  <li>Processing transactions and sending related information</li>
+                  <li>
+                    Processing transactions and sending related information
+                  </li>
                   <li>Sending administrative information</li>
                   <li>Sending marketing and promotional communications</li>
-                  <li>Responding to inquiries and providing customer support</li>
-                  <li>Conducting research and analysis to improve our services</li>
+                  <li>
+                    Responding to inquiries and providing customer support
+                  </li>
+                  <li>
+                    Conducting research and analysis to improve our services
+                  </li>
                   <li>Protecting our legal rights and preventing fraud</li>
                 </ul>
               </div>
 
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Disclosure of Your Information</h2>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Disclosure of Your Information
+                </h2>
                 <p className="mb-4">We may share your information with:</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Service providers and third-party vendors who perform services on our behalf</li>
-                  <li>Business partners with whom we jointly offer products or services</li>
+                  <li>
+                    Service providers and third-party vendors who perform
+                    services on our behalf
+                  </li>
+                  <li>
+                    Business partners with whom we jointly offer products or
+                    services
+                  </li>
                   <li>Affiliated companies within our corporate family</li>
                   <li>Legal and regulatory authorities, as required by law</li>
                 </ul>
-                <p>We do not sell, rent, or trade your personal information to third parties for their marketing purposes without your explicit consent.</p>
-              </div>
-
-              <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Security of Your Information</h2>
                 <p>
-                  We use appropriate administrative, technical, and physical security measures designed to protect your personal information. However, no data transmission over the Internet or information storage technology can be guaranteed to be 100% secure. While we strive to protect your personal information, we cannot guarantee its absolute security.
+                  We do not sell, rent, or trade your personal information to
+                  third parties for their marketing purposes without your
+                  explicit consent.
                 </p>
               </div>
 
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Cookies and Tracking Technologies</h2>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Security of Your Information
+                </h2>
+                <p>
+                  We use appropriate administrative, technical, and physical
+                  security measures designed to protect your personal
+                  information. However, no data transmission over the Internet
+                  or information storage technology can be guaranteed to be 100%
+                  secure. While we strive to protect your personal information,
+                  we cannot guarantee its absolute security.
+                </p>
+              </div>
+
+              <div className="mb-10">
+                <h2 className="text-2xl font-semibold mb-4">
+                  Cookies and Tracking Technologies
+                </h2>
                 <p className="mb-4">
-                  We use cookies and similar tracking technologies to track activity on our website and store certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.
+                  We use cookies and similar tracking technologies to track
+                  activity on our website and store certain information. Cookies
+                  are files with a small amount of data which may include an
+                  anonymous unique identifier. You can instruct your browser to
+                  refuse all cookies or to indicate when a cookie is being sent.
                 </p>
                 <p>
-                  We use both session cookies (which expire once you close your web browser) and persistent cookies (which stay on your computer until you delete them).
+                  We use both session cookies (which expire once you close your
+                  web browser) and persistent cookies (which stay on your
+                  computer until you delete them).
                 </p>
               </div>
 
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Your Privacy Rights</h2>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Your Privacy Rights
+                </h2>
                 <p className="mb-4">
-                  Depending on your location, you may have certain rights regarding your personal information, including:
+                  Depending on your location, you may have certain rights
+                  regarding your personal information, including:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Right to access and receive a copy of your personal information</li>
+                  <li>
+                    Right to access and receive a copy of your personal
+                    information
+                  </li>
                   <li>Right to rectify or update your personal information</li>
                   <li>Right to erase your personal information</li>
-                  <li>Right to restrict processing of your personal information</li>
-                  <li>Right to object to processing of your personal information</li>
+                  <li>
+                    Right to restrict processing of your personal information
+                  </li>
+                  <li>
+                    Right to object to processing of your personal information
+                  </li>
                   <li>Right to data portability</li>
                   <li>Right to withdraw consent</li>
                 </ul>
                 <p className="mt-4">
-                  To exercise any of these rights, please contact us using the contact information provided below.
+                  To exercise any of these rights, please contact us using the
+                  contact information provided below.
                 </p>
               </div>
 
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Children's Privacy</h2>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Children's Privacy
+                </h2>
                 <p>
-                  Our services are not directed to individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we learn we have collected or received personal information from a child under 16 without verification of parental consent, we will delete that information.
+                  Our services are not directed to individuals under the age of
+                  16. We do not knowingly collect personal information from
+                  children under 16. If we learn we have collected or received
+                  personal information from a child under 16 without
+                  verification of parental consent, we will delete that
+                  information.
                 </p>
               </div>
 
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold mb-4">Changes to This Privacy Policy</h2>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Changes to This Privacy Policy
+                </h2>
                 <p>
-                  We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.
+                  We may update our Privacy Policy from time to time. We will
+                  notify you of any changes by posting the new Privacy Policy on
+                  this page and updating the "Last Updated" date. You are
+                  advised to review this Privacy Policy periodically for any
+                  changes.
                 </p>
               </div>
 
               <div className="mb-10">
                 <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
                 <p>
-                  If you have any questions about this Privacy Policy, please contact us:
+                  If you have any questions about this Privacy Policy, please
+                  contact us:
                 </p>
                 <ul className="list-none space-y-2 mt-4">
                   <li>
@@ -222,7 +302,8 @@ export default function PrivacyPolicy() {
                     <strong>By phone:</strong> +91 89560 01555
                   </li>
                   <li>
-                    <strong>By mail:</strong> 3rd Floor, Office No. C 305 DP Road, Police, Wireless Colony, Pune, Maharashtra.
+                    <strong>By mail:</strong> 3rd Floor, Office No. C 305 DP
+                    Road, Police, Wireless Colony, Pune, Maharashtra.
                   </li>
                 </ul>
               </div>

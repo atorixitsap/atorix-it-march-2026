@@ -23,7 +23,7 @@ export default function LogoSphere() {
       50,
       containerRef.current.clientWidth / containerRef.current.clientHeight,
       0.1,
-      1000
+      1000,
     );
     camera.position.z = 5;
 
@@ -34,7 +34,7 @@ export default function LogoSphere() {
     });
     renderer.setSize(
       containerRef.current.clientWidth,
-      containerRef.current.clientHeight
+      containerRef.current.clientHeight,
     );
     renderer.setClearColor(0x000000, 0);
     renderer.shadowMap.enabled = true;
@@ -54,7 +54,7 @@ export default function LogoSphere() {
     controls.enabled = false; // Disable controls completely
 
     // Make sure the renderer's DOM element doesn't block touch events
-    renderer.domElement.style.pointerEvents = 'none';
+    renderer.domElement.style.pointerEvents = "none";
 
     // Lighting - Reduced intensity for deeper metallic look
     scene.add(new THREE.AmbientLight(0xffffff, 0.6)); // Further reduced ambient light
@@ -82,15 +82,17 @@ export default function LogoSphere() {
 
     // Load Atorix logo texture
     const textureLoader = new THREE.TextureLoader();
-    const logoTexture = textureLoader.load('/atorix-logo.png');
+    const logoTexture = textureLoader.load(
+      "https://res.cloudinary.com/dfmiavhld/image/upload/v1774426582/atorix-logo_r7texg.png",
+    );
     logoTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
     // Create a canvas to modify the texture
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
 
     // Wait for the texture to load, then resize and enhance
-    logoTexture.onload = function() {
+    logoTexture.onload = function () {
       const img = logoTexture.image;
       canvas.width = img.width;
       canvas.height = img.height;
@@ -117,13 +119,15 @@ export default function LogoSphere() {
         // Skip fully transparent pixels
         if (data[i + 3] > 0) {
           // Deepen colors overall
-          data[i] = Math.max(Math.min(data[i] * 0.8, 255), 0);     // Reduce red more
+          data[i] = Math.max(Math.min(data[i] * 0.8, 255), 0); // Reduce red more
           data[i + 1] = Math.max(Math.min(data[i + 1] * 0.8, 255), 0); // Reduce green more
 
           // Preserve blues but make them deeper/richer
-          if (data[i + 2] > 128) { // For bright blue pixels
+          if (data[i + 2] > 128) {
+            // For bright blue pixels
             data[i + 2] = Math.max(Math.min(data[i + 2] * 0.9, 255), 0); // Deepen bright blues
-          } else if (data[i + 2] > 50) { // For medium blue pixels
+          } else if (data[i + 2] > 50) {
+            // For medium blue pixels
             data[i + 2] = Math.max(Math.min(data[i + 2] * 0.95, 255), 0); // Slightly deepen medium blues
           }
 
@@ -154,10 +158,10 @@ export default function LogoSphere() {
     const logoMaterial = new THREE.MeshStandardMaterial({
       map: logoTexture,
       transparent: true,
-      metalness: 0.85,    // Higher metalness for stronger metallic effect
-      roughness: 0.15,    // Lower roughness for more reflection but not too shiny
+      metalness: 0.85, // Higher metalness for stronger metallic effect
+      roughness: 0.15, // Lower roughness for more reflection but not too shiny
       side: THREE.FrontSide,
-      color: 0xe8e8e8,    // Slight darkening tint
+      color: 0xe8e8e8, // Slight darkening tint
       emissive: 0x000000, // No emission
       emissiveIntensity: 0,
     });
@@ -165,7 +169,7 @@ export default function LogoSphere() {
     // Create a circular disc for the logo
     const logoDisc = new THREE.Mesh(
       new THREE.CircleGeometry(1.2, 64),
-      logoMaterial
+      logoMaterial,
     );
     logoDisc.receiveShadow = false;
     logoDisc.castShadow = false;
@@ -184,7 +188,7 @@ export default function LogoSphere() {
       color: 0x000000,
       transparent: true,
       opacity: 0.12,
-      side: THREE.BackSide
+      side: THREE.BackSide,
     });
     const backplate = new THREE.Mesh(backplateGeometry, backplateMaterial);
     backplate.position.z = -0.01;
@@ -206,7 +210,7 @@ export default function LogoSphere() {
       emissive: 0x2b4d99,
       emissiveIntensity: 0.15,
       transparent: true,
-      opacity: 0.85
+      opacity: 0.85,
     });
 
     // Rings group (will be rotated)
@@ -214,8 +218,8 @@ export default function LogoSphere() {
 
     // First ring (horizontal)
     const ring1 = new THREE.Mesh(
-      new THREE.TorusGeometry(2, 0.10, 18, 100),
-      ringMaterial
+      new THREE.TorusGeometry(2, 0.1, 18, 100),
+      ringMaterial,
     );
     ring1.rotation.x = Math.PI / 2;
     ring1.castShadow = false;
@@ -223,8 +227,8 @@ export default function LogoSphere() {
 
     // Second ring (oblique/tilted)
     const ring2 = new THREE.Mesh(
-      new THREE.TorusGeometry(2, 0.10, 18, 100),
-      ringMaterial
+      new THREE.TorusGeometry(2, 0.1, 18, 100),
+      ringMaterial,
     );
     ring2.rotation.x = Math.PI / 4;
     ring2.rotation.y = Math.PI / 6;
@@ -233,8 +237,8 @@ export default function LogoSphere() {
 
     // Third ring (vertical)
     const ring3 = new THREE.Mesh(
-      new THREE.TorusGeometry(2, 0.10, 18, 100),
-      ringMaterial
+      new THREE.TorusGeometry(2, 0.1, 18, 100),
+      ringMaterial,
     );
     ring3.rotation.y = Math.PI / 2;
     ring3.castShadow = false;
@@ -246,23 +250,27 @@ export default function LogoSphere() {
 
     // Create circular particle texture
     const createCircleTexture = () => {
-      const canvas = document.createElement('canvas');
+      const canvas = document.createElement("canvas");
       const size = 64;
       canvas.width = size;
       canvas.height = size;
 
-      const context = canvas.getContext('2d');
+      const context = canvas.getContext("2d");
 
       // Draw a radial gradient from white center to transparent edges
       const gradient = context.createRadialGradient(
-        size / 2, size / 2, 0,
-        size / 2, size / 2, size / 2
+        size / 2,
+        size / 2,
+        0,
+        size / 2,
+        size / 2,
+        size / 2,
       );
 
-      gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-      gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.8)');
-      gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.3)');
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+      gradient.addColorStop(0.3, "rgba(255, 255, 255, 0.8)");
+      gradient.addColorStop(0.7, "rgba(255, 255, 255, 0.3)");
+      gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
       context.fillStyle = gradient;
       context.fillRect(0, 0, size, size);
@@ -295,7 +303,7 @@ export default function LogoSphere() {
         mainPositions.push(
           radius * Math.sin(phi) * Math.cos(theta),
           radius * Math.sin(phi) * Math.sin(theta),
-          radius * Math.cos(phi)
+          radius * Math.cos(phi),
         );
 
         // Varied sizes for more realism
@@ -306,13 +314,22 @@ export default function LogoSphere() {
           0.2 + Math.random() * 0.2,
           0.5 + Math.random() * 0.3,
           0.8 + Math.random() * 0.2,
-          0.6 + Math.random() * 0.4
+          0.6 + Math.random() * 0.4,
         );
       }
 
-      mainSparkGeom.setAttribute('position', new THREE.Float32BufferAttribute(mainPositions, 3));
-      mainSparkGeom.setAttribute('size', new THREE.Float32BufferAttribute(mainSizes, 1));
-      mainSparkGeom.setAttribute('color', new THREE.Float32BufferAttribute(mainColors, 4));
+      mainSparkGeom.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(mainPositions, 3),
+      );
+      mainSparkGeom.setAttribute(
+        "size",
+        new THREE.Float32BufferAttribute(mainSizes, 1),
+      );
+      mainSparkGeom.setAttribute(
+        "color",
+        new THREE.Float32BufferAttribute(mainColors, 4),
+      );
 
       const mainSparkMaterial = new THREE.PointsMaterial({
         size: 0.12,
@@ -321,7 +338,7 @@ export default function LogoSphere() {
         opacity: 0.8,
         blending: THREE.AdditiveBlending,
         sizeAttenuation: true,
-        map: particleTexture // Add circular texture
+        map: particleTexture, // Add circular texture
       });
 
       const mainSparkles = new THREE.Points(mainSparkGeom, mainSparkMaterial);
@@ -344,7 +361,7 @@ export default function LogoSphere() {
         secondaryPositions.push(
           radius * Math.sin(phi) * Math.cos(theta),
           radius * Math.sin(phi) * Math.sin(theta),
-          radius * Math.cos(phi)
+          radius * Math.cos(phi),
         );
 
         // Smaller sizes for background effect
@@ -358,7 +375,7 @@ export default function LogoSphere() {
             0.2 + Math.random() * 0.2,
             0.4 + Math.random() * 0.3,
             0.7 + Math.random() * 0.3,
-            0.3 + Math.random() * 0.3
+            0.3 + Math.random() * 0.3,
           );
         } else if (colorType < 0.9) {
           // White/silver tints
@@ -367,7 +384,7 @@ export default function LogoSphere() {
             brightness,
             brightness,
             brightness,
-            0.2 + Math.random() * 0.4
+            0.2 + Math.random() * 0.4,
           );
         } else {
           // Subtle purple tints
@@ -375,14 +392,23 @@ export default function LogoSphere() {
             0.4 + Math.random() * 0.2,
             0.2 + Math.random() * 0.2,
             0.7 + Math.random() * 0.3,
-            0.2 + Math.random() * 0.3
+            0.2 + Math.random() * 0.3,
           );
         }
       }
 
-      secondarySparkGeom.setAttribute('position', new THREE.Float32BufferAttribute(secondaryPositions, 3));
-      secondarySparkGeom.setAttribute('size', new THREE.Float32BufferAttribute(secondarySizes, 1));
-      secondarySparkGeom.setAttribute('color', new THREE.Float32BufferAttribute(secondaryColors, 4));
+      secondarySparkGeom.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(secondaryPositions, 3),
+      );
+      secondarySparkGeom.setAttribute(
+        "size",
+        new THREE.Float32BufferAttribute(secondarySizes, 1),
+      );
+      secondarySparkGeom.setAttribute(
+        "color",
+        new THREE.Float32BufferAttribute(secondaryColors, 4),
+      );
 
       const secondarySparkMaterial = new THREE.PointsMaterial({
         size: 0.06,
@@ -391,10 +417,13 @@ export default function LogoSphere() {
         opacity: 0.7,
         blending: THREE.AdditiveBlending,
         sizeAttenuation: true,
-        map: particleTexture // Add circular texture
+        map: particleTexture, // Add circular texture
       });
 
-      const secondarySparkles = new THREE.Points(secondarySparkGeom, secondarySparkMaterial);
+      const secondarySparkles = new THREE.Points(
+        secondarySparkGeom,
+        secondarySparkMaterial,
+      );
       particlesGroup.add(secondarySparkles);
 
       // Dust layer - very small, ambient particles
@@ -414,7 +443,7 @@ export default function LogoSphere() {
         dustPositions.push(
           radius * Math.sin(phi) * Math.cos(theta),
           radius * Math.sin(phi) * Math.sin(theta),
-          radius * Math.cos(phi)
+          radius * Math.cos(phi),
         );
 
         // Very small sizes for dust effect
@@ -428,23 +457,27 @@ export default function LogoSphere() {
             0.3 + Math.random() * 0.2,
             0.4 + Math.random() * 0.2,
             0.6 + Math.random() * 0.3,
-            alpha
+            alpha,
           );
         } else {
           // White/silver dust
           const brightness = 0.5 + Math.random() * 0.4;
-          dustColors.push(
-            brightness,
-            brightness,
-            brightness,
-            alpha
-          );
+          dustColors.push(brightness, brightness, brightness, alpha);
         }
       }
 
-      dustGeom.setAttribute('position', new THREE.Float32BufferAttribute(dustPositions, 3));
-      dustGeom.setAttribute('size', new THREE.Float32BufferAttribute(dustSizes, 1));
-      dustGeom.setAttribute('color', new THREE.Float32BufferAttribute(dustColors, 4));
+      dustGeom.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(dustPositions, 3),
+      );
+      dustGeom.setAttribute(
+        "size",
+        new THREE.Float32BufferAttribute(dustSizes, 1),
+      );
+      dustGeom.setAttribute(
+        "color",
+        new THREE.Float32BufferAttribute(dustColors, 4),
+      );
 
       const dustMaterial = new THREE.PointsMaterial({
         size: 0.04,
@@ -453,7 +486,7 @@ export default function LogoSphere() {
         opacity: 0.5,
         blending: THREE.AdditiveBlending,
         sizeAttenuation: true,
-        map: particleTexture // Add circular texture
+        map: particleTexture, // Add circular texture
       });
 
       const dust = new THREE.Points(dustGeom, dustMaterial);
@@ -463,7 +496,7 @@ export default function LogoSphere() {
         group: particlesGroup,
         mainSparkles,
         secondarySparkles,
-        dust
+        dust,
       };
     };
 
@@ -497,7 +530,8 @@ export default function LogoSphere() {
       // Pulse the particles subtly
       const time = Date.now() * 0.001;
       particles.mainSparkles.material.size = 0.12 + Math.sin(time * 0.8) * 0.03;
-      particles.secondarySparkles.material.size = 0.06 + Math.sin(time * 1.2) * 0.015;
+      particles.secondarySparkles.material.size =
+        0.06 + Math.sin(time * 1.2) * 0.015;
 
       // Subtle floating animation for logo
       logoGroup.position.y = Math.sin(time) * 0.05;
@@ -586,7 +620,7 @@ export default function LogoSphere() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        pointerEvents: "none" // Allow touch events to pass through to elements below
+        pointerEvents: "none", // Allow touch events to pass through to elements below
       }}
     />
   );

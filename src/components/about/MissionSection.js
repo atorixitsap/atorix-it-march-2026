@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Target, Users, Award } from "lucide-react";
 
@@ -22,26 +24,26 @@ export default function MissionSection() {
             >
               <Target className="h-6 w-6 text-primary" />
             </motion.div>
-            
+
             {/* <h2 className="text-2xl font-semibold">Our Mission</h2> */}
             {/* <h3 className="inline-block text-2xl font-bold text-black dark:text-white relative">
                  Our Mission
             <span className="block mx-auto mt-2 h-[4px] w-2/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
           </h3> */}
-             <h2 className="inline-block text-2xl font-bold text-black dark:text-white relative">
-               Our Mission
-                <span className="block mt-2 h-[4px] w-2/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent">
-                </span>
-              </h2>
+            <h2 className="inline-block text-2xl font-bold text-black dark:text-white relative">
+              Our Mission
+              <span className="block mt-2 h-[4px] w-2/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent"></span>
+            </h2>
 
-            
             <p className="text-muted-foreground">
               {/* To empower businesses with tailored SAP solutions that drive
               digital transformation, optimize operations, and deliver
               measurable business value. */}
-              To empower businesses with tailored SAP solutions that drive digital transformation, 
-              optimize operations, and deliver measurable business value—helping organizations innovate faster,
-               operate smarter, and stay competitive in a rapidly evolving digital landscape.
+              To empower businesses with tailored SAP solutions that drive
+              digital transformation, optimize operations, and deliver
+              measurable business value—helping organizations innovate faster,
+              operate smarter, and stay competitive in a rapidly evolving
+              digital landscape.
             </p>
           </motion.div>
           <motion.div
@@ -60,16 +62,16 @@ export default function MissionSection() {
             </motion.div>
             {/* <h2 className="text-2xl font-semibold">Our Vision</h2> */}
             <h2 className="inline-block text-2xl font-bold text-black dark:text-white relative">
-               Our Vision
-                <span className="block mt-2 h-[4px] w-2/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent">
-                </span>
-              </h2>
+              Our Vision
+              <span className="block mt-2 h-[4px] w-2/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent"></span>
+            </h2>
 
             <p className="text-muted-foreground">
               {/* To be the most trusted SAP partner, recognized for our technical
               excellence, industry insights, and commitment to client success. */}
-              To be the most trusted SAP partner, known for technical excellence, industry insight,
-               and a relentless focus on delivering value, innovation, and long-term client success.
+              To be the most trusted SAP partner, known for technical
+              excellence, industry insight, and a relentless focus on delivering
+              value, innovation, and long-term client success.
             </p>
           </motion.div>
           <motion.div
@@ -87,14 +89,12 @@ export default function MissionSection() {
               <Award className="h-6 w-6 text-primary" />
             </motion.div>
             {/* <h2 className="text-2xl font-semibold">Our Values</h2> */}
-         <h2 className="inline-block text-2xl font-bold text-black dark:text-white relative">
-               Our Values
-                <span className="block mt-2 h-[4px] w-2/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent">
-                </span>
-              </h2>
+            <h2 className="inline-block text-2xl font-bold text-black dark:text-white relative">
+              Our Values
+              <span className="block mt-2 h-[4px] w-2/5  bg-gradient-to-r from-pink-600 via-pink-600 to-transparent dark:from-white dark:via-white dark:to-transparent"></span>
+            </h2>
 
-
- {/* <h2 className="group relative inline-block text-3xl font-bold mb-6 cursor-pointer">
+            {/* <h2 className="group relative inline-block text-3xl font-bold mb-6 cursor-pointer">
   <span className="bg-gradient-to-r from-primary via-purple-500 to-indigo-500 bg-clip-text text-transparent transition-all duration-300 group-hover:tracking-wide ">
    {title}
   </span>

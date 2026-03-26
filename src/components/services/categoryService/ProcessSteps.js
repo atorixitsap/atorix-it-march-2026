@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 export default function ProcessSteps({ steps }) {
@@ -27,7 +29,10 @@ export default function ProcessSteps({ steps }) {
             {index !== steps.length - 1 && (
               <div className="absolute left-7 top-14 h-12 flex flex-col items-center justify-between gap-6">
                 {[...Array(3)].map((_, i) => (
-                  <div key={i} className="w-1 h-1 rounded-full bg-primary/60"></div>
+                  <div
+                    key={i}
+                    className="w-1 h-1 rounded-full bg-primary/60"
+                  ></div>
                 ))}
               </div>
             )}

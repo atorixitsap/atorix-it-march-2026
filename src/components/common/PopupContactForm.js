@@ -527,7 +527,7 @@ const COUNTRY_CODES = [
     maxLength: 8,
   },
   { code: "+673", country: "Brunei", flag: "🇧🇳", minLength: 7, maxLength: 7 },
-  { code: "+679", country: "Fiji", flag: "🇫🇯", minLength: 7, maxLength: 7 },
+  // { code: "+679", country: "Fiji", flag: "🇫🇯", minLength: 7, maxLength: 7 },
   {
     code: "+689",
     country: "French Polynesia",
@@ -1274,9 +1274,10 @@ export default function PopupContactForm() {
                 <div className="hidden lg:flex lg:w-5/12 xl:w-1/2 relative shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-indigo-900 flex items-center justify-center p-6">
                     <img
-                      src="/images/services/SAP-Services.png"
+                      src="/images/services/Webp/SAP-Services.webp"
                       alt="Atorix IT SAP Services"
                       className="w-full h-full object-cover"
+                      sizes="100vw"
                     />
                   </div>
                 </div>
@@ -1290,7 +1291,7 @@ export default function PopupContactForm() {
                       <div className="scale-75 sm:scale-90">
                         <div className="bg-gradient-to-r from-black to-gray-900 rounded-full px-4 py-1.5 border border-pink-500/40 shadow-[0_0_20px_rgba(236,72,153,0.6)] flex items-center">
                           <Image
-                            src="/AtorixIT.png"
+                            src="Webp/AtorixIT.webp"
                             alt="Atorix IT Logo"
                             width={130}
                             height={40}

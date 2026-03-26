@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import {
   Database,
@@ -9,7 +11,7 @@ import {
   LineChart,
   PieChart,
   Lightbulb,
-  CheckSquare
+  CheckSquare,
 } from "lucide-react";
 
 export default function DataWorkflowVisualization() {
@@ -31,7 +33,8 @@ export default function DataWorkflowVisualization() {
     {
       id: 0,
       title: "Data Collection",
-      description: "Gather data from multiple sources including databases, APIs, files, and IoT devices.",
+      description:
+        "Gather data from multiple sources including databases, APIs, files, and IoT devices.",
       icon: Database,
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
@@ -40,7 +43,8 @@ export default function DataWorkflowVisualization() {
     {
       id: 1,
       title: "Data Preparation",
-      description: "Clean, transform, and structure data for analysis. Handle missing values and outliers.",
+      description:
+        "Clean, transform, and structure data for analysis. Handle missing values and outliers.",
       icon: FileText,
       color: "text-green-500",
       bgColor: "bg-green-500/10",
@@ -49,7 +53,8 @@ export default function DataWorkflowVisualization() {
     {
       id: 2,
       title: "Processing & Analysis",
-      description: "Apply statistical methods and algorithms to extract patterns and relationships.",
+      description:
+        "Apply statistical methods and algorithms to extract patterns and relationships.",
       icon: RefreshCw,
       color: "text-purple-500",
       bgColor: "bg-purple-500/10",
@@ -58,7 +63,8 @@ export default function DataWorkflowVisualization() {
     {
       id: 3,
       title: "Modeling & Prediction",
-      description: "Develop machine learning models to make predictions and generate forecasts.",
+      description:
+        "Develop machine learning models to make predictions and generate forecasts.",
       icon: LineChart,
       color: "text-amber-500",
       bgColor: "bg-amber-500/10",
@@ -67,7 +73,8 @@ export default function DataWorkflowVisualization() {
     {
       id: 4,
       title: "Visualization",
-      description: "Create intuitive dashboards and visual representations of insights for stakeholders.",
+      description:
+        "Create intuitive dashboards and visual representations of insights for stakeholders.",
       icon: PieChart,
       color: "text-cyan-500",
       bgColor: "bg-cyan-500/10",
@@ -76,7 +83,8 @@ export default function DataWorkflowVisualization() {
     {
       id: 5,
       title: "Insight Generation",
-      description: "Transform analysis results into actionable business recommendations.",
+      description:
+        "Transform analysis results into actionable business recommendations.",
       icon: Lightbulb,
       color: "text-red-500",
       bgColor: "bg-red-500/10",
@@ -85,7 +93,8 @@ export default function DataWorkflowVisualization() {
     {
       id: 6,
       title: "Implementation",
-      description: "Put insights into action through operational changes and strategic initiatives.",
+      description:
+        "Put insights into action through operational changes and strategic initiatives.",
       icon: CheckSquare,
       color: "text-indigo-500",
       bgColor: "bg-indigo-500/10",
@@ -109,7 +118,8 @@ export default function DataWorkflowVisualization() {
         >
           <h2 className="text-3xl font-bold mb-4">Data Science Workflow</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            See how we transform raw data into actionable insights through our comprehensive data science process.
+            See how we transform raw data into actionable insights through our
+            comprehensive data science process.
           </p>
         </motion.div>
 
@@ -136,21 +146,27 @@ export default function DataWorkflowVisualization() {
                     className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 cursor-pointer transition-colors duration-300 ${
                       activeStep === index ? step.bgColor : "bg-muted"
                     } border ${
-                      activeStep === index ? step.borderColor : "border-muted-foreground/20"
+                      activeStep === index
+                        ? step.borderColor
+                        : "border-muted-foreground/20"
                     }`}
                     whileTap={{ scale: 0.95 }}
                   >
                     {/* Dynamically rendered icon */}
                     {React.createElement(step.icon, {
                       className: `h-6 w-6 ${
-                        activeStep === index ? step.color : "text-muted-foreground"
+                        activeStep === index
+                          ? step.color
+                          : "text-muted-foreground"
                       }`,
                     })}
                   </motion.div>
 
                   <p
                     className={`text-xs font-medium transition-colors duration-300 text-center w-16 ${
-                      activeStep === index ? "text-foreground" : "text-muted-foreground"
+                      activeStep === index
+                        ? "text-foreground"
+                        : "text-muted-foreground"
                     }`}
                   >
                     {step.title}
@@ -160,8 +176,12 @@ export default function DataWorkflowVisualization() {
                   {activeStep === index && (
                     <motion.div
                       layoutId="activeStepIndicator"
-                      className={`absolute -bottom-1 w-4 h-1 rounded-full ${step.color.replace('text-', 'bg-')}`}
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      className={`absolute -bottom-1 w-4 h-1 rounded-full ${step.color.replace("text-", "bg-")}`}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </motion.div>
@@ -184,7 +204,9 @@ export default function DataWorkflowVisualization() {
             </div>
 
             <div className="flex items-start md:items-center gap-6 md:gap-10 flex-col md:flex-row">
-              <div className={`rounded-full p-5 ${steps[activeStep].bgColor} border ${steps[activeStep].borderColor}`}>
+              <div
+                className={`rounded-full p-5 ${steps[activeStep].bgColor} border ${steps[activeStep].borderColor}`}
+              >
                 {/* Dynamically rendered icon for step details */}
                 {React.createElement(steps[activeStep].icon, {
                   className: `h-10 w-10 ${steps[activeStep].color}`,
@@ -192,7 +214,9 @@ export default function DataWorkflowVisualization() {
               </div>
 
               <div className="flex-1">
-                <h3 className={`text-2xl font-bold mb-3 ${steps[activeStep].color}`}>
+                <h3
+                  className={`text-2xl font-bold mb-3 ${steps[activeStep].color}`}
+                >
                   {steps[activeStep].title}
                 </h3>
                 <p className="text-muted-foreground text-lg">
@@ -203,7 +227,9 @@ export default function DataWorkflowVisualization() {
 
             {/* Decorative Elements */}
             <div className="absolute top-0 right-0 w-24 h-24 opacity-30">
-              <div className={`absolute right-0 top-0 w-16 h-16 rounded-bl-full ${steps[activeStep].color.replace('text-', 'bg-')}`} />
+              <div
+                className={`absolute right-0 top-0 w-16 h-16 rounded-bl-full ${steps[activeStep].color.replace("text-", "bg-")}`}
+              />
             </div>
           </motion.div>
 
@@ -215,8 +241,8 @@ export default function DataWorkflowVisualization() {
                 onClick={() => setActiveStep(index)}
                 className={`w-2 h-2 rounded-full transition-colors duration-300 ${
                   activeStep === index
-                    ? steps[activeStep].color.replace('text-', 'bg-')
-                    : 'bg-muted-foreground/30'
+                    ? steps[activeStep].color.replace("text-", "bg-")
+                    : "bg-muted-foreground/30"
                 }`}
                 aria-label={`Go to step ${step.title}`}
               />

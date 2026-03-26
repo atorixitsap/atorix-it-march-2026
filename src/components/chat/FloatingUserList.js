@@ -1,25 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { X, Search } from "lucide-react";
 import { useChat } from "@/context/ChatContext";
 import { useState, useMemo } from "react";
 
 export default function FloatingUserList({ onSelectUser, onClose }) {
-
-  const {
-    users,
-    lastMessages,
-    onlineUsers,
-    typingUsers,
-    unread,
-  } = useChat();
+  const { users, lastMessages, onlineUsers, typingUsers, unread } = useChat();
 
   const [search, setSearch] = useState("");
 
   const sorted = useMemo(() => {
-
-    let arr = users.map(u => ({
+    let arr = users.map((u) => ({
       ...u,
       last: lastMessages[u._id]?.text || "",
       time: lastMessages[u._id]?.time || 0,
@@ -27,8 +21,8 @@ export default function FloatingUserList({ onSelectUser, onClose }) {
     }));
 
     if (search) {
-      arr = arr.filter(u =>
-        u.name.toLowerCase().includes(search.toLowerCase())
+      arr = arr.filter((u) =>
+        u.name.toLowerCase().includes(search.toLowerCase()),
       );
     }
 
@@ -40,7 +34,6 @@ export default function FloatingUserList({ onSelectUser, onClose }) {
     });
 
     return arr;
-
   }, [users, lastMessages, unread, search]);
 
   return (
@@ -78,7 +71,6 @@ h-[60vh] sm:h-[420px]
 
       {/* LIST */}
       <div className="flex-1 overflow-y-auto">
-
         {sorted.map((u) => (
           <div
             key={u._id}
@@ -92,21 +84,16 @@ h-[60vh] sm:h-[420px]
             "
           >
             <div className="flex justify-between items-center">
-
               <div className="flex items-center gap-2">
-
                 <span
                   className={`w-2 h-2 rounded-full ${
-                    onlineUsers?.[u._id]
-                      ? "bg-green-500"
-                      : "bg-gray-400"
+                    onlineUsers?.[u._id] ? "bg-green-500" : "bg-gray-400"
                   }`}
                 />
 
                 <span className="text-sm font-medium text-gray-900 dark:text-white">
                   {u.name}
                 </span>
-
               </div>
 
               {u.unread > 0 && (
@@ -114,18 +101,13 @@ h-[60vh] sm:h-[420px]
                   •
                 </span>
               )}
-
             </div>
 
             <div className="text-xs text-gray-500 truncate mt-1">
-              {typingUsers?.[u._id]
-                ? "Typing..."
-                : u.last}
+              {typingUsers?.[u._id] ? "Typing..." : u.last}
             </div>
-
           </div>
         ))}
-
       </div>
     </motion.div>
   );

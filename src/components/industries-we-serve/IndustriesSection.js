@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -24,10 +26,7 @@ export default function IndustriesSection({ data }) {
         <span className="block mx-auto mt-2 h-[4px] w-2/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
       </h2>
 
-
-      <p className="text-muted-foreground mb-2 max-w-3xl">
-        {data.description}
-      </p>
+      <p className="text-muted-foreground mb-2 max-w-3xl">{data.description}</p>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {data.industries.map((industry, index) => (
@@ -37,7 +36,7 @@ export default function IndustriesSection({ data }) {
               "relative p-4 border rounded-xl cursor-pointer",
               hovered === industry.id
                 ? "border-primary/40 bg-primary/5"
-                : "border-border/50"
+                : "border-border/50",
             )}
             onMouseEnter={() => setHovered(industry.id)}
             onMouseLeave={() => setHovered(null)}

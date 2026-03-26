@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 const ITEM_HEIGHT = 80;
@@ -23,13 +25,11 @@ export default function VerticalTimeline({ data }) {
   const { title, description, steps } = data;
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const dotY =
-    activeIndex * ITEM_HEIGHT + ITEM_HEIGHT / 2 - DOT_SIZE / 2;
+  const dotY = activeIndex * ITEM_HEIGHT + ITEM_HEIGHT / 2 - DOT_SIZE / 2;
 
   const activeStep = steps[activeIndex];
   const image =
-    activeStep.image ||
-    FALLBACK_IMAGES[activeIndex % FALLBACK_IMAGES.length];
+    activeStep.image || FALLBACK_IMAGES[activeIndex % FALLBACK_IMAGES.length];
 
   return (
     <section className="py-10 relative text-justify">
@@ -37,7 +37,9 @@ export default function VerticalTimeline({ data }) {
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-10 text-justify">
           <h2 className="text-4xl font-bold mb-4 text-justify">{title}</h2>
-          <p className="text-lg text-muted-foreground text-justify">{description}</p>
+          <p className="text-lg text-muted-foreground text-justify">
+            {description}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
@@ -128,17 +130,20 @@ export default function VerticalTimeline({ data }) {
                   {activeStep.summary}
                 </p>
 
-                {Array.isArray(activeStep.points) && activeStep.points.length > 0 && (
-  <ul className="space-y-3 text-justify">
-    {activeStep.points.map((point, i) => (
-      <li key={i} className="flex gap-3 text-base text-justify">
-        <span className="text-primary mt-1">•</span>
-        <span>{point}</span>
-      </li>
-    ))}
-  </ul>
-)}
-
+                {Array.isArray(activeStep.points) &&
+                  activeStep.points.length > 0 && (
+                    <ul className="space-y-3 text-justify">
+                      {activeStep.points.map((point, i) => (
+                        <li
+                          key={i}
+                          className="flex gap-3 text-base text-justify"
+                        >
+                          <span className="text-primary mt-1">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
               </div>
             </motion.div>
           </div>

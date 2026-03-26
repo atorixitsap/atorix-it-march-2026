@@ -35,13 +35,11 @@ export default function ApproachSection({ category, service }) {
         <div className="max-w-3xl mb-14">
           {/* <h2 className="text-3xl font-bold mb-3">{heading}</h2> */}
           <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
-                 {heading}
+            {heading}
             <span className="block mx-auto mt-2 h-[4px] w-2/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
           </h2>
-          
-          {intro && (
-            <p className="text-muted-foreground text-lg ">{intro}</p>
-          )}
+
+          {intro && <p className="text-muted-foreground text-lg ">{intro}</p>}
         </div>
 
         {width >= 1024 ? (
@@ -78,9 +76,7 @@ function DesktopLayout({ steps }) {
             >
               <h3
                 className={`font-medium transition-colors ${
-                  isActive
-                    ? "text-foreground"
-                    : "text-muted-foreground"
+                  isActive ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 {step.title}
@@ -216,9 +212,7 @@ function ExpandedCard({ step }) {
       </div>
 
       <div className="relative z-10 p-10">
-        <h4 className="text-2xl font-semibold text-white mb-4">
-          {step.title}
-        </h4>
+        <h4 className="text-2xl font-semibold text-white mb-4">{step.title}</h4>
 
         {step.description && (
           <p className="text-white/90 leading-relaxed mb-4 text-justify">

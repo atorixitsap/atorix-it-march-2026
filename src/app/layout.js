@@ -3,7 +3,7 @@
  * Atorix IT | Next.js App Router
  */
 
-"use client";
+"use client"; // ✅ MUST KEEP (AuthContext ke liye)
 
 // ─── Next.js Core ────────────────────────────────────────────
 import { Inter } from "next/font/google";
@@ -22,16 +22,27 @@ import { ChatProvider } from "@/context/ChatContext";
 // ─── Shared UI Components ────────────────────────────────────
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-import FloatingContactButtons from "@/components/common/FloatingContactButtons";
-import PopupContactForm from "@/components/common/PopupContactForm";
+const FloatingContactButtons = dynamic(
+  () => import("@/components/common/FloatingContactButtons"),
+  { ssr: false },
+);
+import dynamic from "next/dynamic";
+
+const PopupContactForm = dynamic(
+  () => import("@/components/common/PopupContactForm"),
+  { ssr: false },
+);
 
 // ─── Utilities / API ─────────────────────────────────────────
 import { pingBackend } from "@/lib/api";
 import "@/utils/api/apiInterceptor";
 
 // ─── Font Setup ──────────────────────────────────────────────
-const inter = Inter({ subsets: ["latin"] });
-
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
 // ─────────────────────────────────────────────────────────────
 // RootLayout
 // ─────────────────────────────────────────────────────────────
@@ -55,11 +66,11 @@ export default function RootLayout({ children }) {
         {/* ✅ Public Scripts Only */}
         {!isAdminRoute && (
           <>
-            {/* ✅ Ahrefs Analytics */}
-            <Script
+            {/* ✅ Ahrefs Analytics (optimized) */}
+            <script
               src="https://analytics.ahrefs.com/analytics.js"
               data-key="Je7LdX6DWIh1uupYQu89Kg"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
 
             {/* ✅ Tawk Script 1 */}
@@ -68,7 +79,7 @@ export default function RootLayout({ children }) {
               strategy="lazyOnload"
               dangerouslySetInnerHTML={{
                 __html: `
-                  window.Tawk_API     = window.Tawk_API     || {};
+                  window.Tawk_API = window.Tawk_API || {};
                   window.Tawk_LoadStart = new Date();
 
                   (function () {
@@ -102,42 +113,66 @@ export default function RootLayout({ children }) {
                     return day >= 1 && day <= 5 && hour >= 10 && hour < 19;
                   }
 
-                  window.Tawk_API.onLoaded = function () {
+window.Tawk_API.onLoaded = function () {
 
-                    function setWidgetStyle() {
-                      if (!window.Tawk_API.customStyle) return;
+  function setWidgetStyle() {
+    if (!window.Tawk_API.customStyle) return;
 
-                      const widgetWidth = Math.min(360, window.innerWidth - 24);
-                      const widgetHeight = Math.min(520, window.innerHeight - 140);
+    const isMobile = window.innerWidth < 768;
 
-                      window.Tawk_API.customStyle({
-                        widget: {
-                          width: widgetWidth,
-                          height: widgetHeight,
-                        },
-                        visibility: {
-                          desktop: {
-                            position: "br",
-                            xOffset: 12,
-                            yOffset: 18,
-                          },
-                          mobile: {
-                            position: "br",
-                            xOffset: 12,
-                            yOffset: 18,
-                          },
-                        },
-                      });
-                    }
+    const widgetWidth = isMobile
+      ? window.innerWidth - 20   // mobile full width
+      : Math.min(360, window.innerWidth - 24);
 
-                    setWidgetStyle();
+    const widgetHeight = isMobile
+      ? window.innerHeight - 100 // mobile full height
+      : Math.min(520, window.innerHeight - 140);
 
-                    if (isBusinessHours()) {
-                      window.Tawk_API.showWidget();
-                    } else {
-                      window.Tawk_API.hideWidget();
-                    }
-                  };
+    window.Tawk_API.customStyle({
+      widget: {
+        width: widgetWidth,
+        height: widgetHeight,
+      },
+      visibility: {
+        desktop: {
+          position: "br",
+          xOffset: 12,
+          yOffset: 18,
+        },
+        mobile: {
+          position: "br",
+          xOffset: 10,
+          yOffset: 10,
+        },
+      },
+    });
+  }
+
+  // ✅ initial call
+  setWidgetStyle();
+
+  // ✅ IMPORTANT: resize listener
+  window.addEventListener("resize", () => {
+    setWidgetStyle();
+  });
+
+  // ✅ business logic
+  function isBusinessHours() {
+    const now = new Date();
+    const istTime = new Date(
+      now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
+    );
+    const day = istTime.getDay();
+    const hour = istTime.getHours();
+    return day >= 1 && day <= 5 && hour >= 10 && hour < 19;
+  }
+
+  if (isBusinessHours()) {
+    window.Tawk_API.showWidget();
+  } else {
+    window.Tawk_API.hideWidget();
+  }
+};
                 `,
               }}
             />

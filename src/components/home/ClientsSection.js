@@ -1,89 +1,80 @@
 "use client";
 
 import Image from "next/image";
-import { useTheme } from "@/components/ui/theme-provider";
 
 // Client logos
 const clientLogos = [
-  { name: "Binstellar", logo: "/images/clients/Binstellar.png" },
-  { name: "Brihati", logo: "/images/clients/Brihati.png" },
-  { name: "EPN", logo: "/images/clients/EPN.png" },
-  { name: "Form6", logo: "/images/clients/Form6.png" },
-  { name: "NXI", logo: "/images/clients/NXI.png" },
-  { name: "SFMS", logo: "/images/clients/SFMS.png" },
-  { name: "VPTechnoLabs", logo: "/images/clients/VPTechnoLabsFinal.png" },
-  { name: "WebSeede", logo: "/images/clients/WebSeede.png" },
-  { name: "Protergia", logo: "/images/clients/protergia.png" },
+  { name: "Binstellar", logo: "/images/clients/Webp/Binstellar.webp" },
+  { name: "Brihati", logo: "/images/clients/Webp/Brihati.webp" },
+  { name: "EPN", logo: "/images/clients/Webp/EPN.webp" },
+  { name: "Form6", logo: "/images/clients/Webp/Form6.webp" },
+  { name: "NXI", logo: "/images/clients/Webp/NXI.webp" },
+  { name: "SFMS", logo: "/images/clients/Webp/SFMS.webp" },
+  { name: "VPTechnoLabs", logo: "/images/clients/Webp/VPTechnoLabsFinal.webp" },
+  { name: "WebSeede", logo: "/images/clients/Webp/WebSeede.webp" },
+  { name: "Protergia", logo: "/images/clients/Webp/protergia.webp" },
+  { name: "Advetfly", logo: "/images/clients/Webp/Advetfly.webp" },
 ];
 
-// automatic duplication for infinite marquee
+// duplicate for seamless loop
 const marqueeLogos = [...clientLogos, ...clientLogos];
 
 export default function ClientsSection() {
-  const { theme } = useTheme();
-
   return (
-    <section className="py-10 md:py-12 border-t border-b border-border/60 bg-muted/30">
+    <section className="relative py-16 overflow-hidden">
+      {/* 🔥 DOT + STAR BACKGROUND */}
+      <div className="absolute inset-0 -z-10">
+        {/* Dots */}
+        <div
+          className="absolute inset-0 
+          bg-[radial-gradient(circle,rgba(0,0,0,0.08)_1px,transparent_1px)] 
+          dark:bg-[radial-gradient(circle,rgba(255,255,255,0.12)_1px,transparent_1px)]
+          bg-[size:20px_20px]"
+        ></div>
+
+        {/* Stars (small glow points) */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-10 left-20 w-1 h-1 bg-primary rounded-full blur-[2px]"></div>
+          <div className="absolute top-40 right-32 w-1 h-1 bg-primary rounded-full blur-[2px]"></div>
+          <div className="absolute bottom-20 left-40 w-1 h-1 bg-primary rounded-full blur-[2px]"></div>
+          <div className="absolute bottom-32 right-20 w-1 h-1 bg-primary rounded-full blur-[2px]"></div>
+        </div>
+      </div>
+
       <div className="container-custom">
-        
-        {/* Section header */}
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-2">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary mb-3">
             <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
             Trusted Partners
           </div>
 
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
-            Our Clients
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold">Our Clients</h2>
         </div>
 
-        {/* Logo marquee */}
-        <div className="relative w-full overflow-hidden">
-          <div className="w-full overflow-hidden">
-            <div className="animate-marquee inline-flex space-x-6 sm:space-x-10 lg:space-x-14 whitespace-nowrap">
-              
-              {marqueeLogos.map((client, index) => (
-                <div key={index} className="flex items-center justify-center px-2 sm:px-3">
-                  
-                  {/* Responsive Logo Frame */}
-                  <div
-                    className="
-                    flex items-center justify-center
-                    h-[50px] w-[100px]
-                      sm:h-[40px] sm:w-[100px]
-                      lg:h-[52px] lg:w-[130px]
-                    overflow-hidden
-                    "
-                  >
-                    <Image
-                      src={client.logo}
-                      alt={client.name}
-                      width={140}
-                      height={70}
-                      className={`
-                      max-h-full max-w-full
-                      object-contain block
-                      transition-all duration-300
-                      ${
-                        theme === "dark"
-                          ? "brightness-125 contrast-125"
-                          : "grayscale opacity-80 hover:grayscale-0 hover:opacity-100"
-                      }
-                      `}
-                    />
-                  </div>
+        {/* 🔥 CONTINUOUS MARQUEE */}
+        <div className="relative overflow-hidden">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
 
-                </div>
-              ))}
-
-            </div>
+          <div className="flex w-max animate-marquee">
+            {marqueeLogos.map((client, index) => (
+              <div key={index} className="px-8 flex items-center">
+                <Image
+                  src={client.logo}
+                  alt={client.name}
+                  width={140}
+                  height={70}
+                  className="object-contain"
+                />
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Client stats */}
-        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-          
+        {/* Stats */}
+        <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-6">
           <div className="text-center">
             <p className="text-4xl font-bold text-primary">100+</p>
             <p className="text-muted-foreground text-sm">Happy Clients</p>
@@ -103,7 +94,6 @@ export default function ClientsSection() {
             <p className="text-4xl font-bold text-primary">10+</p>
             <p className="text-muted-foreground text-sm">Years Experience</p>
           </div>
-
         </div>
       </div>
     </section>

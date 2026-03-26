@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 // Card hover effects for FAQ section
@@ -18,9 +20,7 @@ export default function EnhancedFAQCard({ title, content, delay = 0 }) {
       <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
         {title}
       </h3>
-      <p className="text-muted-foreground text-justify">
-        {content}
-      </p>
+      <p className="text-muted-foreground text-justify">{content}</p>
     </motion.div>
   );
 }

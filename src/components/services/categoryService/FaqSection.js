@@ -70,11 +70,8 @@ export default function FaqSection({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-
         {title}
         <span className="block mx-auto mt-2 h-[4px] w-2/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
-        
-
       </motion.h2>
 
       <div>

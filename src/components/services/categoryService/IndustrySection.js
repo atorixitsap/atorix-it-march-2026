@@ -2,76 +2,81 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // Industry data with icons
 const industriesData = [
   {
-    id:"a01",
-    name:"Our advanced analytics solutions support enterprises across industries such as:",
-    description01:"Our advanced analytics solutions support enterprises across industries such as:"
+    id: "a01",
+    name: "Our advanced analytics solutions support enterprises across industries such as:",
+    description01:
+      "Our advanced analytics solutions support enterprises across industries such as:",
   },
   {
     id: "manufacturing",
     name: "Manufacturing & Supply Chain ",
-    description: "Streamline production processes and optimize supply chain management",
-    icon: "/images/industries/manufacture.png"
+    description:
+      "Streamline production processes and optimize supply chain management",
+    icon: "/images/industries/manufacture.png",
   },
   {
     id: "retail",
     name: "Retail & eCommerce",
     description: "Enhance customer experience and inventory management",
-    icon: "/images/industries/retail.png"
+    icon: "/images/industries/retail.png",
   },
   {
     id: "healthcare",
     name: "Healthcare & Life Sciences",
     description: "Improve patient care and operational efficiency",
-    icon: "/images/industries/healthcare.png"
+    icon: "/images/industries/healthcare.png",
   },
   {
     id: "finance",
     name: "Finance & Banking ",
     description: "Enhance financial processes and regulatory compliance",
-    icon: "/images/industries/finance.png"
+    icon: "/images/industries/finance.png",
   },
   {
     id: "education",
     name: "Education & Public Sector ",
     description: "Optimize administrative processes and student services",
-    icon: "/images/industries/education.png"
+    icon: "/images/industries/education.png",
   },
   {
     id: "logistics",
     name: "Logistics & Transportation ",
-    description: "Improve supply chain visibility and transportation management",
-    icon: "/images/industries/logistics.png"
+    description:
+      "Improve supply chain visibility and transportation management",
+    icon: "/images/industries/logistics.png",
   },
   {
     id: "construction",
     name: "Construction",
     description: "Enhance project management and resource allocation",
-    icon: "/images/industries/construction.png"
+    icon: "/images/industries/construction.png",
   },
   {
     id: "energy",
     name: "Energy",
     description: "Optimize energy production and distribution",
-    icon: "/images/industries/Energy.png"
+    icon: "/images/industries/Energy.png",
   },
   {
     id: "chemical",
     name: "Chemical",
     description: "Improve production processes and regulatory compliance",
-    icon: "/images/industries/chemical.png"
+    icon: "/images/industries/chemical.png",
   },
-   {
+  {
     id: "professional",
     name: "Professional Services",
     description: "Optimize administrative processes and student services",
-    icon: "/images/industries/education.png"
-  }
+    icon: "/images/industries/education.png",
+  },
 ];
 
 export default function IndustrySection({ relevantIndustries = null }) {
@@ -80,23 +85,21 @@ export default function IndustrySection({ relevantIndustries = null }) {
   // If specific industries are provided, filter from the main list
   // Otherwise, show a subset of industries
   const industries = relevantIndustries
-    ? industriesData.filter(ind => relevantIndustries.includes(ind.id))
+    ? industriesData.filter((ind) => relevantIndustries.includes(ind.id))
     : industriesData.slice(0, 6);
 
   return (
     <div>
       <motion.h2
-
-      // {industry.description01}
+        // {industry.description01}
 
         className="text-2xl font-bold mb-6"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-       Industries We Serve 
+        Industries We Serve
       </motion.h2>
-      
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {industries.map((industry, index) => (
@@ -110,7 +113,7 @@ export default function IndustrySection({ relevantIndustries = null }) {
               "relative p-4 border rounded-xl cursor-pointer group transition-all duration-300",
               hoveredIndustry === industry.id
                 ? "border-primary/40 bg-primary/5 shadow-md"
-                : "border-border/50 hover:border-primary/30 hover:bg-muted/30"
+                : "border-border/50 hover:border-primary/30 hover:bg-muted/30",
             )}
             onMouseEnter={() => setHoveredIndustry(industry.id)}
             onMouseLeave={() => setHoveredIndustry(null)}
@@ -133,7 +136,7 @@ export default function IndustrySection({ relevantIndustries = null }) {
               initial={{ opacity: 0, height: 0 }}
               animate={{
                 opacity: hoveredIndustry === industry.id ? 1 : 0,
-                height: hoveredIndustry === industry.id ? "auto" : 0
+                height: hoveredIndustry === industry.id ? "auto" : 0,
               }}
               transition={{ duration: 0.2 }}
             >

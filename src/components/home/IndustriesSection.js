@@ -25,6 +25,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 // Industry data with icons from Lucide
@@ -255,15 +257,8 @@ export default function EnhancedIndustriesSection() {
           ))}
         </motion.div>
 
-
-
-
-
         {/* Enhanced CTA button with glowing effect */}
-        <motion.div
-          variants={itemVariants}
-          className="text-center mt-1"
-        >
+        <motion.div variants={itemVariants} className="text-center mt-1">
           <Button
             asChild
             size="lg"
@@ -291,7 +286,13 @@ export default function EnhancedIndustriesSection() {
 }
 
 // Enhanced 3D Industry Card Component
-function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentIndex }) {
+function IndustryCard({
+  industry,
+  index,
+  isHovered,
+  setHoveredIndex,
+  currentIndex,
+}) {
   // Animation states
   const [rotateXValue, setRotateXValue] = useState(0);
   const [rotateYValue, setRotateYValue] = useState(0);
@@ -308,7 +309,7 @@ function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentInde
         duration: 0.5,
         type: "spring",
         stiffness: 50,
-        damping: 10
+        damping: 10,
       },
     }),
   };
@@ -325,7 +326,7 @@ function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentInde
     const mouseY = event.clientY - centerY;
 
     // Scale the effect down to avoid extreme rotations
-    setRotateXValue(mouseY / 25 * -1); // Reversed for natural tilt
+    setRotateXValue((mouseY / 25) * -1); // Reversed for natural tilt
     setRotateYValue(mouseX / 25);
   };
 
@@ -358,7 +359,9 @@ function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentInde
         style={{
           transform: `rotateX(${rotateXValue}deg) rotateY(${rotateYValue}deg) scale(${scaleValue})`,
           transition: "transform 0.2s ease-out",
-          boxShadow: isHovered ? "0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)" : "none",
+          boxShadow: isHovered
+            ? "0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)"
+            : "none",
         }}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
@@ -374,7 +377,7 @@ function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentInde
             className="mb-4"
             style={{
               transform: isHovered ? "translateZ(20px)" : "translateZ(0)",
-              transition: "transform 0.3s ease-out"
+              transition: "transform 0.3s ease-out",
             }}
           >
             <motion.div
@@ -382,7 +385,7 @@ function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentInde
               whileHover={{
                 scale: 1.15,
                 rotate: [0, -5, 5, 0],
-                transition: { duration: 0.5 }
+                transition: { duration: 0.5 },
               }}
             >
               {/* Glow effect */}
@@ -399,7 +402,7 @@ function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentInde
             className="text-lg font-medium mb-2 text-foreground text-3d group-hover:text-primary transition-colors duration-300"
             style={{
               transform: isHovered ? "translateZ(15px)" : "translateZ(0)",
-              transition: "transform 0.3s ease-out"
+              transition: "transform 0.3s ease-out",
             }}
           >
             {industry.title}
@@ -410,7 +413,7 @@ function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentInde
             className="text-muted-foreground text-sm mb-4 flex-grow group-hover:text-foreground/80 transition-colors duration-300"
             style={{
               transform: isHovered ? "translateZ(10px)" : "translateZ(0)",
-              transition: "transform 0.4s ease-out"
+              transition: "transform 0.4s ease-out",
             }}
           >
             {industry.description}
@@ -420,7 +423,7 @@ function IndustryCard({ industry, index, isHovered, setHoveredIndex, currentInde
           <div
             style={{
               transform: isHovered ? "translateZ(25px)" : "translateZ(0)",
-              transition: "transform 0.3s ease-out"
+              transition: "transform 0.3s ease-out",
             }}
           >
             <Link

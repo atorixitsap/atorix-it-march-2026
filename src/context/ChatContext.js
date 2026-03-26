@@ -2,11 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import useChatSocket from "@/hooks/useChatSocket";
-import {
-  fetchChatUsers,
-  fetchUnread,
-  fetchConversations,
-} from "@/lib/chatApi";
+import { fetchChatUsers, fetchUnread, fetchConversations } from "@/lib/chatApi";
 import { getCurrentUser } from "@/lib/auth";
 
 const ChatContext = createContext();
@@ -33,120 +29,128 @@ export function ChatProvider({ children }) {
   }, []);
 
   const loadUsers = async () => {
-    const res = await fetchChatUsers();
-    if (res?.success) {
-      setUsers(res.data.filter(u => u._id !== me?._id));
+    try {
+      const res = await fetchChatUsers();
+      if (res?.success) {
+        setUsers(res.data.filter((u) => u._id !== me?._id));
+      } else {
+        console.warn("Failed to load users:", res?.message);
+        setUsers([]);
+      }
+    } catch (error) {
+      console.error("Error loading chat users:", error.message);
+      setUsers([]); // Graceful fallback
     }
   };
 
   const preload = async () => {
-
-    const unreadRes = await fetchUnread();
-    if (unreadRes?.success) {
-      const map = {};
-      unreadRes.data.forEach(u => {
-        if (u.count > 0) {
-          map[u._id] = 1; // ✅ presence based unread
-        }
-      });
-      setUnread(map);
+    try {
+      const unreadRes = await fetchUnread();
+      if (unreadRes?.success) {
+        const map = {};
+        unreadRes.data.forEach((u) => {
+          if (u.count > 0) {
+            map[u._id] = 1; // ✅ presence based unread
+          }
+        });
+        setUnread(map);
+      }
+    } catch (error) {
+      console.warn("Error fetching unread messages:", error.message);
     }
 
-    const convoRes = await fetchConversations();
-    if (convoRes?.success) {
-      const last = {};
-      convoRes.data.forEach(c => {
-        const other = c.participants.find(p => p._id !== me?._id);
-        if (!other) return;
+    try {
+      const convoRes = await fetchConversations();
+      if (convoRes?.success) {
+        const last = {};
+        convoRes.data.forEach((c) => {
+          const other = c.participants.find((p) => p._id !== me?._id);
+          if (!other) return;
 
-        last[other._id] = {
-          text: c.lastMessage,
-          time: new Date(c.updatedAt).getTime(),
-        };
-      });
-      setLastMessages(last);
+          last[other._id] = {
+            text: c.lastMessage,
+            time: new Date(c.updatedAt).getTime(),
+          };
+        });
+        setLastMessages(last);
+      }
+    } catch (error) {
+      console.warn("Error fetching conversations:", error.message);
     }
   };
 
   /* ================= SOCKET ================= */
 
-  const { sendMessage, sendRaw, connected } =
-    useChatSocket((msg) => {
+  const { sendMessage, sendRaw, connected } = useChatSocket((msg) => {
+    if (msg.type === "NEW_MESSAGE") {
+      const m = msg.data;
+      setMessages((p) => [...p, m]);
 
-      if (msg.type === "NEW_MESSAGE") {
+      const other = m.sender === me?._id ? m.receiver : m.sender;
 
-        const m = msg.data;
-        setMessages(p => [...p, m]);
+      setLastMessages((p) => ({
+        ...p,
+        [other]: {
+          text: m.text,
+          time: Date.now(),
+        },
+      }));
 
-        const other =
-          m.sender === me?._id
-            ? m.receiver
-            : m.sender;
-
-        setLastMessages(p => ({
+      // ✅ UNIQUE USER BASED UNREAD
+      if (m.receiver === me?._id && activeUser?._id !== other) {
+        setUnread((p) => ({
           ...p,
-          [other]: {
-            text: m.text,
-            time: Date.now(),
-          }
-        }));
-
-        // ✅ UNIQUE USER BASED UNREAD
-        if (m.receiver === me?._id &&
-            activeUser?._id !== other) {
-          setUnread(p => ({
-            ...p,
-            [other]: 1,
-          }));
-        }
-      }
-
-      if (msg.type === "USER_ONLINE") {
-        setOnlineUsers(p => ({
-          ...p,
-          [msg.data.userId]: true,
+          [other]: 1,
         }));
       }
+    }
 
-      if (msg.type === "USER_OFFLINE") {
-        setOnlineUsers(p => ({
-          ...p,
-          [msg.data.userId]: false,
-        }));
-      }
+    if (msg.type === "USER_ONLINE") {
+      setOnlineUsers((p) => ({
+        ...p,
+        [msg.data.userId]: true,
+      }));
+    }
 
-      if (msg.type === "TYPING_START") {
-        setTypingUsers(p => ({
-          ...p,
-          [msg.data.userId]: true,
-        }));
-      }
+    if (msg.type === "USER_OFFLINE") {
+      setOnlineUsers((p) => ({
+        ...p,
+        [msg.data.userId]: false,
+      }));
+    }
 
-      if (msg.type === "TYPING_STOP") {
-        setTypingUsers(p => ({
-          ...p,
-          [msg.data.userId]: false,
-        }));
-      }
+    if (msg.type === "TYPING_START") {
+      setTypingUsers((p) => ({
+        ...p,
+        [msg.data.userId]: true,
+      }));
+    }
 
-      if (msg.type === "MESSAGE_DELIVERED") {
-        setDeliveryStatus(p => ({
-          ...p,
-          [msg.data.messageId]: "delivered",
-        }));
-      }
+    if (msg.type === "TYPING_STOP") {
+      setTypingUsers((p) => ({
+        ...p,
+        [msg.data.userId]: false,
+      }));
+    }
 
-      if (msg.type === "MESSAGE_READ") {
-        setDeliveryStatus(p => ({
-          ...p,
-          [msg.data.messageId]: "read",
-        }));
-      }
-    });
+    if (msg.type === "MESSAGE_DELIVERED") {
+      setDeliveryStatus((p) => ({
+        ...p,
+        [msg.data.messageId]: "delivered",
+      }));
+    }
+
+    if (msg.type === "MESSAGE_READ") {
+      setDeliveryStatus((p) => ({
+        ...p,
+        [msg.data.messageId]: "read",
+      }));
+    }
+  });
 
   const openChat = (user) => {
     setActiveUser(user);
-    setUnread(p => ({
+    setUnread((p) => ({
       ...p,
       [user._id]: 0,
     }));

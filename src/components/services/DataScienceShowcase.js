@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -70,7 +72,9 @@ export default function DataScienceShowcase() {
           >
             <h2 className="text-3xl font-bold mb-4">Data Science Services</h2>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto ">
-              Unlock the power of your data with our comprehensive data science solutions that transform raw information into strategic business advantages.
+              Unlock the power of your data with our comprehensive data science
+              solutions that transform raw information into strategic business
+              advantages.
             </p>
           </motion.div>
         </div>
@@ -133,7 +137,11 @@ export default function DataScienceShowcase() {
                     <motion.div
                       className="absolute right-0 h-full top-0 w-1 bg-primary"
                       layoutId="activeTab"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </motion.div>
@@ -201,8 +209,16 @@ export default function DataScienceShowcase() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            <Button asChild size="lg" variant="outline" className="rounded-full">
-              <Link href="/services/data-science" className="inline-flex items-center">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="rounded-full"
+            >
+              <Link
+                href="/services/data-science"
+                className="inline-flex items-center"
+              >
                 Explore All Data Science Services
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { MapPin, Mail, Phone, Clock } from "lucide-react";
 import ContactInfoItem from "./ContactInfoItem";
@@ -14,16 +16,16 @@ export default function ContactInfo() {
       <div>
         <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
         <p className="text-muted-foreground mb-8 text-justify">
-          Feel free to reach out to us using any of the contact methods
-          below. We'll get back to you as quickly as possible.
+          Feel free to reach out to us using any of the contact methods below.
+          We'll get back to you as quickly as possible.
         </p>
       </div>
 
       <div className="space-y-6">
         <ContactInfoItem icon={MapPin} title="Our Office">
           <p className="text-muted-foreground">
-            3rd Floor, Office No. C 305 DP Road, Police, Wireless
-            Colony, Pune, Maharashtra.
+            3rd Floor, Office No. C 305 DP Road, Police, Wireless Colony, Pune,
+            Maharashtra.
           </p>
         </ContactInfoItem>
 

@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import IndustryGridItem from "./IndustryGridItem";
 

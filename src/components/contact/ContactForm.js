@@ -1,10 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Send, AlertCircle, CheckCircle } from "lucide-react";
-import { submitFormData, submitWeb3FormData, submitDemoRequest } from "@/lib/api";
+import {
+  submitFormData,
+  submitWeb3FormData,
+  submitDemoRequest,
+} from "@/lib/api";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -21,57 +27,57 @@ export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [apiError, setApiError] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({
-    email: '',
-    phone: ''
+    email: "",
+    phone: "",
   });
 
   // Phone number length rules by country code
   const phoneRules = {
-    '+1': { min: 10, max: 10 },
-    '+7': { min: 10, max: 10 },
-    '+20': { min: 10, max: 10 },
-    '+27': { min: 9, max: 9 },
-    '+31': { min: 9, max: 9 },
-    '+32': { min: 9, max: 9 },
-    '+33': { min: 9, max: 9 },
-    '+34': { min: 9, max: 9 },
-    '+39': { min: 10, max: 10 },
-    '+41': { min: 9, max: 9 },
-    '+44': { min: 10, max: 10 },
-    '+45': { min: 8, max: 8 },
-    '+46': { min: 9, max: 9 },
-    '+47': { min: 8, max: 8 },
-    '+48': { min: 9, max: 9 },
-    '+49': { min: 10, max: 11 },
-    '+52': { min: 10, max: 10 },
-    '+55': { min: 10, max: 11 },
-    '+60': { min: 9, max: 10 },
-    '+61': { min: 9, max: 9 },
-    '+62': { min: 10, max: 12 },
-    '+63': { min: 10, max: 10 },
-    '+64': { min: 9, max: 10 },
-    '+65': { min: 8, max: 8 },
-    '+66': { min: 9, max: 9 },
-    '+81': { min: 10, max: 10 },
-    '+82': { min: 9, max: 10 },
-    '+84': { min: 9, max: 10 },
-    '+86': { min: 11, max: 11 },
-    '+90': { min: 10, max: 10 },
-    '+91': { min: 10, max: 10 },
-    '+92': { min: 10, max: 10 },
-    '+93': { min: 9, max: 9 },
-    '+94': { min: 9, max: 9 },
-    '+234': { min: 10, max: 10 },
-    '+254': { min: 9, max: 9 },
-    '+351': { min: 9, max: 9 },
-    '+353': { min: 9, max: 9 },
-    '+852': { min: 8, max: 8 },
-    '+880': { min: 10, max: 10 },
-    '+886': { min: 9, max: 9 },
-    '+966': { min: 9, max: 9 },
-    '+971': { min: 9, max: 9 },
-    '+972': { min: 9, max: 9 },
-    '+974': { min: 8, max: 8 },
+    "+1": { min: 10, max: 10 },
+    "+7": { min: 10, max: 10 },
+    "+20": { min: 10, max: 10 },
+    "+27": { min: 9, max: 9 },
+    "+31": { min: 9, max: 9 },
+    "+32": { min: 9, max: 9 },
+    "+33": { min: 9, max: 9 },
+    "+34": { min: 9, max: 9 },
+    "+39": { min: 10, max: 10 },
+    "+41": { min: 9, max: 9 },
+    "+44": { min: 10, max: 10 },
+    "+45": { min: 8, max: 8 },
+    "+46": { min: 9, max: 9 },
+    "+47": { min: 8, max: 8 },
+    "+48": { min: 9, max: 9 },
+    "+49": { min: 10, max: 11 },
+    "+52": { min: 10, max: 10 },
+    "+55": { min: 10, max: 11 },
+    "+60": { min: 9, max: 10 },
+    "+61": { min: 9, max: 9 },
+    "+62": { min: 10, max: 12 },
+    "+63": { min: 10, max: 10 },
+    "+64": { min: 9, max: 10 },
+    "+65": { min: 8, max: 8 },
+    "+66": { min: 9, max: 9 },
+    "+81": { min: 10, max: 10 },
+    "+82": { min: 9, max: 10 },
+    "+84": { min: 9, max: 10 },
+    "+86": { min: 11, max: 11 },
+    "+90": { min: 10, max: 10 },
+    "+91": { min: 10, max: 10 },
+    "+92": { min: 10, max: 10 },
+    "+93": { min: 9, max: 9 },
+    "+94": { min: 9, max: 9 },
+    "+234": { min: 10, max: 10 },
+    "+254": { min: 9, max: 9 },
+    "+351": { min: 9, max: 9 },
+    "+353": { min: 9, max: 9 },
+    "+852": { min: 8, max: 8 },
+    "+880": { min: 10, max: 10 },
+    "+886": { min: 9, max: 9 },
+    "+966": { min: 9, max: 9 },
+    "+971": { min: 9, max: 9 },
+    "+972": { min: 9, max: 9 },
+    "+974": { min: 8, max: 8 },
   };
 
   const validateForm = () => {
@@ -93,7 +99,10 @@ export default function ContactForm() {
       newErrors.phone = "Phone number is required";
     } else {
       const rule = phoneRules[formData.countryCode];
-      if (rule && (formData.phone.length < rule.min || formData.phone.length > rule.max)) {
+      if (
+        rule &&
+        (formData.phone.length < rule.min || formData.phone.length > rule.max)
+      ) {
         newErrors.phone = `Phone number for ${formData.countryCode} must be ${rule.min === rule.max ? rule.min : `${rule.min}-${rule.max}`} digits`;
       }
     }
@@ -111,12 +120,12 @@ export default function ContactForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'email' || name === 'phone') {
-      setFieldErrors(prev => ({ ...prev, [name]: '' }));
+    if (name === "email" || name === "phone") {
+      setFieldErrors((prev) => ({ ...prev, [name]: "" }));
     }
 
-    if (name === 'phone') {
-      const digitOnly = value.replace(/\D/g, '');
+    if (name === "phone") {
+      const digitOnly = value.replace(/\D/g, "");
       const rule = phoneRules[formData.countryCode];
       if (rule && digitOnly.length > rule.max) return;
       setFormData((prev) => ({ ...prev, [name]: digitOnly }));
@@ -145,23 +154,23 @@ export default function ContactForm() {
 
     setSubmitting(true);
     setApiError(null);
-    setFieldErrors({ email: '', phone: '' });
+    setFieldErrors({ email: "", phone: "" });
 
     try {
       const submissionData = {
         name: formData.name.trim(),
         email: formData.email.trim().toLowerCase(),
         phone: `${formData.countryCode} ${formData.phone}`,
-        company: formData.company.trim() || 'Not provided',
-        role: 'Website Visitor',
-        interests: ['Website Inquiry'],
-        message: formData.message.trim() || 'No message provided',
-        source: 'website-contact',
-        status: 'new',
+        company: formData.company.trim() || "Not provided",
+        role: "Website Visitor",
+        interests: ["Website Inquiry"],
+        message: formData.message.trim() || "No message provided",
+        source: "website-contact",
+        status: "new",
         metadata: {
-          formType: 'contact-form',
-          submittedAt: new Date().toISOString()
-        }
+          formType: "contact-form",
+          submittedAt: new Date().toISOString(),
+        },
       };
 
       // Frontend duplicate guard (same session protection)
@@ -179,7 +188,7 @@ export default function ContactForm() {
       window.__lastSubmission = {
         email: submissionData.email,
         phone: submissionData.phone,
-        time: Date.now()
+        time: Date.now(),
       };
 
       // Submit to backend
@@ -187,41 +196,62 @@ export default function ContactForm() {
         const demoResult = await submitDemoRequest(submissionData);
 
         if (!demoResult.success) {
-          console.error('Demo request returned success=false:', demoResult);
+          console.error("Demo request returned success=false:", demoResult);
         }
       } catch (backendError) {
-        console.error('Backend submission error:', backendError.message);
+        console.error("Backend submission error:", backendError.message);
 
         const isDuplicateError =
           backendError.status === 409 ||
-          backendError.message?.toLowerCase().includes('already exists') ||
-          backendError.message?.toLowerCase().includes('duplicate') ||
-          backendError.response?.data?.message?.toLowerCase().includes('already exists') ||
-          backendError.response?.data?.message?.toLowerCase().includes('duplicate');
+          backendError.message?.toLowerCase().includes("already exists") ||
+          backendError.message?.toLowerCase().includes("duplicate") ||
+          backendError.response?.data?.message
+            ?.toLowerCase()
+            .includes("already exists") ||
+          backendError.response?.data?.message
+            ?.toLowerCase()
+            .includes("duplicate");
 
         if (isDuplicateError) {
-          const errorMessage = backendError.message ||
-                               backendError.response?.data?.message ||
-                               backendError.response?.data?.error ||
-                               '';
+          const errorMessage =
+            backendError.message ||
+            backendError.response?.data?.message ||
+            backendError.response?.data?.error ||
+            "";
           const errorMessageLower = errorMessage.toLowerCase();
 
-          if (errorMessageLower.includes('email')) {
-            setFieldErrors(prev => ({ ...prev, email: 'This email address has already been registered.' }));
-            setApiError('This email address is already registered. Please use a different email.');
+          if (errorMessageLower.includes("email")) {
+            setFieldErrors((prev) => ({
+              ...prev,
+              email: "This email address has already been registered.",
+            }));
+            setApiError(
+              "This email address is already registered. Please use a different email.",
+            );
             setSubmitting(false);
-            document.getElementById('email')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            document.getElementById('email')?.focus();
+            document
+              .getElementById("email")
+              ?.scrollIntoView({ behavior: "smooth", block: "center" });
+            document.getElementById("email")?.focus();
             return;
-          } else if (errorMessageLower.includes('phone')) {
-            setFieldErrors(prev => ({ ...prev, phone: 'This phone number has already been registered.' }));
-            setApiError('This phone number is already registered. Please use a different number.');
+          } else if (errorMessageLower.includes("phone")) {
+            setFieldErrors((prev) => ({
+              ...prev,
+              phone: "This phone number has already been registered.",
+            }));
+            setApiError(
+              "This phone number is already registered. Please use a different number.",
+            );
             setSubmitting(false);
-            document.getElementById('phone')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            document.getElementById('phone')?.focus();
+            document
+              .getElementById("phone")
+              ?.scrollIntoView({ behavior: "smooth", block: "center" });
+            document.getElementById("phone")?.focus();
             return;
           } else {
-            setApiError('This email or phone number has already been registered. Please use different details.');
+            setApiError(
+              "This email or phone number has already been registered. Please use different details.",
+            );
             setSubmitting(false);
             return;
           }
@@ -231,19 +261,25 @@ export default function ContactForm() {
           const validationErrors = backendError.response?.data?.errors;
           if (validationErrors) {
             const newFieldErrors = {};
-            if (validationErrors.email) newFieldErrors.email = validationErrors.email;
-            if (validationErrors.phone) newFieldErrors.phone = validationErrors.phone;
+            if (validationErrors.email)
+              newFieldErrors.email = validationErrors.email;
+            if (validationErrors.phone)
+              newFieldErrors.phone = validationErrors.phone;
 
             if (Object.keys(newFieldErrors).length > 0) {
               setFieldErrors(newFieldErrors);
-              setApiError('Please correct the errors in the form.');
+              setApiError("Please correct the errors in the form.");
               setSubmitting(false);
               return;
             }
           }
         }
 
-        setApiError(backendError.userMessage || backendError.message || 'Unable to submit form. Please try again.');
+        setApiError(
+          backendError.userMessage ||
+            backendError.message ||
+            "Unable to submit form. Please try again.",
+        );
         setSubmitting(false);
         return;
       }
@@ -255,14 +291,14 @@ export default function ContactForm() {
           ...submissionData,
           subject: `New Contact from ${submissionData.name}`,
           from_name: submissionData.name,
-          reply_to: submissionData.email
+          reply_to: submissionData.email,
         });
       } catch (web3Error) {
         console.error("Web3Forms error:", web3Error.message);
         setApiError(
           web3Error?.response?.data?.message ||
-          web3Error?.message ||
-          "Failed to send email notification. Your submission was saved but we couldn't send the confirmation email."
+            web3Error?.message ||
+            "Failed to send email notification. Your submission was saved but we couldn't send the confirmation email.",
         );
       }
 
@@ -276,21 +312,20 @@ export default function ContactForm() {
           company: "",
           message: "",
         });
-        setFieldErrors({ email: '', phone: '' });
+        setFieldErrors({ email: "", phone: "" });
 
-        if (typeof window !== 'undefined') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof window !== "undefined") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         setTimeout(() => setSubmitted(false), 5000);
       } else {
         setApiError(
           web3Result?.message ||
-          web3Result?.error ||
-          "Your message was saved but we couldn't send the confirmation email. We'll still get back to you!"
+            web3Result?.error ||
+            "Your message was saved but we couldn't send the confirmation email. We'll still get back to you!",
         );
       }
-
     } catch (error) {
       console.error("Unexpected form submission error:", error);
       setApiError("An unexpected error occurred. Please try again later.");
@@ -310,11 +345,14 @@ export default function ContactForm() {
       <motion.div
         className="bg-card rounded-xl shadow-lg border border-border/40 p-4 sm:p-6 md:p-8 backdrop-blur-sm dark:bg-black/30"
         whileHover={{
-          boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+          boxShadow:
+            "0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
         }}
         transition={{ duration: 0.3 }}
       >
-        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Send Us a Message</h2>
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+          Send Us a Message
+        </h2>
 
         {submitted ? (
           <motion.div
@@ -327,8 +365,12 @@ export default function ContactForm() {
               <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-300" />
             </div>
             <div>
-              <p className="font-medium text-sm sm:text-base">Thank you for your message!</p>
-              <p className="text-xs sm:text-sm mt-1">We have received your inquiry and will get back to you shortly.</p>
+              <p className="font-medium text-sm sm:text-base">
+                Thank you for your message!
+              </p>
+              <p className="text-xs sm:text-sm mt-1">
+                We have received your inquiry and will get back to you shortly.
+              </p>
             </div>
           </motion.div>
         ) : null}
@@ -344,7 +386,9 @@ export default function ContactForm() {
               <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-600 dark:text-red-300" />
             </div>
             <div>
-              <p className="font-medium text-sm sm:text-base">Error Submitting Form</p>
+              <p className="font-medium text-sm sm:text-base">
+                Error Submitting Form
+              </p>
               <p className="text-xs sm:text-sm mt-1">{apiError}</p>
             </div>
           </motion.div>
@@ -352,15 +396,31 @@ export default function ContactForm() {
 
         <form
           onSubmit={handleSubmit}
-          onKeyDown={(e) => { if (e.key === "Enter" && submitting) e.preventDefault(); }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && submitting) e.preventDefault();
+          }}
           className="space-y-4 sm:space-y-6"
         >
           {/* Honeypot field to prevent spam */}
-          <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+          <input
+            type="checkbox"
+            name="botcheck"
+            className="hidden"
+            style={{ display: "none" }}
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <motion.div className="space-y-2" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
-              <label htmlFor="name" className="text-xs sm:text-sm font-medium block">
+            <motion.div
+              className="space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <label
+                htmlFor="name"
+                className="text-xs sm:text-sm font-medium block"
+              >
                 Your Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -370,7 +430,13 @@ export default function ContactForm() {
                 value={formData.name}
                 onChange={handleChange}
                 aria-invalid={errors.name ? "true" : "false"}
-                className={"w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border " + (errors.name ? "border-red-500 dark:border-red-400" : "border-input") + " bg-background focus:border-primary focus:ring-1 focus:ring-primary transition-colors"}
+                className={
+                  "w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border " +
+                  (errors.name
+                    ? "border-red-500 dark:border-red-400"
+                    : "border-input") +
+                  " bg-background focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                }
                 placeholder="Enter your full name"
               />
               {errors.name && (
@@ -381,8 +447,17 @@ export default function ContactForm() {
               )}
             </motion.div>
 
-            <motion.div className="space-y-2" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}>
-              <label htmlFor="email" className="text-xs sm:text-sm font-medium block">
+            <motion.div
+              className="space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <label
+                htmlFor="email"
+                className="text-xs sm:text-sm font-medium block"
+              >
                 Email Address <span className="text-red-500">*</span>
               </label>
               <input
@@ -391,8 +466,16 @@ export default function ContactForm() {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                aria-invalid={errors.email || fieldErrors.email ? "true" : "false"}
-                className={"w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border " + (errors.email || fieldErrors.email ? "border-red-500 dark:border-red-400" : "border-input") + " bg-background focus:border-primary focus:ring-1 focus:ring-primary transition-colors"}
+                aria-invalid={
+                  errors.email || fieldErrors.email ? "true" : "false"
+                }
+                className={
+                  "w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border " +
+                  (errors.email || fieldErrors.email
+                    ? "border-red-500 dark:border-red-400"
+                    : "border-input") +
+                  " bg-background focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                }
                 placeholder="Enter your email address"
               />
               {(errors.email || fieldErrors.email) && (
@@ -405,8 +488,17 @@ export default function ContactForm() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <motion.div className="space-y-2" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }}>
-              <label htmlFor="phone" className="text-xs sm:text-sm font-medium block">
+            <motion.div
+              className="space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <label
+                htmlFor="phone"
+                className="text-xs sm:text-sm font-medium block"
+              >
                 Phone Number <span className="text-red-500">*</span>
               </label>
               <div className="flex gap-2">
@@ -469,8 +561,16 @@ export default function ContactForm() {
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  aria-invalid={errors.phone || fieldErrors.phone ? "true" : "false"}
-                  className={"flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border " + (errors.phone || fieldErrors.phone ? "border-red-500 dark:border-red-400" : "border-input") + " bg-background focus:border-primary focus:ring-1 focus:ring-primary transition-colors"}
+                  aria-invalid={
+                    errors.phone || fieldErrors.phone ? "true" : "false"
+                  }
+                  className={
+                    "flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border " +
+                    (errors.phone || fieldErrors.phone
+                      ? "border-red-500 dark:border-red-400"
+                      : "border-input") +
+                    " bg-background focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                  }
                   placeholder="9876543210"
                 />
               </div>
@@ -482,8 +582,17 @@ export default function ContactForm() {
               )}
             </motion.div>
 
-            <motion.div className="space-y-2" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.25 }}>
-              <label htmlFor="company" className="text-xs sm:text-sm font-medium block">
+            <motion.div
+              className="space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+            >
+              <label
+                htmlFor="company"
+                className="text-xs sm:text-sm font-medium block"
+              >
                 Company Name
               </label>
               <input
@@ -498,8 +607,17 @@ export default function ContactForm() {
             </motion.div>
           </div>
 
-          <motion.div className="space-y-2" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.18 }}>
-            <label htmlFor="message" className="text-xs sm:text-sm font-medium block">
+          <motion.div
+            className="space-y-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.18 }}
+          >
+            <label
+              htmlFor="message"
+              className="text-xs sm:text-sm font-medium block"
+            >
               Your Message <span className="text-red-500">*</span>
             </label>
             <textarea
@@ -509,7 +627,13 @@ export default function ContactForm() {
               value={formData.message}
               onChange={handleChange}
               aria-invalid={errors.message ? "true" : "false"}
-              className={"w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border " + (errors.message ? "border-red-500 dark:border-red-400" : "border-input") + " bg-background focus:border-primary focus:ring-1 focus:ring-primary resize-none transition-colors"}
+              className={
+                "w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border " +
+                (errors.message
+                  ? "border-red-500 dark:border-red-400"
+                  : "border-input") +
+                " bg-background focus:border-primary focus:ring-1 focus:ring-primary resize-none transition-colors"
+              }
               placeholder="Tell us about your project or inquiry"
             ></textarea>
             {errors.message && (
@@ -520,7 +644,12 @@ export default function ContactForm() {
             )}
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.22 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.22 }}
+          >
             <Button
               type="submit"
               className="w-full sm:w-auto gap-2 text-sm sm:text-base disabled:opacity-50 disabled:pointer-events-none"
@@ -529,9 +658,25 @@ export default function ContactForm() {
             >
               {submitting ? (
                 <div className="flex items-center gap-2">
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                   Processing...
                 </div>

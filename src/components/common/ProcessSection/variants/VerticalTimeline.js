@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 const ITEM_HEIGHT = 80;
@@ -23,13 +25,11 @@ export default function VerticalTimeline({ data }) {
   const { title, description, steps } = data;
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const dotY =
-    activeIndex * ITEM_HEIGHT + ITEM_HEIGHT / 2 - DOT_SIZE / 2;
+  const dotY = activeIndex * ITEM_HEIGHT + ITEM_HEIGHT / 2 - DOT_SIZE / 2;
 
   const activeStep = steps[activeIndex];
   const image =
-    activeStep.image ||
-    FALLBACK_IMAGES[activeIndex % FALLBACK_IMAGES.length];
+    activeStep.image || FALLBACK_IMAGES[activeIndex % FALLBACK_IMAGES.length];
 
   return (
     <section className="py-10 relative">
@@ -38,7 +38,7 @@ export default function VerticalTimeline({ data }) {
         <div className="text-center max-w-4xl mx-auto mb-20">
           {/* <h2 className="text-4xl font-bold mb-4">{title}</h2> */}
           <h2 className="inline-block text-3xl font-bold text-black dark:text-white relative">
-                  {title}
+            {title}
             <span className="block mx-auto mt-2 h-[4px] w-1/5  bg-gradient-to-r from-transparent via-pink-600 to-transparent dark:via-white"></span>
           </h2>
 

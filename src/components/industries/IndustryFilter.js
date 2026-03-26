@@ -1,10 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 // Interactive filter component for industries
-export default function IndustryFilter({ activeFilter, setActiveFilter, onReset }) {
+export default function IndustryFilter({
+  activeFilter,
+  setActiveFilter,
+  onReset,
+}) {
   const filters = [
     { id: "all", label: "All Industries" },
     { id: "manufacturing", label: "Manufacturing" },
