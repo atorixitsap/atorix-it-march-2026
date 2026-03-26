@@ -15,9 +15,9 @@ const servicesSEOData = {
             "@type": "WebPage",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/business-consulting#webpage",
+              "https://atorixit.com/services/consulting/business-consulting#webpage",
 
-            url: "https://www.atorixit.com/services/consulting/business-consulting",
+            url: "https://atorixit.com/services/consulting/business-consulting",
 
             name: "Business Consulting Services",
 
@@ -26,19 +26,19 @@ const servicesSEOData = {
             description:
               "Atorix IT provides expert business consulting services to help organizations optimize processes, improve operational efficiency, and drive digital transformation.",
 
-            isPartOf: { "@id": "https://www.atorixit.com#website" },
+            isPartOf: { "@id": "https://atorixit.com/#website" },
 
-            publisher: { "@id": "https://www.atorixit.com#organization" },
+            publisher: { "@id": "https://atorixit.com#organization" },
 
             mainEntity: [
               {
                 "@id":
-                  "https://www.atorixit.com/services/consulting/business-consulting#service",
+                  "https://atorixit.com/services/consulting/business-consulting#service",
               },
 
               {
                 "@id":
-                  "https://www.atorixit.com/services/consulting/business-consulting#faq",
+                  "https://atorixit.com/services/consulting/business-consulting#faq",
               },
             ],
           },
@@ -47,7 +47,7 @@ const servicesSEOData = {
             "@type": "BreadcrumbList",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/business-consulting#breadcrumb",
+              "https://atorixit.com/services/consulting/business-consulting#breadcrumb",
 
             itemListElement: [
               {
@@ -57,7 +57,7 @@ const servicesSEOData = {
 
                 name: "Home",
 
-                item: "https://www.atorixit.com/",
+                item: "https://atorixit.com/",
               },
 
               {
@@ -67,7 +67,7 @@ const servicesSEOData = {
 
                 name: "Services",
 
-                item: "https://www.atorixit.com/services/",
+                item: "https://atorixit.com/services/",
               },
 
               {
@@ -77,7 +77,7 @@ const servicesSEOData = {
 
                 name: "Consulting Services",
 
-                item: "https://www.atorixit.com/services/consulting/",
+                item: "https://atorixit.com/services/consulting/",
               },
 
               {
@@ -87,7 +87,7 @@ const servicesSEOData = {
 
                 name: "Business Consulting",
 
-                item: "https://www.atorixit.com/services/consulting/business-consulting",
+                item: "https://atorixit.com/services/consulting/business-consulting",
               },
             ],
           },
@@ -96,13 +96,13 @@ const servicesSEOData = {
             "@type": "Service",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/business-consulting#service",
+              "https://atorixit.com/services/consulting/business-consulting#service",
 
             name: "Business Consulting Services",
 
             serviceType: "Business Consulting and Strategy Advisory",
 
-            provider: { "@id": "https://www.atorixit.com#organization" },
+            provider: { "@id": "https://atorixit.com#organization" },
 
             areaServed: {
               "@type": "Place",
@@ -112,12 +112,12 @@ const servicesSEOData = {
 
             mainEntityOfPage: {
               "@id":
-                "https://www.atorixit.com/services/consulting/business-consulting#webpage",
+                "https://atorixit.com/services/consulting/business-consulting#webpage",
             },
 
             offers: {
               "@id":
-                "https://www.atorixit.com/services/consulting/business-consulting#offer",
+                "https://atorixit.com/services/consulting/business-consulting#offer",
             },
           },
 
@@ -125,13 +125,13 @@ const servicesSEOData = {
             "@type": "Offer",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/business-consulting#offer",
+              "https://atorixit.com/services/consulting/business-consulting#offer",
 
-            url: "https://www.atorixit.com/services/consulting/business-consulting",
+            url: "https://atorixit.com/services/consulting/business-consulting",
 
             itemOffered: {
               "@id":
-                "https://www.atorixit.com/services/consulting/business-consulting#service",
+                "https://atorixit.com/services/consulting/business-consulting#service",
             },
 
             eligibleCustomerType: {
@@ -145,7 +145,7 @@ const servicesSEOData = {
             "@type": "FAQPage",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/business-consulting#faq",
+              "https://atorixit.com/services/consulting/business-consulting#faq",
 
             mainEntity: [
               {
@@ -213,28 +213,28 @@ const servicesSEOData = {
           {
             "@type": "WebSite",
 
-            "@id": "https://www.atorixit.com#website",
+            "@id": "https://atorixit.com/#website",
 
-            url: "https://www.atorixit.com",
+            url: "https://atorixit.com",
 
             name: "Atorix IT Solutions",
 
-            publisher: { "@id": "https://www.atorixit.com#organization" },
+            publisher: { "@id": "https://atorixit.com#organization" },
           },
 
           {
             "@type": "Organization",
 
-            "@id": "https://www.atorixit.com#organization",
+            "@id": "https://atorixit.com#organization",
 
             name: "Atorix IT Solutions",
 
-            url: "https://www.atorixit.com",
+            url: "https://atorixit.com",
 
             logo: {
               "@type": "ImageObject",
 
-              url: "https://www.atorixit.com/atorix%20text%20logo@3x.webp",
+              url: "https://atorixit.com/atorix%20text%20logo@3x.webp",
 
               caption: "Atorix IT Solutions Logo",
             },
@@ -263,9 +263,9 @@ const servicesSEOData = {
             "@type": "WebPage",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/process-consulting#webpage",
+              "https://atorixit.com/services/consulting/process-consulting#webpage",
 
-            url: "https://www.atorixit.com/services/consulting/process-consulting",
+            url: "https://atorixit.com/services/consulting/process-consulting",
 
             name: "Process Consulting Services",
 
@@ -274,19 +274,19 @@ const servicesSEOData = {
             description:
               "Atorix IT delivers process consulting services to help organizations streamline operations, standardize workflows, and improve efficiency using industry best practices and SAP-enabled transformation.",
 
-            isPartOf: { "@id": "https://www.atorixit.com#website" },
+            isPartOf: { "@id": "https://atorixit.com/#website" },
 
-            publisher: { "@id": "https://www.atorixit.com#organization" },
+            publisher: { "@id": "https://atorixit.com#organization" },
 
             mainEntity: [
               {
                 "@id":
-                  "https://www.atorixit.com/services/consulting/process-consulting#service",
+                  "https://atorixit.com/services/consulting/process-consulting#service",
               },
 
               {
                 "@id":
-                  "https://www.atorixit.com/services/consulting/process-consulting#faq",
+                  "https://atorixit.com/services/consulting/process-consulting#faq",
               },
             ],
           },
@@ -295,7 +295,7 @@ const servicesSEOData = {
             "@type": "BreadcrumbList",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/process-consulting#breadcrumb",
+              "https://atorixit.com/services/consulting/process-consulting#breadcrumb",
 
             itemListElement: [
               {
@@ -305,7 +305,7 @@ const servicesSEOData = {
 
                 name: "Home",
 
-                item: "https://www.atorixit.com/",
+                item: "https://atorixit.com/",
               },
 
               {
@@ -315,7 +315,7 @@ const servicesSEOData = {
 
                 name: "Services",
 
-                item: "https://www.atorixit.com/services/",
+                item: "https://atorixit.com/services/",
               },
 
               {
@@ -325,7 +325,7 @@ const servicesSEOData = {
 
                 name: "Consulting Services",
 
-                item: "https://www.atorixit.com/services/consulting/",
+                item: "https://atorixit.com/services/consulting/",
               },
 
               {
@@ -335,7 +335,7 @@ const servicesSEOData = {
 
                 name: "Process Consulting",
 
-                item: "https://www.atorixit.com/services/consulting/process-consulting",
+                item: "https://atorixit.com/services/consulting/process-consulting",
               },
             ],
           },
@@ -344,13 +344,13 @@ const servicesSEOData = {
             "@type": "Service",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/process-consulting#service",
+              "https://atorixit.com/services/consulting/process-consulting#service",
 
             name: "Process Consulting Services",
 
             serviceType: "Business Process Consulting and Optimization",
 
-            provider: { "@id": "https://www.atorixit.com#organization" },
+            provider: { "@id": "https://atorixit.com#organization" },
 
             areaServed: {
               "@type": "Place",
@@ -360,12 +360,12 @@ const servicesSEOData = {
 
             mainEntityOfPage: {
               "@id":
-                "https://www.atorixit.com/services/consulting/process-consulting#webpage",
+                "https://atorixit.com/services/consulting/process-consulting#webpage",
             },
 
             offers: {
               "@id":
-                "https://www.atorixit.com/services/consulting/process-consulting#offer",
+                "https://atorixit.com/services/consulting/process-consulting#offer",
             },
           },
 
@@ -373,13 +373,13 @@ const servicesSEOData = {
             "@type": "Offer",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/process-consulting#offer",
+              "https://atorixit.com/services/consulting/process-consulting#offer",
 
-            url: "https://www.atorixit.com/services/consulting/process-consulting",
+            url: "https://atorixit.com/services/consulting/process-consulting",
 
             itemOffered: {
               "@id":
-                "https://www.atorixit.com/services/consulting/process-consulting#service",
+                "https://atorixit.com/services/consulting/process-consulting#service",
             },
 
             eligibleCustomerType: {
@@ -393,7 +393,7 @@ const servicesSEOData = {
             "@type": "FAQPage",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/process-consulting#faq",
+              "https://atorixit.com/services/consulting/process-consulting#faq",
 
             mainEntity: [
               {
@@ -461,28 +461,28 @@ const servicesSEOData = {
           {
             "@type": "WebSite",
 
-            "@id": "https://www.atorixit.com#website",
+            "@id": "https://atorixit.com/#website",
 
-            url: "https://www.atorixit.com",
+            url: "https://atorixit.com",
 
             name: "Atorix IT Solutions",
 
-            publisher: { "@id": "https://www.atorixit.com#organization" },
+            publisher: { "@id": "https://atorixit.com#organization" },
           },
 
           {
             "@type": "Organization",
 
-            "@id": "https://www.atorixit.com#organization",
+            "@id": "https://atorixit.com#organization",
 
             name: "Atorix IT Solutions",
 
-            url: "https://www.atorixit.com",
+            url: "https://atorixit.com",
 
             logo: {
               "@type": "ImageObject",
 
-              url: "https://www.atorixit.com/atorix%20text%20logo@3x.webp",
+              url: "https://atorixit.com/atorix%20text%20logo@3x.webp",
 
               caption: "Atorix IT Solutions Logo",
             },
@@ -511,9 +511,9 @@ const servicesSEOData = {
             "@type": "WebPage",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/technology-consulting#webpage",
+              "https://atorixit.com/services/consulting/technology-consulting#webpage",
 
-            url: "https://www.atorixit.com/services/consulting/technology-consulting",
+            url: "https://atorixit.com/services/consulting/technology-consulting",
 
             name: "Technology Consulting Services",
 
@@ -522,13 +522,13 @@ const servicesSEOData = {
             description:
               "Atorix IT provides technology consulting services to help organizations modernize IT systems, optimize SAP landscapes, and enable scalable, secure, and future-ready digital solutions.",
 
-            isPartOf: { "@id": "https://www.atorixit.com#website" },
+            isPartOf: { "@id": "https://atorixit.com/#website" },
 
-            publisher: { "@id": "https://www.atorixit.com#organization" },
+            publisher: { "@id": "https://atorixit.com#organization" },
 
             mainEntity: {
               "@id":
-                "https://www.atorixit.com/services/consulting/technology-consulting#service",
+                "https://atorixit.com/services/consulting/technology-consulting#service",
             },
           },
 
@@ -536,7 +536,7 @@ const servicesSEOData = {
             "@type": "BreadcrumbList",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/technology-consulting#breadcrumb",
+              "https://atorixit.com/services/consulting/technology-consulting#breadcrumb",
 
             itemListElement: [
               {
@@ -546,7 +546,7 @@ const servicesSEOData = {
 
                 name: "Home",
 
-                item: "https://www.atorixit.com/",
+                item: "https://atorixit.com/",
               },
 
               {
@@ -556,7 +556,7 @@ const servicesSEOData = {
 
                 name: "Services",
 
-                item: "https://www.atorixit.com/services/",
+                item: "https://atorixit.com/services/",
               },
 
               {
@@ -566,7 +566,7 @@ const servicesSEOData = {
 
                 name: "Consulting Services",
 
-                item: "https://www.atorixit.com/services/consulting/",
+                item: "https://atorixit.com/services/consulting/",
               },
 
               {
@@ -576,7 +576,7 @@ const servicesSEOData = {
 
                 name: "Technology Consulting",
 
-                item: "https://www.atorixit.com/services/consulting/technology-consulting",
+                item: "https://atorixit.com/services/consulting/technology-consulting",
               },
             ],
           },
@@ -585,13 +585,13 @@ const servicesSEOData = {
             "@type": "Service",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/technology-consulting#service",
+              "https://atorixit.com/services/consulting/technology-consulting#service",
 
             name: "Technology Consulting Services",
 
             serviceType: "Technology Consulting and IT Transformation",
 
-            provider: { "@id": "https://www.atorixit.com#organization" },
+            provider: { "@id": "https://atorixit.com#organization" },
 
             areaServed: {
               "@type": "Place",
@@ -601,12 +601,12 @@ const servicesSEOData = {
 
             mainEntityOfPage: {
               "@id":
-                "https://www.atorixit.com/services/consulting/technology-consulting#webpage",
+                "https://atorixit.com/services/consulting/technology-consulting#webpage",
             },
 
             offers: {
               "@id":
-                "https://www.atorixit.com/services/consulting/technology-consulting#offer",
+                "https://atorixit.com/services/consulting/technology-consulting#offer",
             },
           },
 
@@ -614,13 +614,13 @@ const servicesSEOData = {
             "@type": "Offer",
 
             "@id":
-              "https://www.atorixit.com/services/consulting/technology-consulting#offer",
+              "https://atorixit.com/services/consulting/technology-consulting#offer",
 
-            url: "https://www.atorixit.com/services/consulting/technology-consulting",
+            url: "https://atorixit.com/services/consulting/technology-consulting",
 
             itemOffered: {
               "@id":
-                "https://www.atorixit.com/services/consulting/technology-consulting#service",
+                "https://atorixit.com/services/consulting/technology-consulting#service",
             },
 
             eligibleCustomerType: {
@@ -633,28 +633,28 @@ const servicesSEOData = {
           {
             "@type": "WebSite",
 
-            "@id": "https://www.atorixit.com#website",
+            "@id": "https://atorixit.com/#website",
 
-            url: "https://www.atorixit.com",
+            url: "https://atorixit.com",
 
             name: "Atorix IT Solutions",
 
-            publisher: { "@id": "https://www.atorixit.com#organization" },
+            publisher: { "@id": "https://atorixit.com#organization" },
           },
 
           {
             "@type": "Organization",
 
-            "@id": "https://www.atorixit.com#organization",
+            "@id": "https://atorixit.com#organization",
 
             name: "Atorix IT Solutions",
 
-            url: "https://www.atorixit.com",
+            url: "https://atorixit.com",
 
             logo: {
               "@type": "ImageObject",
 
-              url: "https://www.atorixit.com/atorix%20text%20logo@3x.webp",
+              url: "https://atorixit.com/atorix%20text%20logo@3x.webp",
 
               caption: "Atorix IT Solutions Logo",
             },

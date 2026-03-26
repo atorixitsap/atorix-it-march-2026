@@ -183,7 +183,7 @@ window.Tawk_API.onLoaded = function () {
       <body className={`${inter.className} bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="white"
           enableSystem={false}
         >
           <AuthProvider>

@@ -1273,11 +1273,12 @@ export default function PopupContactForm() {
                 {/* ── Left panel (hidden on mobile) ── */}
                 <div className="hidden lg:flex lg:w-5/12 xl:w-1/2 relative shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-indigo-900 flex items-center justify-center p-6">
-                    <img
+                    <Image
                       src="/images/services/Webp/SAP-Services.webp"
-                      alt="Atorix IT SAP Services"
-                      className="w-full h-full object-cover"
-                      sizes="100vw"
+                      alt="SAP Services"
+                      width={430}
+                      height={600}
+                      sizes="(max-width: 768px) 100vw, 400px"
                     />
                   </div>
                 </div>
@@ -1294,7 +1295,7 @@ export default function PopupContactForm() {
                             src="Webp/AtorixIT.webp"
                             alt="Atorix IT Logo"
                             width={130}
-                            height={40}
+                            height={48}
                             className="object-contain"
                             priority
                           />

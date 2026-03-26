@@ -64,8 +64,8 @@ export default function ClientsSection() {
                 <Image
                   src={client.logo}
                   alt={client.name}
-                  width={140}
-                  height={70}
+                  width={110}
+                  height={23}
                   className="object-contain"
                 />
               </div>
