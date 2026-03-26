@@ -66,8 +66,8 @@ export default function ClientsSection() {
                   alt={client.name}
                   width={110}
                   height={40}
-                  sizes="(max-width: 768px) 80px, 110px"
-                  className="object-contain w-auto h-full"
+                  // sizes="(max-width: 768px) 80px, 110px"
+                  className="object-contain"
                   loading="lazy"
                 />
               </div>
